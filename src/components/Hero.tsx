@@ -36,10 +36,10 @@ export function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in" style={{
           animationDelay: '0.3s'
         }}>
-            <Button size="lg" className="bg-gradient-to-r from-bio-blue-500 to-bio-teal-500 text-white hover:from-bio-blue-600 hover:to-bio-teal-600 transition-all duration-300 text-lg px-8 py-6">
+            <Button size="lg" className="bg-lime-600 hover:bg-lime-400 transition-all duration-300 text-lg px-8 py-6">
               Read Articles
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-2 transition-all duration-300 text-slate-50 bg-black/0">
+            <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-2 transition-all duration-300 text-slate-50 bg-black/0 hover:bg-gray-900">
               Listen to Podcast
             </Button>
           </div>

@@ -62,6 +62,6 @@
 
 @layer components {
   .gradient-text {
-    @apply bg-gradient-to-r from-bio-teal-400 to-bio-blue-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-lime-500 to-green-500 bg-clip-text text-transparent;
   }
 }

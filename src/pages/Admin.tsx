@@ -8,7 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { getAllBlogPosts, type BlogPost } from "@/services/blogService";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Edit, Trash2, Plus } from "lucide-react";
+import { Edit, Trash2, Plus, Info } from "lucide-react";
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -101,6 +101,45 @@ const Admin = () => {
             New Post
           </Button>
         </div>
+
+        {/* Information Section */}
+        <Card className="mb-8 border-blue-200 bg-blue-50/10">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-blue-400">
+              <Info className="h-5 w-5" />
+              Important Guidelines
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4 text-sm">
+              <div>
+                <h4 className="font-semibold text-white mb-2">Login Information:</h4>
+                <ul className="list-disc list-inside text-gray-300 space-y-1">
+                  <li>Password: <code className="bg-gray-800 px-2 py-1 rounded text-blue-300">bionews2025</code> (no caps)</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold text-white mb-2">Article Guidelines:</h4>
+                <ul className="list-disc list-inside text-gray-300 space-y-1">
+                  <li><strong>Do not change the slug</strong> of existing articles - this will break links</li>
+                  <li>Always add proper headings (H1, H2, H3) to structure your content</li>
+                  <li>Use the rich text editor formatting tools for better readability</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold text-white mb-2">Images:</h4>
+                <ul className="list-disc list-inside text-gray-300 space-y-1">
+                  <li>Find royalty-free images on <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Unsplash</a> or <a href="https://pixabay.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Pixabay</a></li>
+                  <li>Copy the direct image link and paste it in the "Cover Image URL" field</li>
+                  <li>Ensure images are high quality and relevant to your article content</li>
+                  <li>Recommended image size: at least 1200x600 pixels for best display</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <Card>
           <CardHeader>

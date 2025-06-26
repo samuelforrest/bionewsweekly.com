@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Header } from "@/components/header";
-import { Footer } from "@/components/Footer";
+import { Footer } from "@/components/footer";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";

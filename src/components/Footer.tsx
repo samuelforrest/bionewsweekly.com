@@ -14,7 +14,7 @@ export function Footer() {
               <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-bio-blue-500 to-bio-teal-500 flex items-center justify-center">
                 <span className="text-white font-bold text-sm">BN</span>
               </div>
-              <span className="font-bold text-xl gradient-text">BioNewsWeekly</span>
+              <span className="font-bold text-xl gradient-text">BioNewsWeekly.com</span>
             </div>
             <p className="text-sm text-muted-foreground">
               Biology news by students, for students. Making science accessible and exciting for the next generation.

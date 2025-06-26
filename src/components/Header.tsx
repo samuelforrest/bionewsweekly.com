@@ -14,7 +14,7 @@ export function Header() {
           <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-bio-blue-500 to-bio-teal-500 flex items-center justify-center">
             <span className="text-white font-bold text-sm">BN</span>
           </div>
-          <span className="font-bold text-xl gradient-text">Bio News Weekly.com</span>
+          <span className="font-bold text-xl gradient-text">BioNewsWeekly.com</span>
         </div>
 
         {/* Desktop Navigation */}

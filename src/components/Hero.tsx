@@ -26,7 +26,7 @@ export function Hero() {
               for{' '}
               <span className="gradient-text">Students</span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-white max-w-2xl mx-auto leading-relaxed">
               Discover the latest in biology through the eyes of passionate A-Level students. 
               Weekly articles, fascinating facts, and scientific breakthroughs made accessible.
             </p>
@@ -50,15 +50,15 @@ export function Hero() {
         }}>
             <div className="text-center">
               <div className="text-2xl md:text-3xl font-bold gradient-text">20+</div>
-              <div className="text-sm text-muted-foreground">Articles Published</div>
+              <div className="text-sm text-white">Articles Published</div>
             </div>
             <div className="text-center">
               <div className="text-2xl md:text-3xl font-bold gradient-text">3</div>
-              <div className="text-sm text-muted-foreground">Student Writers</div>
+              <div className="text-sm text-white">Student Writers</div>
             </div>
             <div className="text-center">
               <div className="text-2xl md:text-3xl font-bold gradient-text">500+</div>
-              <div className="text-sm text-muted-foreground">Weekly Readers</div>
+              <div className="text-sm text-white">Weekly Readers</div>
             </div>
           </div>
         </div>

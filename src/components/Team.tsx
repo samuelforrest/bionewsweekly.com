@@ -10,7 +10,8 @@ const teamMembers = [
     subjects: ["Biology", "Chemistry", "Mathematics"],
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     specialty: "Medicine",
-    epqLink: "/epq/freddie-rees-epq.pdf"
+    epqLink: "/epq/freddie-rees-epq.pdf",
+    linkedinLink: "https://linkedin.com/in/freddie-rees"
   },
   {
     name: "Danny Mellor",
@@ -18,17 +19,19 @@ const teamMembers = [
     bio: "Danny is inspired by the cell side of Biology. He aspires to become a marine biologist.",
     subjects: ["Biology", "Psychology", "Mathematics"],
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    specialty: "TBC",
-    epqLink: "/epq/danny-mellor-epq.pdf"
+    specialty: "Cell Biology",
+    epqLink: "/epq/danny-mellor-epq.pdf",
+    linkedinLink: "https://linkedin.com/in/danny-mellor"
   },
   {
     name: "Aditi Deshpande",
     role: "Writer",
-    bio: "Aditi has always dreamt of becoming a doctor",
+    bio: "Aditi has always dreamt of becoming a doctor since she was four years old.",
     subjects: ["Biology", "Chemistry", "Mathematics"],
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     specialty: "Medicine",
-    epqLink: "/epq/aditi-deshpande-epq.pdf"
+    epqLink: "/epq/aditi-deshpande-epq.pdf",
+    linkedinLink: "https://linkedin.com/in/aditi-deshpande"
   },
 ]
 
@@ -59,9 +62,8 @@ export function Team() {
                     <img 
                       src={member.avatar} 
                       alt={member.name}
-                      className="w-full h-full rounded-full object-cover ring-4 ring-background shadow-lg group-hover:ring-primary/20 transition-all duration-300"
+                      className="w-full h-full rounded-full object-cover shadow-lg"
                     />
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-t from-bio-blue-500/20 to-bio-teal-500/20 group-hover:from-bio-blue-500/30 group-hover:to-bio-teal-500/30 transition-all duration-300"></div>
                   </div>
 
                   {/* Name and Role */}
@@ -76,16 +78,28 @@ export function Team() {
                     {member.bio}
                   </p>
 
-                  {/* EPQ Download Link */}
-                  <div className="pt-2">
-                    <a 
-                      href={member.epqLink} 
-                      className="text-sm text-lime-500 hover:text-lime-400 underline transition-colors duration-200"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Download EPQ
-                    </a>
+                  {/* EPQ Download Link and LinkedIn */}
+                  <div className="pt-2 space-y-1">
+                    <div>
+                      <a 
+                        href={member.epqLink} 
+                        className="text-sm text-lime-500 hover:text-lime-400 underline transition-colors duration-200"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Download EPQ
+                      </a>
+                    </div>
+                    <div>
+                      <a 
+                        href={member.linkedinLink} 
+                        className="text-sm text-blue-400 hover:text-blue-300 underline transition-colors duration-200"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        LinkedIn Profile
+                      </a>
+                    </div>
                   </div>
 
                   {/* Subjects */}

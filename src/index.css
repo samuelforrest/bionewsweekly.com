@@ -17,20 +17,20 @@
     --primary: 14 165 233;
     --primary-foreground: 255 255 255;
 
-    --secondary: 241 245 249;
+    --secondary: 248 250 252;
     --secondary-foreground: 15 23 42;
 
     --muted: 248 250 252;
     --muted-foreground: 100 116 139;
 
-    --accent: 240 249 255;
+    --accent: 248 250 252;
     --accent-foreground: 15 23 42;
 
     --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
 
     --border: 226 232 240;
-    --input: 226 232 240;
+    --input: 255 255 255;
     --ring: 14 165 233;
 
     --radius: 0.5rem;
@@ -39,48 +39,48 @@
     --sidebar-foreground: 15 23 42;
     --sidebar-primary: 14 165 233;
     --sidebar-primary-foreground: 255 255 255;
-    --sidebar-accent: 241 245 249;
+    --sidebar-accent: 248 250 252;
     --sidebar-accent-foreground: 15 23 42;
     --sidebar-border: 226 232 240;
     --sidebar-ring: 14 165 233;
   }
 
   .dark {
-    --background: 8 14 25;
+    --background: 0 0 0;
     --foreground: 248 250 252;
 
-    --card: 15 23 42;
+    --card: 15 15 15;
     --card-foreground: 248 250 252;
 
-    --popover: 15 23 42;
+    --popover: 15 15 15;
     --popover-foreground: 248 250 252;
 
     --primary: 34 197 194;
-    --primary-foreground: 8 14 25;
+    --primary-foreground: 0 0 0;
 
-    --secondary: 30 41 59;
+    --secondary: 24 24 27;
     --secondary-foreground: 248 250 252;
 
-    --muted: 30 41 59;
-    --muted-foreground: 148 163 184;
+    --muted: 24 24 27;
+    --muted-foreground: 161 161 170;
 
-    --accent: 15 78 115;
+    --accent: 24 24 27;
     --accent-foreground: 248 250 252;
 
     --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
 
-    --border: 30 41 59;
-    --input: 30 41 59;
+    --border: 39 39 42;
+    --input: 24 24 27;
     --ring: 34 197 194;
 
-    --sidebar-background: 8 14 25;
+    --sidebar-background: 0 0 0;
     --sidebar-foreground: 248 250 252;
     --sidebar-primary: 34 197 194;
-    --sidebar-primary-foreground: 8 14 25;
-    --sidebar-accent: 30 41 59;
+    --sidebar-primary-foreground: 0 0 0;
+    --sidebar-accent: 24 24 27;
     --sidebar-accent-foreground: 248 250 252;
-    --sidebar-border: 30 41 59;
+    --sidebar-border: 39 39 42;
     --sidebar-ring: 34 197 194;
   }
 }

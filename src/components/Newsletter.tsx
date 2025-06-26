@@ -6,9 +6,9 @@ import { Mail, Bell, Calendar } from 'lucide-react'
 
 export function Newsletter() {
   return (
-    <section className="py-24 bg-gradient-to-br from-bio-blue-50 via-bio-teal-50 to-bio-green-50 dark:from-bio-blue-950/30 dark:via-bio-teal-950/30 dark:to-bio-green-950/30">
+    <section className="py-24 bg-gray-50 dark:bg-gray-950">
       <div className="container px-4 mx-auto">
-        <Card className="max-w-4xl mx-auto border-0 shadow-2xl bg-background/80 backdrop-blur">
+        <Card className="max-w-4xl mx-auto border shadow-2xl">
           <CardContent className="p-8 md:p-12">
             <div className="text-center space-y-8">
               <div className="space-y-4">

@@ -50,9 +50,9 @@ const Blog = () => {
       <main className="flex-grow mt-20 pt-6">
         <div className="container px-4 mx-auto max-w-6xl">
           <div className="mb-12 text-center">
-            <h1 className="text-4xl font-bold mb-4">Blog</h1>
+            <h1 className="text-4xl font-bold mb-4">Articles</h1>
             <p className="text-xl text-white max-w-2xl mx-auto">
-              Latest news in the field of Biology.
+              Latest news in the field of <span className="text-lime-500">Biology</span>.
             </p>
           </div>
           

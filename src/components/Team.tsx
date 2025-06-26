@@ -8,41 +8,28 @@ const teamMembers = [
     role: "Editor-in-Chief",
     bio: "Freddie is passionate about Biology and aspires to become a doctor.",
     subjects: ["Biology", "Chemistry", "Mathematics"],
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face",
-    specialty: "Genetics & Molecular Biology"
+    avatar: "",
+    specialty: "Medicine",
+    epqLink: "/epq/freddie-rees-epq.pdf"
   },
   {
     name: "Danny Mellor",
-    role: "Science Writer",
-    bio: "Fascinated by ecology and environmental science. Loves exploring the connections between organisms and their environments.",
-    subjects: ["Biology", "Geography", "Environmental Science"],
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
-    specialty: "Ecology & Conservation"
+    role: "Writer",
+    bio: "TBC",
+    subjects: ["Biology", "Unknown", "Mathematics"],
+    avatar: "",
+    specialty: "TBC",
+    epqLink: "/epq/danny-mellor-epq.pdf"
   },
   {
-    name: "Aditi Dishpande",
-    role: "Research Editor",
-    bio: "Specializes in biochemistry and biotechnology. Always excited about the latest scientific breakthroughs.",
-    subjects: ["Biology", "Chemistry", "Physics"],
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face",
-    specialty: "Biochemistry & Biotech"
+    name: "Aditi Deshpande",
+    role: "Writer",
+    bio: "TBC",
+    subjects: ["Biology", "Chemistry", "Mathematics"],
+    avatar: "",
+    specialty: "Medicine",
+    epqLink: "/epq/aditi-deshpande-epq.pdf"
   },
-  {
-    name: "Marcus Johnson",
-    role: "Content Creator",
-    bio: "Interested in human biology and medicine. Creates engaging content about health and disease.",
-    subjects: ["Biology", "Psychology", "Chemistry"],
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face",
-    specialty: "Human Biology & Medicine"
-  },
-  {
-    name: "Lily Roberts",
-    role: "Podcast Host",
-    bio: "Loves communicating science through audio. Specializes in making complex topics accessible and fun.",
-    subjects: ["Biology", "English Literature", "Media Studies"],
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&crop=face",
-    specialty: "Science Communication"
-  }
 ]
 
 export function Team() {
@@ -88,6 +75,18 @@ export function Team() {
                   <p className="text-sm text-white leading-relaxed">
                     {member.bio}
                   </p>
+
+                  {/* EPQ Download Link */}
+                  <div className="pt-2">
+                    <a 
+                      href={member.epqLink} 
+                      className="text-sm text-lime-500 hover:text-lime-400 underline transition-colors duration-200"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Download EPQ
+                    </a>
+                  </div>
 
                   {/* Subjects */}
                   <div className="flex flex-wrap gap-2 justify-center">

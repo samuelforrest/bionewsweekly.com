@@ -27,8 +27,7 @@ export function Hero() {
               <span className="gradient-text">Students</span>
             </h1>
             <p className="text-xl md:text-2xl text-white max-w-2xl mx-auto leading-relaxed">
-              Discover the latest in biology through the eyes of passionate A-Level students. 
-              Weekly articles, fascinating facts, and scientific breakthroughs made accessible.
+              The latest biology news, through the eyes of 3 A Level biology students.
             </p>
           </div>
 
@@ -40,7 +39,7 @@ export function Hero() {
               Read Articles
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-2 transition-all duration-300 text-slate-50 bg-black/0 hover:bg-gray-900">
-              Listen to Podcast
+              Our Podcast
             </Button>
           </div>
 

@@ -1,5 +1,4 @@
 
-import { ThemeToggle } from './ThemeToggle'
 import { Button } from '@/components/ui/button'
 import { Menu } from 'lucide-react'
 import { useState } from 'react'
@@ -36,7 +35,6 @@ export function Header() {
 
         {/* Actions */}
         <div className="flex items-center space-x-4">
-          <ThemeToggle />
           <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <Menu className="h-5 w-5" />
           </Button>

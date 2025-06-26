@@ -9,7 +9,7 @@ import { Footer } from '@/components/Footer'
 
 const Index = () => {
   return (
-    <ThemeProvider defaultTheme="light" storageKey="bionews-theme">
+    <ThemeProvider>
       <div className="min-h-screen bg-background text-foreground">
         <Header />
         <main>

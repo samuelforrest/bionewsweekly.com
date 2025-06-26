@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Link } from 'react-router-dom';
 export function Hero() {
   return <section id="home" className="relative overflow-hidden py-24 lg:py-32">
       {/* Background decoration */}
@@ -34,9 +35,11 @@ export function Hero() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4" style={{
         }}>
-            <Button size="lg" className="bg-lime-600 hover:bg-lime-400 transition-all duration-300 text-lg px-8 py-6">
-              Read Articles
-            </Button>
+            <Link to="/blog">
+              <Button size="lg" className="bg-lime-600 hover:bg-lime-400 transition-all duration-300 text-lg px-8 py-6">
+                Read Articles
+              </Button>
+            </Link>
             <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-2 transition-all duration-300 text-slate-50 bg-black/0 hover:bg-gray-900">
               Our Podcast
             </Button>

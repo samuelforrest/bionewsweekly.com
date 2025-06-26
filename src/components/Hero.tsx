@@ -40,7 +40,7 @@ export function Hero() {
                 Read Articles
               </Button>
             </Link>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-2 transition-all duration-300 text-slate-50 bg-black/0 hover:bg-gray-900">
+            <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-2 transition-all duration-300 text-slate-50 bg-black/0 hover:bg-slate-100">
               Our Podcast
             </Button>
           </div>

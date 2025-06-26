@@ -1,0 +1,65 @@
+
+/* Quill editor custom styles */
+.ql-editor {
+  min-height: 300px;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.ql-toolbar {
+  border-top: 1px solid hsl(var(--border));
+  border-left: 1px solid hsl(var(--border));
+  border-right: 1px solid hsl(var(--border));
+  background: hsl(var(--background));
+}
+
+.ql-container {
+  border-bottom: 1px solid hsl(var(--border));
+  border-left: 1px solid hsl(var(--border));
+  border-right: 1px solid hsl(var(--border));
+  background: hsl(var(--background));
+}
+
+.ql-toolbar .ql-picker-label {
+  color: hsl(var(--foreground));
+}
+
+.ql-toolbar .ql-picker-options {
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+}
+
+.ql-toolbar .ql-picker-item {
+  color: hsl(var(--foreground));
+}
+
+.ql-toolbar .ql-picker-item:hover {
+  background: hsl(var(--secondary));
+}
+
+.ql-toolbar button {
+  color: hsl(var(--foreground));
+}
+
+.ql-toolbar button:hover {
+  background: hsl(var(--secondary));
+}
+
+.ql-toolbar button.ql-active {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+/* Dark mode support */
+.dark .ql-editor {
+  color: hsl(var(--foreground));
+}
+
+.dark .ql-toolbar {
+  background: hsl(var(--background));
+}
+
+.dark .ql-container {
+  background: hsl(var(--background));
+}

@@ -1,6 +1,6 @@
 
 import { ThemeProvider } from '@/components/ThemeProvider'
-import { Header } from '@/components/Header'
+import { Header } from '@/components/header';
 import { Hero } from '@/components/Hero'
 import { LatestNews } from '@/components/LatestNews'
 import { Team } from '@/components/Team'

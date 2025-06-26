@@ -5,7 +5,7 @@ import { Hero } from '@/components/Hero'
 import { LatestNews } from '@/components/LatestNews'
 import { Team } from '@/components/Team'
 import { Newsletter } from '@/components/Newsletter'
-import { Footer } from '@/components/footer'
+import { Footer } from '@/components/Footer'
 
 const Index = () => {
   return (

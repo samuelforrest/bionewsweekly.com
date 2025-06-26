@@ -4,15 +4,15 @@ import { Badge } from '@/components/ui/badge'
 
 const teamMembers = [
   {
-    name: "Emma Thompson",
+    name: "Freddie Rees",
     role: "Editor-in-Chief",
-    bio: "Passionate about molecular biology and genetics. Currently studying A-Level Biology, Chemistry, and Maths.",
+    bio: "Freddie is passionate about Biology and aspires to become a doctor.",
     subjects: ["Biology", "Chemistry", "Mathematics"],
     avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face",
     specialty: "Genetics & Molecular Biology"
   },
   {
-    name: "James Mitchell",
+    name: "Danny Mellor",
     role: "Science Writer",
     bio: "Fascinated by ecology and environmental science. Loves exploring the connections between organisms and their environments.",
     subjects: ["Biology", "Geography", "Environmental Science"],
@@ -20,7 +20,7 @@ const teamMembers = [
     specialty: "Ecology & Conservation"
   },
   {
-    name: "Sophie Chen",
+    name: "Aditi Dishpande",
     role: "Research Editor",
     bio: "Specializes in biochemistry and biotechnology. Always excited about the latest scientific breakthroughs.",
     subjects: ["Biology", "Chemistry", "Physics"],
@@ -53,7 +53,7 @@ export function Team() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Meet Our <span className="gradient-text">Student Team</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-white max-w-2xl mx-auto">
             Passionate A-Level students bringing fresh perspectives to biology news
           </p>
         </div>
@@ -81,11 +81,11 @@ export function Team() {
                   <div>
                     <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
                     <p className="text-primary font-medium">{member.role}</p>
-                    <p className="text-sm text-muted-foreground">{member.specialty}</p>
+                    <p className="text-sm text-white">{member.specialty}</p>
                   </div>
 
                   {/* Bio */}
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-white leading-relaxed">
                     {member.bio}
                   </p>
 

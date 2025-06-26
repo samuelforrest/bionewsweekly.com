@@ -49,15 +49,15 @@ export function Hero() {
           animationDelay: '0.6s'
         }}>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold gradient-text">20+</div>
+              <div className="text-2xl md:text-3xl font-bold text-white">20+</div>
               <div className="text-sm text-white">Articles Published</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold gradient-text">3</div>
+              <div className="text-2xl md:text-3xl font-bold text-white">3</div>
               <div className="text-sm text-white">Student Writers</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold gradient-text">500+</div>
+              <div className="text-2xl md:text-3xl font-bold text-white">500+</div>
               <div className="text-sm text-white">Weekly Readers</div>
             </div>
           </div>

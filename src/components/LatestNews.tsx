@@ -43,7 +43,7 @@ export function LatestNews() {
     fetchArticles();
   }, []);
   return (
-    <section id="articles" className="py-24 bg-muted/30">
+    <section id="articles" className="py-24 bg-gray-900">
       <div className="container px-4 mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">

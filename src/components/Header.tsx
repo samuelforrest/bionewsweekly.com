@@ -23,16 +23,16 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8 ml-auto">
-          <a href="/" className="text-sm font-medium hover:text-primary transition-colors">
+          <a href="/" className="text-sm font-medium hover:text-primary">
             Home
           </a>
-          <a href="/blog" className="text-sm font-medium hover:text-primary transition-colors">
+          <a href="/blog" className="text-sm font-medium hover:text-secondary">
             Articles
           </a>
-          <a href="/admin" className="text-sm font-medium hover:text-primary transition-colors">
+          <a href="/admin" className="text-sm font-medium hover:text-primary">
             Admin
           </a>
-          <a href="/auth" className="text-sm font-medium hover:text-primary transition-colors">
+          <a href="/auth" className="text-sm font-medium hover:text-primary">
             Login
           </a>
         </nav>

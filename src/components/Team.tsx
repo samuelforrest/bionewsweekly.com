@@ -6,12 +6,12 @@ const teamMembers = [
   {
     name: "Freddie Rees",
     role: "Editor-in-Chief",
-    bio: "Freddie is passionate about Biology and aspires to become a doctor.",
+    bio: "Freddie is truly passionate about Biology and aspires to become a doctor, or a vet.",
     subjects: ["Biology", "Chemistry", "Mathematics"],
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    avatar: "/freddie_pfp.jpeg",
     specialty: "Medicine",
     epqLink: "/epq/freddie-rees-epq.pdf",
-    linkedinLink: "https://linkedin.com/in/freddie-rees"
+    linkedinLink: "https://www.linkedin.com/in/freddie-rees-161a2a353/"
   },
   {
     name: "Danny Mellor",
@@ -21,14 +21,14 @@ const teamMembers = [
     avatar: "/danny_pfp.jpg",
     specialty: "Research",
     epqLink: "/epq/danny-mellor-epq.pdf",
-    linkedinLink: "https://linkedin.com/in/danny-mellor"
+    linkedinLink: "https://www.linkedin.com/in/daniel-mellor-8abb96366/"
   },
   {
     name: "Aditi Deshpande",
     role: "Writer",
-    bio: "Aditi has always dreamt of becoming a doctor since she was four years old.",
+    bio: "Aditi has dreamt of becoming a doctor since she was young. She intends to study medicine at University.",
     subjects: ["Biology", "Chemistry", "Mathematics"],
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    avatar: "/aditi_pfp.jpeg",
     specialty: "Medicine",
     epqLink: "/epq/aditi-deshpande-epq.pdf",
     linkedinLink: "https://linkedin.com/in/aditi-deshpande"

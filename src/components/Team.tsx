@@ -8,7 +8,7 @@ const teamMembers = [
     role: "Editor-in-Chief",
     bio: "Freddie is passionate about Biology and aspires to become a doctor.",
     subjects: ["Biology", "Chemistry", "Mathematics"],
-    avatar: "",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     specialty: "Medicine",
     epqLink: "/epq/freddie-rees-epq.pdf"
   },
@@ -17,7 +17,7 @@ const teamMembers = [
     role: "Writer",
     bio: "TBC",
     subjects: ["Biology", "Unknown", "Mathematics"],
-    avatar: "",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     specialty: "TBC",
     epqLink: "/epq/danny-mellor-epq.pdf"
   },
@@ -26,7 +26,7 @@ const teamMembers = [
     role: "Writer",
     bio: "TBC",
     subjects: ["Biology", "Chemistry", "Mathematics"],
-    avatar: "",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     specialty: "Medicine",
     epqLink: "/epq/aditi-deshpande-epq.pdf"
   },

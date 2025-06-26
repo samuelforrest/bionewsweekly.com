@@ -14,7 +14,7 @@ export function Newsletter() {
     setStatus('loading')
     setError(null)
 
-    const res = await fetch('/api/subscribe', {
+    const res = await fetch('api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email }),
@@ -37,9 +37,6 @@ export function Newsletter() {
           <CardContent className="p-8 md:p-12">
             <div className="text-center space-y-8">
               <div className="space-y-4">
-                <div className="mx-auto w-16 h-16 bg-gradient-to-br from-bio-blue-500 to-bio-teal-500 rounded-full flex items-center justify-center mb-6">
-                  <Mail className="h-8 w-8 text-white" />
-                </div>
                 <h2 className="text-3xl md:text-4xl font-bold">
                   Stay Updated with <span className="gradient-text">BioNewsWeekly</span>
                 </h2>

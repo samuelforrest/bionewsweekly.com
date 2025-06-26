@@ -8,7 +8,7 @@ export function Newsletter() {
   return (
     <section className="py-24 bg-gray-900">
       <div className="container px-4 mx-auto">
-        <Card className="max-w-4xl mx-auto border shadow-2xl">
+        <Card className="max-w-4xl mx-auto shadow-2xl bg-gray-750">
           <CardContent className="p-8 md:p-12">
             <div className="text-center space-y-8">
               <div className="space-y-4">

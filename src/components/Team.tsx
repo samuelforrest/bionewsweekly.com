@@ -49,7 +49,7 @@ export function Team() {
           {teamMembers.map((member, index) => (
             <Card 
               key={member.name} 
-              className="group hover:shadow-xl transition-all duration-300 animate-scale-in overflow-hidden"
+              className="group hover:shadow-xl transition-all duration-300 animate-scale-in overflow-hidden bg-black"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardContent className="p-6">

@@ -67,7 +67,7 @@ export function LatestNews() {
           articles.map((article, index) => (
             <Card 
               key={article.id} 
-              className={`group hover:shadow-xl transition-all duration-300 overflow-hidden animate-fade-in ${
+              className={`group hover:shadow-xl transition-all duration-300 overflow-hidden animate-fade-in bg-black ${
                 index === 0 ? 'md:col-span-2 lg:col-span-1' : ''
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}

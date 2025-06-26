@@ -57,10 +57,10 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
       const postData = {
         title,
         content,
-        preview,
+        preview: preview || null,
         category,
         author,
-        cover_image: coverImage,
+        cover_image: coverImage || "https://via.placeholder.com/800x400?text=No+Image",
         slug: slug || generateSlug(title),
         tags: tagsArray.length > 0 ? tagsArray : null,
       };
@@ -87,7 +87,8 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
       onSave();
     } catch (error) {
       console.error("Error saving blog post:", error);
-      toast.error("Failed to save blog post");
+      console.error("Error details:", JSON.stringify(error, null, 2));
+      toast.error(`Failed to save blog post: ${error.message || 'Unknown error'}`);
     } finally {
       setLoading(false);
     }

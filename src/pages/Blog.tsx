@@ -1,12 +1,21 @@
 
 import { useState, useEffect } from "react";
 import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { getAllBlogPosts, type BlogPost } from "@/services/blogService";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Calendar, Clock } from 'lucide-react';
+
+// Helper function to estimate reading time
+const estimateReadingTime = (content: string = ''): string => {
+  const wordsPerMinute = 200;
+  const words = content.split(' ').length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} min read`;
+};
 
 const Blog = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
@@ -39,11 +48,11 @@ const Blog = () => {
       <Header />
       
       <main className="flex-grow mt-20 pt-6">
-        <div className="container-narrow px-4">
+        <div className="container px-4 mx-auto max-w-6xl">
           <div className="mb-12 text-center">
-            <h1 className="text-4xl font-bold mb-4 font-serif">Blog</h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Thoughts, ideas, and insights on technology, aviation, and more.
+            <h1 className="text-4xl font-bold mb-4">Blog</h1>
+            <p className="text-xl text-white max-w-2xl mx-auto">
+              Latest news in the field of Biology.
             </p>
           </div>
           
@@ -72,41 +81,52 @@ const Blog = () => {
               <div className="animate-pulse">Loading posts...</div>
             </div>
           ) : filteredPosts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPosts.map((post) => (
-                <Card key={post.id} className="animate-fade-in overflow-hidden">
-                  <div className="w-full h-48 bg-muted">
-                    {post.cover_image && (
-                      <img 
-                        src={post.cover_image} 
-                        alt={post.title} 
-                        className="object-cover w-full h-full"
-                      />
-                    )}
-                    {!post.cover_image && (
-                      <div className="flex items-center justify-center w-full h-full bg-muted">
-                        <p className="text-muted-foreground">No image</p>
-                      </div>
-                    )}
-                  </div>
-                  <CardHeader className="pb-2">
-                    <div className="mb-2">
-                      <span className="text-xs bg-secondary px-2 py-1 rounded-full">
-                        {post.category}
-                      </span>
+                <Link key={post.id} to={`/blog/${post.slug}`}>
+                  <Card className="animate-fade-in overflow-hidden bg-black cursor-pointer hover:shadow-xl transition-all duration-300">
+                    <div className="w-full h-48 bg-muted">
+                      {post.cover_image && (
+                        <img 
+                          src={post.cover_image} 
+                          alt={post.title} 
+                          className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                        />
+                      )}
+                      {!post.cover_image && (
+                        <div className="flex items-center justify-center w-full h-full bg-muted">
+                          <p className="text-muted-foreground">No image</p>
+                        </div>
+                      )}
                     </div>
-                    <CardTitle>{post.title}</CardTitle>
-                    <CardDescription>{post.date}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="pb-2">
-                    <p>{post.preview || post.excerpt}</p>
-                  </CardContent>
-                  <CardFooter>
-                    <Link to={`/blog/${post.slug}`}>
-                      <Button variant="outline">Read Post</Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
+                    <CardHeader className="pb-4">
+                      <div className="mb-3">
+                        <span className="text-xs bg-secondary px-2 py-1 rounded-full text-black">
+                          {post.category}
+                        </span>
+                      </div>
+                      <CardTitle className="hover:text-primary transition-colors mb-3">{post.title}</CardTitle>
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-4 w-4" />
+                          <span>{post.date}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Clock className="h-4 w-4" />
+                          <span>{estimateReadingTime(post.content)}</span>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <p className="text-muted-foreground line-clamp-3">
+                        {(post.preview || post.excerpt)?.length > 200
+                          ? `${(post.preview || post.excerpt).substring(0, 200)}...` 
+                          : (post.preview || post.excerpt)
+                        }
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           ) : (
@@ -116,6 +136,8 @@ const Blog = () => {
           )}
         </div>
       </main>
+      
+      <div className="pb-16"></div>
       
       <Footer />
     </div>

@@ -1,10 +1,35 @@
 
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent } from '@/components/ui/card'
 import { Mail, Bell, Calendar } from 'lucide-react'
 
 export function Newsletter() {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [error, setError] = useState<string | null>(null)
+
+  const subscribe = async () => {
+    setStatus('loading')
+    setError(null)
+
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    })
+
+    const data = await res.json()
+
+    if (res.ok) {
+      setStatus('success')
+      setEmail('')
+    } else {
+      setStatus('error')
+      setError(data.error || 'Subscription failed')
+    }
+  }
   return (
     <section className="py-24 bg-gray-900">
       <div className="container px-4 mx-auto">
@@ -50,13 +75,26 @@ export function Newsletter() {
               <div className="max-w-md mx-auto">
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Input 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email address"
                     className="flex-1 h-12 text-center sm:text-left"
                   />
-                  <Button size="lg" className="bg-gradient-to-r from-bio-blue-500 to-bio-teal-500 text-white hover:from-bio-blue-600 hover:to-bio-teal-600 transition-all duration-300 px-8 whitespace-nowrap">
-                    Subscribe Now
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-bio-blue-500 to-bio-teal-500 text-white hover:from-bio-blue-600 hover:to-bio-teal-600 transition-all duration-300 px-8 whitespace-nowrap"
+                    onClick={subscribe}
+                    disabled={status === 'loading'}
+                  >
+                    {status === 'loading' ? 'Subscribing...' : 'Subscribe Now'}
                   </Button>
                 </div>
+                {status === 'success' && (
+                  <p className="text-sm text-green-400 mt-3">🎉 Thanks! Check your inbox to confirm.</p>
+                )}
+                {status === 'error' && (
+                  <p className="text-sm text-red-400 mt-3">❌ {error}</p>
+                )}
                 <p className="text-xs text-muted-foreground mt-3">
                   No spam, unsubscribe anytime. We respect your privacy.
                 </p>

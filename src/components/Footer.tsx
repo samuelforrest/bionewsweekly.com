@@ -5,7 +5,7 @@ import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react'
 
 export function Footer() {
   return (
-    <footer className="bg-background border-t">
+    <footer className="bg-background">
       <div className="container px-4 mx-auto py-12">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
@@ -35,36 +35,17 @@ export function Footer() {
             </div>
           </div>
 
+          {/* Spacer columns for alignment */}
+          <div className="hidden lg:block"></div>
+          <div className="hidden lg:block"></div>
+
           {/* Content */}
-          <div className="space-y-4">
+          <div className="space-y-4 md:text-right lg:text-right">
             <h4 className="text-sm font-semibold">Content</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Latest Articles</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Biology Facts</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Study Guides</a></li>
+              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Home</a></li>
+              <li><a href="/blog" className="text-sm text-muted-foreground hover:text-primary transition-colors">Latest Articles</a></li>
               <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Podcast</a></li>
-            </ul>
-          </div>
-
-          {/* Categories */}
-          <div className="space-y-4">
-            <h4 className="text-sm font-semibold">Categories</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Genetics</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Ecology</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Conservation</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Biochemistry</a></li>
-            </ul>
-          </div>
-
-          {/* About */}
-          <div className="space-y-4">
-            <h4 className="text-sm font-semibold">About</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Our Team</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Mission</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contact</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</a></li>
             </ul>
           </div>
         </div>
@@ -73,12 +54,10 @@ export function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © 2024 BioNewsWeekly. All rights reserved. Made with ❤️ by A-Level students.
+            © 2025 Bio News Weekly. All rights reserved. Made by <a href="https://www.samuelforrest.me">Samuel Forrest</a>
           </p>
           <div className="flex items-center space-x-4 mt-4 md:mt-0">
-            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms</a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy</a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Cookies</a>
+            <a href="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms</a>
           </div>
         </div>
       </div>

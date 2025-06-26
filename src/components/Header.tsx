@@ -7,39 +7,30 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between px-4">
+    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 items-center px-4">
         {/* Logo */}
         <div className="flex items-center space-x-2">
           <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-bio-blue-500 to-bio-teal-500 flex items-center justify-center">
             <span className="text-white font-bold text-sm">BN</span>
           </div>
-          <span className="font-bold text-xl gradient-text">BioNewsWeekly</span>
+          <span className="font-bold text-xl gradient-text">Bio News Weekly.com</span>
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          <a href="#home" className="text-sm font-medium hover:text-primary transition-colors">
+        <nav className="hidden md:flex items-center space-x-8 ml-auto">
+          <a href="/" className="text-sm font-medium hover:text-primary transition-colors">
             Home
           </a>
-          <a href="#articles" className="text-sm font-medium hover:text-primary transition-colors">
+          <a href="/blog" className="text-sm font-medium hover:text-primary transition-colors">
             Articles
-          </a>
-          <a href="#team" className="text-sm font-medium hover:text-primary transition-colors">
-            Team
-          </a>
-          <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">
-            About
           </a>
         </nav>
 
-        {/* Actions */}
-        <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        {/* Mobile Menu Button */}
+        <div className="flex items-center ml-auto md:hidden">
+          <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <Menu className="h-5 w-5" />
-          </Button>
-          <Button className="hidden md:inline-flex bg-gradient-to-r from-bio-blue-500 to-bio-teal-500 text-white hover:from-bio-blue-600 hover:to-bio-teal-600 transition-all duration-300">
-            Subscribe
           </Button>
         </div>
       </div>
@@ -54,15 +45,6 @@ export function Header() {
             <a href="#articles" className="text-sm font-medium hover:text-primary transition-colors">
               Articles
             </a>
-            <a href="#team" className="text-sm font-medium hover:text-primary transition-colors">
-              Team
-            </a>
-            <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">
-              About
-            </a>
-            <Button className="w-full bg-gradient-to-r from-bio-blue-500 to-bio-teal-500 text-white">
-              Subscribe
-            </Button>
           </nav>
         </div>
       )}

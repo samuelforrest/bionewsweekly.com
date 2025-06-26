@@ -25,6 +25,12 @@ export function Header() {
           <a href="/blog" className="text-sm font-medium hover:text-primary transition-colors">
             Articles
           </a>
+          <a href="/admin" className="text-sm font-medium hover:text-primary transition-colors">
+            Admin
+          </a>
+          <a href="/login" className="text-sm font-medium hover:text-primary transition-colors">
+            Login
+          </a>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -39,11 +45,17 @@ export function Header() {
       {isMenuOpen && (
         <div className="md:hidden border-t bg-background/95 backdrop-blur">
           <nav className="container py-4 flex flex-col space-y-4">
-            <a href="#home" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/" className="text-sm font-medium hover:text-primary transition-colors">
               Home
             </a>
-            <a href="#articles" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/blog" className="text-sm font-medium hover:text-primary transition-colors">
               Articles
+            </a>
+            <a href="/admin" className="text-sm font-medium hover:text-primary transition-colors">
+              Admin
+            </a>
+            <a href="/login" className="text-sm font-medium hover:text-primary transition-colors">
+              Login
             </a>
           </nav>
         </div>

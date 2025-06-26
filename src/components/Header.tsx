@@ -28,7 +28,7 @@ export function Header() {
           <a href="/admin" className="text-sm font-medium hover:text-primary transition-colors">
             Admin
           </a>
-          <a href="/login" className="text-sm font-medium hover:text-primary transition-colors">
+          <a href="/auth" className="text-sm font-medium hover:text-primary transition-colors">
             Login
           </a>
         </nav>

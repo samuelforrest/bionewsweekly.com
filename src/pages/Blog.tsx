@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { Header } from "@/components/header";
+import { Header } from "@/components/Header";
 import { Footer } from "@/components/footer";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";

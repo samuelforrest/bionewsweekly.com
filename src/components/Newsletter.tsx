@@ -75,15 +75,14 @@ export function Newsletter() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email address"
-                    className="flex-1 h-12 text-center sm:text-left border border-white text-white placeholder:text-white"
+                    className="flex-1 h-12 text-center sm:text-left border border-white text-white placeholder:text-white rounded-xl text-lg px-8"
                   />
                   <Button
-                    size="lg"
-                    className="bg-lime-600 hover:bg-lime-400 transition-all duration-300 text-lg px-8 py-6 text-white rounded-xl"
+                    className="bg-lime-600 hover:bg-lime-400 transition-all duration-300 text-lg px-8 h-12 text-white rounded-xl"
                     onClick={subscribe}
                     disabled={status === 'loading'}
                   >
-                    <span className="tex-white">
+                    <span className="text-white">
                       {status === 'loading' ? 'Subscribing...' : 'Subscribe Now'}
                     </span>
                   </Button>

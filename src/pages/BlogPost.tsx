@@ -43,7 +43,7 @@ const BlogPost = () => {
       <div className="min-h-screen flex flex-col">
         <Header />
         <div className="flex-grow flex items-center justify-center">
-          <div className="animate-pulse">Loading post...</div>
+          <div className="animate-pulse text-white">Loading post...</div>
         </div>
         <Footer />
       </div>
@@ -56,8 +56,8 @@ const BlogPost = () => {
         <Header />
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-3xl font-bold mb-4">Post Not Found</h1>
-            <p className="text-muted-foreground mb-8">The blog post you're looking for doesn't exist or has been removed.</p>
+            <h1 className="text-3xl font-bold mb-4 text-white">Post Not Found</h1>
+            <p className="text-white mb-8">The blog post you're looking for doesn't exist or has been removed.</p>
             <Link to="/blog">
               <Button>Back to Blog</Button>
             </Link>
@@ -74,19 +74,19 @@ const BlogPost = () => {
       
       <main className="flex-grow mt-20 pt-6 pb-16">
         <article className="container px-4 mx-auto max-w-4xl">
-          <Link to="/blog" className="inline-flex items-center text-muted-foreground hover:text-foreground mb-8">
+          <Link to="/blog" className="inline-flex items-center text-white hover:text-primary mb-8">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to all posts
           </Link>
           
           <div className="mb-8">
-            <h1 className="text-4xl font-bold mb-4 font-serif">{post.title}</h1>
-            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+            <h1 className="text-4xl font-bold mb-4 font-serif text-white">{post.title}</h1>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-white">
               <span>{post.date}</span>
               <span>•</span>
               <span>By {post.author}</span>
               <span>•</span>
-              <span className="bg-secondary px-2 py-1 rounded-full text-xs">
+              <span className="bg-secondary px-2 py-1 rounded-full text-xs text-black">
                 {post.category}
               </span>
             </div>
@@ -103,7 +103,7 @@ const BlogPost = () => {
           )}
           
           <div 
-            className="ql-editor prose prose-lg dark:prose-invert max-w-none mb-8"
+            className="ql-editor prose prose-lg prose-invert max-w-none mb-8 text-white"
             dangerouslySetInnerHTML={{ __html: post.content || '' }}
           />
 

@@ -46,7 +46,7 @@ export function LatestNews() {
     <section id="articles" className="py-24 bg-gray-900">
       <div className="container px-4 mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             The Latest <span className="gradient-text">News</span>
           </h2>
           <p className="text-xl text-white max-w-2xl mx-auto">
@@ -61,13 +61,13 @@ export function LatestNews() {
           </div>
         ) : articles.length === 0 ? (
           <div className="col-span-full text-center py-12">
-            <p className="text-muted-foreground">No articles available yet.</p>
+            <p className="text-white">No articles available yet.</p>
           </div>
         ) : (
           articles.map((article, index) => (
             <Link key={article.id} to={`/blog/${article.slug}`}>
               <Card 
-                className={`group hover:shadow-xl transition-all duration-300 overflow-hidden animate-fade-in bg-gray-800 cursor-pointer ${
+                className={`group hover:shadow-xl transition-all duration-300 overflow-hidden animate-fade-in bg-gray-800 cursor-pointer border border-white ${
                   index === 0 ? 'md:col-span-2 lg:col-span-1' : ''
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -90,17 +90,17 @@ export function LatestNews() {
                 </div>
                 
                 <CardHeader>
-                  <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
+                  <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-white">
                     {article.title}
                   </CardTitle>
                 </CardHeader>
                 
                 <CardContent className="space-y-4">
-                  <p className="text-muted-foreground line-clamp-3">
+                  <p className="text-white line-clamp-3">
                     {article.preview || article.excerpt}
                   </p>
                   
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
+                  <div className="flex items-center justify-between text-sm text-white">
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center space-x-1">
                         <Calendar className="h-4 w-4" />

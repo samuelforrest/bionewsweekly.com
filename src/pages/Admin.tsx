@@ -104,7 +104,7 @@ const Admin = () => {
         </div>
 
         {/* Information Section */}
-        <Card className="mb-8 border-blue-200 bg-blue-50/10">
+        <Card className="mb-8 border-black bg-blue-50/10">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-red-500">
               <Info className="h-5 w-5" />

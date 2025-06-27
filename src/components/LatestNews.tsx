@@ -90,7 +90,7 @@ export function LatestNews() {
                 </div>
                 
                 <CardHeader>
-                  <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors text-white">
+                  <CardTitle className="line-clamp-2 text-white group-hover:scale-105 transition-transform duration-300">
                     {article.title}
                   </CardTitle>
                 </CardHeader>

@@ -33,14 +33,14 @@ export function Newsletter() {
   return (
     <section className="py-24 bg-gray-900">
       <div className="container px-4 mx-auto">
-        <Card className="max-w-4xl mx-auto shadow-2xl bg-gray-750">
+        <Card className="max-w-4xl mx-auto shadow-2xl bg-gray-750 border border-white">
           <CardContent className="p-8 md:p-12">
             <div className="text-center space-y-8">
               <div className="space-y-4">
-                <h2 className="text-3xl md:text-4xl font-bold">
+                <h2 className="text-3xl md:text-4xl font-bold text-white">
                   Stay Updated with <span className="gradient-text">BioNewsWeekly</span>
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                <p className="text-xl max-w-2xl mx-auto text-white">
                   Get the latest biology news, student insights, and exclusive content delivered to your inbox every week.
                 </p>
               </div>
@@ -50,22 +50,22 @@ export function Newsletter() {
                   <div className="mx-auto w-12 h-12 bg-bio-blue-100 dark:bg-bio-blue-900/30 rounded-full flex items-center justify-center">
                     <Calendar className="h-6 w-6 text-bio-blue-600 dark:text-bio-blue-400" />
                   </div>
-                  <h3 className="font-semibold">Weekly Digest</h3>
-                  <p className="text-sm text-muted-foreground">Fresh articles every Friday</p>
+                  <h3 className="font-semibold gradient-text">Weekly Digest</h3>
+                  <p className="text-sm text-white">Fresh articles every Friday</p>
                 </div>
                 <div className="text-center space-y-2">
                   <div className="mx-auto w-12 h-12 bg-bio-teal-100 dark:bg-bio-teal-900/30 rounded-full flex items-center justify-center">
                     <Bell className="h-6 w-6 text-bio-teal-600 dark:text-bio-teal-400" />
                   </div>
-                  <h3 className="font-semibold">Breaking News</h3>
-                  <p className="text-sm text-muted-foreground">Important discoveries first</p>
+                  <h3 className="font-semibold gradient-text">Breaking News</h3>
+                  <p className="text-sm text-white">Important discoveries first</p>
                 </div>
                 <div className="text-center space-y-2">
                   <div className="mx-auto w-12 h-12 bg-bio-green-100 dark:bg-bio-green-900/30 rounded-full flex items-center justify-center">
                     <Mail className="h-6 w-6 text-bio-green-600 dark:text-bio-green-400" />
                   </div>
-                  <h3 className="font-semibold">Student Exclusive</h3>
-                  <p className="text-sm text-muted-foreground">Study tips and exam help</p>
+                  <h3 className="font-semibold gradient-text">Student Exclusive</h3>
+                  <p className="text-sm text-white">Study tips and exam help</p>
                 </div>
               </div>
 
@@ -75,15 +75,17 @@ export function Newsletter() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email address"
-                    className="flex-1 h-12 text-center sm:text-left"
+                    className="flex-1 h-12 text-center sm:text-left border border-white text-white placeholder:text-white"
                   />
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-bio-blue-500 to-bio-teal-500 text-white hover:from-bio-blue-600 hover:to-bio-teal-600 transition-all duration-300 px-8 whitespace-nowrap"
+                    className="bg-lime-600 hover:bg-lime-400 transition-all duration-300 text-lg px-8 py-6 text-white rounded-xl"
                     onClick={subscribe}
                     disabled={status === 'loading'}
                   >
-                    {status === 'loading' ? 'Subscribing...' : 'Subscribe Now'}
+                    <span className="tex-white">
+                      {status === 'loading' ? 'Subscribing...' : 'Subscribe Now'}
+                    </span>
                   </Button>
                 </div>
                 {status === 'success' && (
@@ -92,7 +94,7 @@ export function Newsletter() {
                 {status === 'error' && (
                   <p className="text-sm text-red-400 mt-3">❌ {error}</p>
                 )}
-                <p className="text-xs text-muted-foreground mt-3">
+                <p className="text-xs text-white mt-3">
                   No spam, unsubscribe anytime. We respect your privacy.
                 </p>
               </div>

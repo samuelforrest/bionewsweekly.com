@@ -6,7 +6,7 @@ const teamMembers = [
   {
     name: "Freddie Rees",
     role: "Editor-in-Chief",
-    bio: "Freddie is truly passionate about Biology and aspires to become a doctor, or a vet.",
+    bio: "Freddie is truly passionate about Biology and aspires to become a doctor, or maybe a vet.",
     subjects: ["Biology", "Chemistry", "Mathematics"],
     avatar: "/freddie_pfp.jpeg",
     specialty: "Medicine",

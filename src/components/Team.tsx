@@ -30,7 +30,7 @@ const teamMembers = [
 		avatar: '/aditi_pfp.jpeg',
 		specialty: 'Medicine',
 		epqLink: '/epq/aditi-deshpande-epq.pdf',
-		linkedinLink: 'https://linkedin.com/in/aditi-deshpande',
+		linkedinLink: '/',
 	},
 ]
 
@@ -137,9 +137,6 @@ export function Team() {
 							>
 								sam@samuelforrest.me
 							</a>
-						</p>
-						<p className="text-xs text-gray-400">
-							Joining costs £10 yearly, but it's great to put on your personal statement!
 						</p>
 					</div>
 				</div>

@@ -108,12 +108,12 @@ export function CommentsSection({ blogId }: CommentsSectionProps) {
 
   return (
     <div className="space-y-6">
-      <h3 className="text-2xl font-bold">Comments</h3>
+      <h3 className="text-2xl font-bold text-white">Comments</h3>
       
       {user ? (
-        <Card>
+        <Card className="border border-white">
           <CardHeader>
-            <h4 className="text-lg font-semibold">Add a comment</h4>
+            <h4 className="text-lg font-semibold text-white">Add a comment</h4>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmitComment} className="space-y-4">
@@ -122,42 +122,43 @@ export function CommentsSection({ blogId }: CommentsSectionProps) {
                 onChange={(e) => setNewComment(e.target.value)}
                 placeholder="Write your comment here..."
                 rows={4}
+                className="border border-white text-white"
               />
-              <Button type="submit" disabled={submitting}>
+              <Button type="submit" disabled={submitting} className="border border-white text-white hover:bg-white hover:text-black">
                 {submitting ? 'Posting...' : 'Post Comment'}
               </Button>
             </form>
           </CardContent>
         </Card>
       ) : (
-        <Card>
+        <Card className="border border-white">
           <CardContent className="pt-6">
-            <p className="text-muted-foreground">Please sign in to leave a comment.</p>
+            <p className="text-white">Please sign in to leave a comment.</p>
           </CardContent>
         </Card>
       )}
 
       <div className="space-y-4">
         {loading ? (
-          <div className="text-center py-4">Loading comments...</div>
+          <div className="text-center py-4 text-white">Loading comments...</div>
         ) : comments.length > 0 ? (
           comments.map((comment) => (
-            <Card key={comment.id}>
+            <Card key={comment.id} className="border border-white">
               <CardContent className="pt-4">
                 <div className="flex justify-between items-start mb-2">
-                  <span className="font-semibold">
+                  <span className="font-semibold text-white">
                     {comment.profiles?.full_name || comment.profiles?.email || 'Anonymous'}
                   </span>
-                  <span className="text-sm text-muted-foreground">
+                  <span className="text-sm text-white">
                     {new Date(comment.created_at).toLocaleDateString()}
                   </span>
                 </div>
-                <p className="text-sm">{comment.content}</p>
+                <p className="text-sm text-white">{comment.content}</p>
               </CardContent>
             </Card>
           ))
         ) : (
-          <div className="text-center py-8 text-muted-foreground">
+          <div className="text-center py-8 text-white">
             No comments yet. Be the first to comment!
           </div>
         )}

@@ -107,12 +107,13 @@ const BlogPost = () => {
             dangerouslySetInnerHTML={{ __html: post.content || '' }}
           />
 
-          <div className="flex items-center gap-4 mb-8 py-4 border-y">
+          <div className="flex items-center gap-4 mb-8 py-4 border-y border-white">
             <LikeButton blogId={post.id} />
             <div className="flex gap-4">
               <Button
                 variant="outline"
                 size="sm"
+                className="border border-white text-white hover:bg-white hover:text-black"
                 onClick={() => {
                   const url = encodeURIComponent(window.location.href);
                   const text = encodeURIComponent(post.title);
@@ -128,6 +129,7 @@ const BlogPost = () => {
               <Button
                 variant="outline"
                 size="sm"
+                className="border border-white text-white hover:bg-white hover:text-black"
                 onClick={() => {
                   const url = encodeURIComponent(window.location.href);
                   const title = encodeURIComponent(post.title);

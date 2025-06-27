@@ -88,7 +88,7 @@ export function LikeButton({ blogId }: LikeButtonProps) {
       size="sm"
       onClick={handleLike}
       disabled={loading}
-      className="flex items-center gap-2"
+      className="flex items-center gap-2 border border-white text-white hover:bg-white hover:text-black"
     >
       <Heart className={`h-4 w-4 ${isLiked ? 'fill-red-500 text-red-500' : ''}`} />
       {likeCount}

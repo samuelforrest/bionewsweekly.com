@@ -98,8 +98,8 @@ export default function Auth() {
                 />
               </div>
               
-              <Button type="submit" className="w-full">
-                Sign Up
+              <Button type="submit" className="w-full border border-white text-white hover:bg-white hover:text-black" disabled={loading}>
+                {loading ? 'Loading...' : (isLogin ? 'Sign In' : 'Sign Up')}
               </Button>
               <p className="text-xs text-white mt-2 text-center">
                 An email from Supabase will be sent to you. You must click "Verify Email" in that email, then return to this page and sign in.

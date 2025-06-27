@@ -52,7 +52,7 @@ export function RichTextEditor({ content, onChange }: RichTextEditorProps) {
   ];
 
   return (
-    <div className="border rounded-lg overflow-hidden">
+    <div className="border border-white rounded-lg overflow-hidden">
       <ReactQuill
         theme="snow"
         value={value}
@@ -60,7 +60,7 @@ export function RichTextEditor({ content, onChange }: RichTextEditorProps) {
         modules={modules}
         formats={formats}
         style={{ minHeight: '300px' }}
-        className="bg-background"
+        className="bg-background quill-white-theme"
       />
     </div>
   );

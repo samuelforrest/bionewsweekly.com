@@ -95,97 +95,104 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
   };
 
   return (
-    <Card>
+    <Card className="border border-white">
       <CardHeader>
-        <CardTitle>{post ? "Edit Blog Post" : "Create New Blog Post"}</CardTitle>
+        <CardTitle className="text-white">{post ? "Edit Blog Post" : "Create New Blog Post"}</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <Label htmlFor="title">Title</Label>
+            <Label htmlFor="title" className="text-white">Title</Label>
             <Input
               id="title"
               value={title}
               onChange={handleTitleChange}
               required
+              className="border border-white text-white"
             />
           </div>
 
           <div>
-            <Label htmlFor="slug">URL Slug</Label>
+            <Label htmlFor="slug" className="text-white">URL Slug</Label>
             <Input
               id="slug"
               value={slug}
               onChange={(e) => setSlug(e.target.value)}
               placeholder="url-friendly-version-of-title"
               required
+              className="border border-white text-white placeholder:text-gray-400"
             />
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-sm text-white mt-1">
               This will be used in the URL: /blog/{slug}
             </p>
           </div>
 
           <div>
-            <Label htmlFor="preview">Preview</Label>
+            <Label htmlFor="preview" className="text-white">Preview</Label>
             <Textarea
               id="preview"
               value={preview}
               onChange={(e) => setPreview(e.target.value)}
               placeholder="Short preview text for blog listings"
               rows={3}
+              className="border border-white text-white placeholder:text-gray-400"
             />
           </div>
 
           <div>
-            <Label htmlFor="category">Category</Label>
+            <Label htmlFor="category" className="text-white">Category</Label>
             <Input
               id="category"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               required
+              className="border border-white text-white"
             />
           </div>
 
           <div>
-            <Label htmlFor="author">Author</Label>
+            <Label htmlFor="author" className="text-white">Author</Label>
             <Input
               id="author"
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
               required
+              className="border border-white text-white"
             />
           </div>
 
           <div>
-            <Label htmlFor="coverImage">Cover Image URL</Label>
+            <Label htmlFor="coverImage" className="text-white">Cover Image URL</Label>
             <Input
               id="coverImage"
               value={coverImage}
               onChange={(e) => setCoverImage(e.target.value)}
               placeholder="https://example.com/image.jpg"
+              className="border border-white text-white placeholder:text-gray-400"
             />
           </div>
 
           <div>
-            <Label htmlFor="tags">Tags (comma separated)</Label>
+            <Label htmlFor="tags" className="text-white">Tags (comma separated)</Label>
             <Input
               id="tags"
               value={tags}
               onChange={(e) => setTags(e.target.value)}
               placeholder="technology, programming, web development"
+              className="border border-white text-white placeholder:text-gray-400"
             />
           </div>
 
           <div>
-            <Label>Content</Label>
+            <Label className="text-white">Content</Label>
             <RichTextEditor content={content} onChange={setContent} />
           </div>
 
           <div className="flex gap-4">
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading} className="border border-white text-white hover:bg-white hover:text-black">
               {loading ? "Saving..." : post ? "Update Post" : "Create Post"}
             </Button>
-            <Button type="button" variant="outline" onClick={onCancel}>
+            <Button type="button" variant="outline" onClick={onCancel} className="border border-white text-white hover:bg-white hover:text-black">
               Cancel
             </Button>
           </div>

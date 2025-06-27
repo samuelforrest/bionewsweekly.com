@@ -5,33 +5,34 @@
   font-family: inherit;
   font-size: 16px;
   line-height: 1.6;
+  color: white;
 }
 
 .ql-toolbar {
-  border-top: 1px solid hsl(var(--border));
-  border-left: 1px solid hsl(var(--border));
-  border-right: 1px solid hsl(var(--border));
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
   background: hsl(var(--background));
 }
 
 .ql-container {
-  border-bottom: 1px solid hsl(var(--border));
-  border-left: 1px solid hsl(var(--border));
-  border-right: 1px solid hsl(var(--border));
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
   background: hsl(var(--background));
 }
 
 .ql-toolbar .ql-picker-label {
-  color: hsl(var(--foreground));
+  color: white;
 }
 
 .ql-toolbar .ql-picker-options {
   background: hsl(var(--background));
-  border: 1px solid hsl(var(--border));
+  border: 1px solid white;
 }
 
 .ql-toolbar .ql-picker-item {
-  color: hsl(var(--foreground));
+  color: white;
 }
 
 .ql-toolbar .ql-picker-item:hover {
@@ -39,7 +40,7 @@
 }
 
 .ql-toolbar button {
-  color: hsl(var(--foreground));
+  color: white;
 }
 
 .ql-toolbar button:hover {
@@ -51,15 +52,31 @@
   color: hsl(var(--primary-foreground));
 }
 
-/* Dark mode support */
-.dark .ql-editor {
-  color: hsl(var(--foreground));
+/* White theme specific styles */
+.quill-white-theme .ql-editor {
+  color: white;
 }
 
-.dark .ql-toolbar {
+.quill-white-theme .ql-toolbar {
   background: hsl(var(--background));
+  border-color: white;
 }
 
-.dark .ql-container {
+.quill-white-theme .ql-container {
   background: hsl(var(--background));
+  border-color: white;
+}
+
+.quill-white-theme .ql-toolbar .ql-picker-label,
+.quill-white-theme .ql-toolbar button {
+  color: white;
+}
+
+.quill-white-theme .ql-toolbar .ql-picker-options {
+  background: hsl(var(--background));
+  border: 1px solid white;
+}
+
+.quill-white-theme .ql-toolbar .ql-picker-item {
+  color: white;
 }

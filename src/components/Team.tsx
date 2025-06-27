@@ -40,7 +40,7 @@ export function Team() {
     <section id="team" className="py-24">
       <div className="container px-4 mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             Meet Our <span className="gradient-text">Student Team</span>
           </h2>
           <p className="text-xl text-white max-w-2xl mx-auto">
@@ -52,7 +52,7 @@ export function Team() {
           {teamMembers.map((member, index) => (
             <Card 
               key={member.name} 
-              className="group hover:shadow-xl transition-all duration-300 animate-scale-in overflow-hidden bg-black"
+              className="group hover:shadow-xl transition-all duration-300 animate-scale-in overflow-hidden bg-black border border-white"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardContent className="p-6">
@@ -68,8 +68,8 @@ export function Team() {
 
                   {/* Name and Role */}
                   <div>
-                    <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                    <p className="text-primary font-medium">{member.role}</p>
+                    <h3 className="text-xl text-white font-bold mb-1">{member.name}</h3>
+                    <p className="text-primary text-white font-medium">{member.role}</p>
                     <p className="text-sm text-white">{member.specialty}</p>
                   </div>
 
@@ -105,7 +105,7 @@ export function Team() {
                   {/* Subjects */}
                   <div className="flex flex-wrap gap-2 justify-center">
                     {member.subjects.map((subject) => (
-                      <Badge key={subject} variant="secondary" className="text-xs">
+                      <Badge key={subject} variant="secondary" className="text-xs bg-white text-black hover:bg-gray-100 transition-colors">
                         {subject}
                       </Badge>
                     ))}

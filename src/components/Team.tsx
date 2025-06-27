@@ -17,7 +17,7 @@ const teamMembers = [
     name: "Danny Mellor",
     role: "Writer",
     bio: "Danny is an aspiring biologist driven by a deep fascination for understanding life and research.",
-    subjects: ["Biology", "TBC", "Mathematics"],
+    subjects: ["Biology", "Mathematics", "Psychology"],
     avatar: "/danny_pfp.jpg",
     specialty: "Research",
     epqLink: "/epq/danny-mellor-epq.pdf",

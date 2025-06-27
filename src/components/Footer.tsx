@@ -47,7 +47,7 @@ export function Footer() {
           <div className="space-y-4 md:text-right lg:text-right">
             <h4 className="text-sm font-bold text-white">Content</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-sm text-white hover:underline">Home</a></li>
+              <li><a href="/" className="text-sm text-white hover:underline">Home</a></li>
               <li><a href="/blog" className="text-sm text-white hover:underline">Latest Articles</a></li>
               <li><a href="#" className="text-sm text-white hover:underline">Podcast</a></li>
             </ul>

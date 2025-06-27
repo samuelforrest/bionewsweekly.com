@@ -23,16 +23,16 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8 ml-auto">
-          <a href="/" className="text-sm font-medium hover:text-primary">
+          <a href="/" className="text-sm font-medium text-white hover:text-primary">
             Home
           </a>
-          <a href="/blog" className="text-sm font-medium hover:text-secondary">
+          <a href="/blog" className="text-sm font-medium text-white hover:text-secondary">
             Articles
           </a>
-          <a href="/admin" className="text-sm font-medium hover:text-primary">
+          <a href="/admin" className="text-sm font-medium text-white hover:text-primary">
             Admin
           </a>
-          <a href="/auth" className="text-sm font-medium hover:text-primary">
+          <a href="/auth" className="text-sm font-medium text-white hover:text-primary">
             Login
           </a>
         </nav>
@@ -40,25 +40,25 @@ export function Header() {
         {/* Mobile Menu Button */}
         <div className="flex items-center ml-auto md:hidden">
           <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            <Menu className="h-5 w-5" />
+            <Menu className="h-5 w-5 text-white" />
           </Button>
         </div>
       </div>
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden border-t bg-background/95 backdrop-blur">
+        <div className="md:hidden bg-background/95 backdrop-blur">
           <nav className="container py-4 flex flex-col space-y-4">
-            <a href="/" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/" className="text-sm font-medium text-white">
               Home
             </a>
-            <a href="/blog" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/blog" className="text-sm font-medium text-white">
               Articles
             </a>
-            <a href="/admin" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/admin" className="text-sm font-medium text-white">
               Admin
             </a>
-            <a href="/auth" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/auth" className="text-sm font-medium text-white">
               Login
             </a>
           </nav>

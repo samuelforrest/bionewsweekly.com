@@ -50,7 +50,7 @@ const Blog = () => {
       <main className="flex-grow mt-20 pt-6">
         <div className="container px-4 mx-auto max-w-6xl">
           <div className="mb-12 text-center">
-            <h1 className="text-4xl font-bold mb-4">Articles</h1>
+            <h1 className="text-4xl font-bold mb-4 text-white">Articles</h1>
             <p className="text-xl text-white max-w-2xl mx-auto">
               Latest news in the field of <span className="text-lime-500">Biology</span>.
             </p>
@@ -78,35 +78,35 @@ const Blog = () => {
           
           {loading ? (
             <div className="flex justify-center p-8">
-              <div className="animate-pulse">Loading posts...</div>
+              <div className="animate-pulse text-white">Loading posts...</div>
             </div>
           ) : filteredPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPosts.map((post) => (
                 <Link key={post.id} to={`/blog/${post.slug}`}>
-                  <Card className="animate-fade-in overflow-hidden bg-black cursor-pointer hover:shadow-xl transition-all duration-300">
-                    <div className="w-full h-48 bg-muted">
+                  <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden animate-fade-in bg-gray-800 cursor-pointer border border-white">
+                    <div className="relative overflow-hidden">
                       {post.cover_image && (
                         <img 
                           src={post.cover_image} 
                           alt={post.title} 
-                          className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       )}
                       {!post.cover_image && (
-                        <div className="flex items-center justify-center w-full h-full bg-muted">
-                          <p className="text-muted-foreground">No image</p>
+                        <div className="flex items-center justify-center w-full h-48 bg-muted">
+                          <p className="text-white">No image</p>
                         </div>
                       )}
-                    </div>
-                    <CardHeader className="pb-4">
-                      <div className="mb-3">
+                      <div className="absolute top-4 left-4">
                         <span className="text-xs bg-secondary px-2 py-1 rounded-full text-black">
                           {post.category}
                         </span>
                       </div>
-                      <CardTitle className="hover:text-primary transition-colors mb-3">{post.title}</CardTitle>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                    </div>
+                    <CardHeader className="pb-4">
+                      <CardTitle className="line-clamp-2 text-white group-hover:scale-105 transition-transform duration-300">{post.title}</CardTitle>
+                      <div className="flex items-center gap-4 text-sm text-white">
                         <div className="flex items-center gap-1">
                           <Calendar className="h-4 w-4" />
                           <span>{post.date}</span>
@@ -118,7 +118,7 @@ const Blog = () => {
                       </div>
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <p className="text-muted-foreground line-clamp-3">
+                      <p className="text-white line-clamp-3">
                         {(post.preview || post.excerpt)?.length > 200
                           ? `${(post.preview || post.excerpt).substring(0, 200)}...` 
                           : (post.preview || post.excerpt)
@@ -131,7 +131,7 @@ const Blog = () => {
             </div>
           ) : (
             <div className="text-center p-8">
-              <p>No blog posts available in this category.</p>
+              <p className="text-white">No blog posts available in this category.</p>
             </div>
           )}
         </div>

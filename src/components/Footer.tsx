@@ -24,16 +24,16 @@ export function Footer() {
               Biology news by students, for students. Making science accessible and exciting for the next generation.
             </p>
             <div className="flex space-x-2">
-              <Button variant="ghost" size="icon" className="h-8 w-8 text-white">
+              <Button variant="ghost" size="icon" className="h-8 w-8 text-white hover:text-white">
                 <Facebook className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8 text-white">
+              <Button variant="ghost" size="icon" className="h-8 w-8 text-white hover:text-white">
                 <Instagram className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8 text-white">
+              <Button variant="ghost" size="icon" className="h-8 w-8 text-white hover:text-white">
                 <Twitter className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8 text-white">
+              <Button variant="ghost" size="icon" className="h-8 w-8 text-white hover:text-white">
                 <Youtube className="h-4 w-4" />
               </Button>
             </div>

@@ -121,7 +121,7 @@ export function LatestNews() {
 
         <div className="text-center mt-12">
           <Link to="/blog">
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6">
+            <Button size="lg" className="bg-lime-600 hover:bg-lime-400 transition-all duration-300 text-lg px-8 py-6 text-white rounded-xl">
               View All Articles
             </Button>
           </Link>

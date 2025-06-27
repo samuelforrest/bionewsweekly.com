@@ -9,6 +9,7 @@ import { getAllBlogPosts, type BlogPost } from "@/services/blogService";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Edit, Trash2, Plus, Info } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -93,11 +94,11 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen bg-background p-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto text-white">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Blog Admin</h1>
+          <h1 className="text-3xl font-bold text-lime-500">Blog Admin</h1>
           <Button onClick={() => setShowForm(true)}>
-            <Plus className="h-4 w-4 mr-2" />
+            <Plus className="h-4 w-4 mr-2 text-white" />
             New Post
           </Button>
         </div>
@@ -105,7 +106,7 @@ const Admin = () => {
         {/* Information Section */}
         <Card className="mb-8 border-blue-200 bg-blue-50/10">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-blue-400">
+            <CardTitle className="flex items-center gap-2 text-red-500">
               <Info className="h-5 w-5" />
               Important Guidelines
             </CardTitle>
@@ -115,7 +116,7 @@ const Admin = () => {
               <div>
                 <h4 className="font-semibold text-white mb-2">Login Information:</h4>
                 <ul className="list-disc list-inside text-gray-300 space-y-1">
-                  <li>Password: <code className="bg-gray-800 px-2 py-1 rounded text-blue-300">bionews2025</code> (no caps)</li>
+                  <li>Password: <code className="bg-gray-800 px-2 py-1 rounded text-lime-500">bionews2025</code> (no caps)</li>
                 </ul>
               </div>
               
@@ -191,6 +192,14 @@ const Admin = () => {
             )}
           </CardContent>
         </Card>
+        
+        <div className="mt-8 text-center">
+          <Link to="/">
+            <Button variant="outline" className="border border-white text-white hover:bg-white hover:text-black">
+              Go back to home
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );

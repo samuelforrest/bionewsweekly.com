@@ -138,6 +138,13 @@ const Admin = () => {
                   <li>Recommended image size: at least 1200x600 pixels for best display</li>
                 </ul>
               </div>
+              <div>
+                <h4 className="font-semibold text-white mb-2">Other Info:</h4>
+                <ul className="list-disc list-inside text-gray-300 space-y-1">
+                  <li>Database runs on Supabase, uptime is 99.9%</li>
+                  <li>Swipe right across the blog article admins to the edit button.</li>
+                </ul>
+              </div>
             </div>
           </CardContent>
         </Card>
@@ -155,9 +162,9 @@ const Admin = () => {
                   <TableRow>
                     <TableHead>Title</TableHead>
                     <TableHead>Category</TableHead>
+                    <TableHead>Actions</TableHead>
                     <TableHead>Author</TableHead>
                     <TableHead>Date</TableHead>
-                    <TableHead>Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -165,8 +172,6 @@ const Admin = () => {
                     <TableRow key={post.id}>
                       <TableCell className="font-medium">{post.title}</TableCell>
                       <TableCell>{post.category}</TableCell>
-                      <TableCell>{post.author}</TableCell>
-                      <TableCell>{post.date}</TableCell>
                       <TableCell>
                         <div className="flex gap-2">
                           <Button
@@ -185,6 +190,8 @@ const Admin = () => {
                           </Button>
                         </div>
                       </TableCell>
+                      <TableCell>{post.author}</TableCell>
+                      <TableCell>{post.date}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

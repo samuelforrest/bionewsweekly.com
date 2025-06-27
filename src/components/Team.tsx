@@ -139,7 +139,7 @@ export function Team() {
 							</a>
 						</p>
 						<p className="text-xs text-gray-400">
-							Joining costs £10 yearly, but it is great to put on your personal statement!
+							Joining costs £10 yearly, but it's great to put on your personal statement!
 						</p>
 					</div>
 				</div>

@@ -59,7 +59,7 @@ const Blog = () => {
           <div className="mb-8 flex flex-wrap gap-3 justify-center">
             <Button 
               variant={selectedCategory === null ? "default" : "outline"} 
-              className={`rounded-full bg-white text-black border-black hover:bg-gray-100 transition-transform duration-200 ${
+              className={`rounded-full bg-white !text-black border-black hover:bg-gray-100 transition-transform duration-200 ${
                 selectedCategory === null ? 'scale-110' : 'scale-100'
               }`}
               onClick={() => setSelectedCategory(null)}
@@ -70,7 +70,7 @@ const Blog = () => {
               <Button 
                 key={index} 
                 variant={selectedCategory === category ? "default" : "outline"} 
-                className={`rounded-full bg-white text-black border-black hover:bg-gray-100 transition-transform duration-200 ${
+                className={`rounded-full bg-white !text-black border-black hover:bg-gray-100 transition-transform duration-200 ${
                   selectedCategory === category ? 'scale-110' : 'scale-100'
                 }`}
                 onClick={() => setSelectedCategory(category)}

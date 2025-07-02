@@ -6,6 +6,7 @@ import { LatestNews } from '@/components/LatestNews'
 import { Team } from '@/components/Team'
 import { Newsletter } from '@/components/Newsletter'
 import { Footer } from '@/components/Footer'
+import { TestAISummary } from '@/components/TestAISummary'
 
 const Index = () => {
   return (
@@ -14,6 +15,9 @@ const Index = () => {
         <Header />
         <main>
           <Hero />
+          <div className="container mx-auto px-4 py-8">
+            <TestAISummary />
+          </div>
           <LatestNews />
           <Team />
           <Newsletter />

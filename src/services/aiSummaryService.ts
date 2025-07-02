@@ -29,11 +29,14 @@ function stripHtml(html: string): string {
 async function generateAISummary(title: string, content: string): Promise<{ summary: string; keyPoints: string[] }> {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   
+  console.log('API Key check:', apiKey ? 'API key is present' : 'API key is missing');
+  
   if (!apiKey) {
     throw new Error('Gemini API key not found. Please add VITE_GEMINI_API_KEY to your .env.local file.');
   }
 
   const plainTextContent = stripHtml(content);
+  console.log('Content length:', plainTextContent.length);
   
   const prompt = `Please provide a concise summary and key takeaways for this blog post:
 
@@ -50,41 +53,61 @@ Please respond in the following JSON format:
 Keep the summary concise and the key points as bullet-worthy insights. Limit to 3-5 key points maximum.`;
 
   try {
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
+    console.log('Making API request to Gemini...');
+    
+    // Test if the API key is accessible
+    console.log('Environment variables:', import.meta.env);
+    
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
+    console.log('API URL (key redacted):', apiUrl.replace(apiKey, '[REDACTED]'));
+    
+    const requestBody = {
+      contents: [
+        {
+          parts: [
+            {
+              text: prompt
+            }
+          ]
+        }
+      ],
+      generationConfig: {
+        temperature: 0.3,
+        topK: 40,
+        topP: 0.95,
+        maxOutputTokens: 1024,
+      }
+    };
+    
+    console.log('Request body:', requestBody);
+    
+    const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        contents: [
-          {
-            parts: [
-              {
-                text: prompt
-              }
-            ]
-          }
-        ],
-        generationConfig: {
-          temperature: 0.3,
-          topK: 40,
-          topP: 0.95,
-          maxOutputTokens: 1024,
-        }
-      })
+      body: JSON.stringify(requestBody)
     });
 
+    console.log('Response status:', response.status);
+    console.log('Response ok:', response.ok);
+    console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+
     if (!response.ok) {
-      throw new Error(`Gemini API error: ${response.status} ${response.statusText}`);
+      const errorText = await response.text();
+      console.error('API Error Response:', errorText);
+      throw new Error(`Gemini API error: ${response.status} ${response.statusText} - ${errorText}`);
     }
 
     const data = await response.json();
+    console.log('API Response data:', data);
     
     if (!data.candidates || data.candidates.length === 0) {
       throw new Error('No response from Gemini AI');
     }
 
     const generatedText = data.candidates[0].content.parts[0].text;
+    console.log('Generated text:', generatedText);
     
     // Try to parse JSON response
     try {
@@ -94,6 +117,7 @@ Keep the summary concise and the key points as bullet-worthy insights. Limit to 
         keyPoints: parsedResponse.keyPoints || []
       };
     } catch (parseError) {
+      console.error('JSON parse error:', parseError);
       // If JSON parsing fails, use the raw text as summary
       return {
         summary: generatedText.substring(0, 300) + '...',

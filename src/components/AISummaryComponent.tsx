@@ -22,11 +22,13 @@ export function AISummaryComponent({ postId, title, content }: AISummaryComponen
         setLoading(true);
         setError(null);
         
+        console.log('Fetching summary for post:', postId);
         const aiSummary = await getCachedBlogSummary(postId, title, content);
+        console.log('Summary received:', aiSummary);
         setSummary(aiSummary);
       } catch (err) {
         console.error('Failed to generate AI summary:', err);
-        setError('Unable to generate AI summary');
+        setError(err instanceof Error ? err.message : 'Unable to generate AI summary');
       } finally {
         setLoading(false);
       }
@@ -78,7 +80,7 @@ export function AISummaryComponent({ postId, title, content }: AISummaryComponen
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground">
-            AI summary could not be generated at this time. Please read the full article below.
+            {error || 'AI summary could not be generated at this time. Please read the full article below.'}
           </p>
         </CardContent>
       </Card>

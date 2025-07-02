@@ -44,13 +44,13 @@ Title: ${title}
 
 Content: ${plainTextContent}
 
-Please respond in the following JSON format:
+Please respond with ONLY a valid JSON object in this exact format (no markdown, no code blocks, no additional text):
 {
   "summary": "A 2-3 sentence summary of the main points",
   "keyPoints": ["Key point 1", "Key point 2", "Key point 3"]
 }
 
-Keep the summary concise and the key points as bullet-worthy insights. Limit to 3-5 key points maximum.`;
+Keep the summary concise and the key points as bullet-worthy insights. Limit to 3-5 key points maximum. Return only the JSON object without any markdown formatting.`;
 
   try {
     console.log('Making API request to Gemini...');
@@ -109,18 +109,49 @@ Keep the summary concise and the key points as bullet-worthy insights. Limit to 
     const generatedText = data.candidates[0].content.parts[0].text;
     console.log('Generated text:', generatedText);
     
+    // Clean the response by removing markdown code blocks
+    let cleanedText = generatedText.trim();
+    
+    // Remove ```json and ``` markers if present
+    if (cleanedText.startsWith('```json')) {
+      cleanedText = cleanedText.replace(/^```json\s*/, '').replace(/\s*```$/, '');
+    } else if (cleanedText.startsWith('```')) {
+      cleanedText = cleanedText.replace(/^```\s*/, '').replace(/\s*```$/, '');
+    }
+    
+    console.log('Cleaned text:', cleanedText);
+    
     // Try to parse JSON response
     try {
-      const parsedResponse = JSON.parse(generatedText);
+      const parsedResponse = JSON.parse(cleanedText);
       return {
         summary: parsedResponse.summary || 'Summary not available',
         keyPoints: parsedResponse.keyPoints || []
       };
     } catch (parseError) {
       console.error('JSON parse error:', parseError);
-      // If JSON parsing fails, use the raw text as summary
+      console.error('Failed to parse:', cleanedText);
+      
+      // If JSON parsing still fails, try to extract summary and keyPoints manually
+      if (cleanedText.includes('"summary"') && cleanedText.includes('"keyPoints"')) {
+        try {
+          // Try to find the JSON part within the text
+          const jsonMatch = cleanedText.match(/\{[\s\S]*\}/);
+          if (jsonMatch) {
+            const extractedJson = JSON.parse(jsonMatch[0]);
+            return {
+              summary: extractedJson.summary || 'Summary not available',
+              keyPoints: extractedJson.keyPoints || []
+            };
+          }
+        } catch (extractError) {
+          console.error('JSON extraction error:', extractError);
+        }
+      }
+      
+      // Final fallback: use the raw text as summary
       return {
-        summary: generatedText.substring(0, 300) + '...',
+        summary: cleanedText.substring(0, 300) + (cleanedText.length > 300 ? '...' : ''),
         keyPoints: []
       };
     }

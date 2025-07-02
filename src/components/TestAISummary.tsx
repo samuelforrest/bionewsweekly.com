@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { getCachedBlogSummary } from '@/services/aiSummaryService';
+import { getCachedBlogSummary, clearSummaryCache } from '@/services/aiSummaryService';
 
 export function TestAISummary() {
   const [result, setResult] = useState<string>('');
@@ -9,10 +9,13 @@ export function TestAISummary() {
   const testSummary = async () => {
     setLoading(true);
     try {
+      // Clear cache to test fresh
+      clearSummaryCache();
+      
       const summary = await getCachedBlogSummary(
         'test-123',
         'Test Blog Post',
-        'This is a test blog post content. It contains some information about AI and machine learning. The post discusses various aspects of artificial intelligence and its applications in modern technology.'
+        'This is a test blog post content. It contains some information about AI and machine learning. The post discusses various aspects of artificial intelligence and its applications in modern technology. Artificial intelligence has revolutionized many industries by providing automated solutions and improving efficiency. Machine learning algorithms can analyze vast amounts of data to identify patterns and make predictions. These technologies are being used in healthcare for diagnostic purposes, in finance for fraud detection, and in transportation for autonomous vehicles.'
       );
       setResult(JSON.stringify(summary, null, 2));
     } catch (error) {

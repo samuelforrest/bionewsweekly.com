@@ -7,6 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import { getBlogPostBySlug, type BlogPost } from "@/services/blogService";
 import { LikeButton } from "@/components/LikeButton";
 import { CommentsSection } from "@/components/CommentsSection";
+import { AISummaryComponent } from "@/components/AISummaryComponent";
 import "../components/QuillContent.css";
 
 const BlogPost = () => {
@@ -101,6 +102,12 @@ const BlogPost = () => {
               />
             </div>
           )}
+
+          <AISummaryComponent 
+            postId={post.id} 
+            title={post.title} 
+            content={post.content || ''} 
+          />
           
           <div 
             className="ql-editor prose prose-lg prose-invert max-w-none mb-8 text-white"

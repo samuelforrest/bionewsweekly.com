@@ -38,7 +38,7 @@ async function generateAISummary(title: string, content: string): Promise<{ summ
   const plainTextContent = stripHtml(content);
   console.log('Content length:', plainTextContent.length);
   
-  const prompt = `Please provide a concise summary and key takeaways for this blog post:
+  const prompt = `Please provide a concise summary and key takeaways for this blog post, use Great British UK English:
 
 Title: ${title}
 

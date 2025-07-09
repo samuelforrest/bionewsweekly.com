@@ -60,7 +60,6 @@ export function Footer() {
                 { name: "Home", href: "/" },
                 { name: "Latest Articles", href: "/blog" },
                 { name: "Our Team", href: "#team" },
-                { name: "About Us", href: "#" }
               ].map((link, index) => (
                 <li key={index}>
                   <a 
@@ -80,9 +79,7 @@ export function Footer() {
             <h4 className="text-lg font-bold text-foreground">Resources</h4>
             <ul className="space-y-3">
               {[
-                { name: "Study Guides", href: "#" },
-                { name: "Podcast", href: "#" },
-                { name: "Newsletter", href: "#" },
+                { name: "Newsletter", href: "/#newsletter" },
                 { name: "Contact", href: "mailto:sam@samuelforrest.me" }
               ].map((link, index) => (
                 <li key={index}>

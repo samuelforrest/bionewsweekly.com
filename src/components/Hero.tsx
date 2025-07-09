@@ -19,7 +19,6 @@ export function Hero() {
           {/* Floating badge */}
           <div className="animate-fade-in">
             <Badge className="px-6 py-3 text-sm font-medium bg-gradient-to-r from-primary to-green-500 text-white border-0 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <Sparkles className="w-4 h-4 mr-2" />
               🧬 Weekly Biology Updates
             </Badge>
           </div>

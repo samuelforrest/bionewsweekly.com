@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Calendar, Clock, ArrowRight, TrendingUp } from 'lucide-react'
+import { Calendar, Clock, ArrowRight, TrendingUp, User } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { getAllBlogPosts, type BlogPost } from '@/services/blogService'
 
@@ -115,6 +115,10 @@ export function LatestNews() {
                       <div className="flex items-center gap-1.5">
                         <Calendar className="h-4 w-4 text-primary" />
                         <span className="font-medium">{article.date}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <User className="h-4 w-4 text-primary" />
+                        <span className="font-medium">{article.author}</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <Clock className="h-4 w-4 text-primary" />

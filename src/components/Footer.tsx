@@ -59,6 +59,7 @@ export function Footer() {
               {[
                 { name: "Home", href: "/" },
                 { name: "Latest Articles", href: "/blog" },
+                { name: "Roadmap", href: "/roadmap" },
                 { name: "Our Team", href: "#team" },
               ].map((link, index) => (
                 <li key={index}>

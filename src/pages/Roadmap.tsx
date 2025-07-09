@@ -20,10 +20,10 @@ const roadmapData: RoadmapItem[] = [
     title: 'Initial Launch & Foundation',
     description: 'Core website functionality with basic blog features',
     status: 'completed',
-    quarter: 'Q4 2024',
+    quarter: 'June 2024',
     icon: Rocket,
     features: [
-      'Responsive blog layout',
+      'Responsive article layout',
       'Article publishing system',
       'Basic admin portal',
       'Team showcase section',
@@ -35,81 +35,32 @@ const roadmapData: RoadmapItem[] = [
     title: 'Enhanced User Experience',
     description: 'Major UI/UX improvements and user engagement features',
     status: 'completed',
-    quarter: 'Q1 2025',
+    quarter: 'July 2025',
     icon: Palette,
     features: [
       'Light/Dark mode theme system',
       'Modern, beautiful UI components',
-      'Anonymous user like system',
+      'Anonymous Liking of articles',
       'AI-powered article summaries',
       'Improved mobile responsiveness',
-      'GDPR compliance updates'
+      'GDPR compliance; replacing terms of service',
     ]
   },
   {
     id: '3',
-    title: 'Community & Engagement',
+    title: 'Advanced Features',
     description: 'Building community features and user interaction',
     status: 'in-progress',
-    quarter: 'Q2 2025',
+    quarter: 'Q3 2025',
     icon: Users,
     features: [
-      'User registration & profiles',
-      'Comment system with moderation',
       'Article bookmarking',
-      'Social media integration',
-      'Author spotlight features',
-      'Reading progress tracking'
+      'Learning features for students - AI bot',
+      'Improved SEO and Marketing - 1st on Google',
+      'Reading progress tracking',
+      'Expanding team & producing more content',
     ]
   },
-  {
-    id: '4',
-    title: 'Advanced Features',
-    description: 'Sophisticated functionality for power users',
-    status: 'planned',
-    quarter: 'Q3 2025',
-    icon: Zap,
-    features: [
-      'Advanced search with filters',
-      'Article categorization system',
-      'Email newsletter automation',
-      'Performance analytics dashboard',
-      'SEO optimization tools',
-      'Content scheduling'
-    ]
-  },
-  {
-    id: '5',
-    title: 'Platform Expansion',
-    description: 'Scaling and expanding platform capabilities',
-    status: 'planned',
-    quarter: 'Q4 2025',
-    icon: Database,
-    features: [
-      'Multi-author collaboration tools',
-      'Advanced content management',
-      'API for third-party integrations',
-      'Mobile app development',
-      'Podcast integration',
-      'Video content support'
-    ]
-  },
-  {
-    id: '6',
-    title: 'Enterprise & Security',
-    description: 'Professional-grade features and enhanced security',
-    status: 'planned',
-    quarter: 'Q1 2026',
-    icon: Shield,
-    features: [
-      'Advanced user permissions',
-      'Two-factor authentication',
-      'Content version control',
-      'Automated backups',
-      'Advanced analytics',
-      'White-label solutions'
-    ]
-  }
 ];
 
 const statusConfig = {

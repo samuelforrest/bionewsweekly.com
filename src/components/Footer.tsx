@@ -110,7 +110,7 @@ export function Footer() {
               </a>
             </p>
             <p className="text-xs text-muted-foreground/80 text-center md:text-left">
-              GDPR: We store email addresses, names, comments, and likes for site functionality. Data is processed lawfully and securely.
+              GDPR: We store email addresses, names, comments, and likes of users who sign up. Data is processed lawfully and securely.
             </p>
           </div>
         </div>

@@ -53,12 +53,17 @@ export function LikeButton({ blogId }: LikeButtonProps) {
 
       setLikeCount(likes?.length || 0);
 
-      // Determine the user ID to check for likes
-      const userId = user ? user.id : getAnonymousUserId();
-      
-      // Check if current user (authenticated or anonymous) has liked this post
-      const userLike = likes?.find(like => like.user_id === userId);
-      setIsLiked(!!userLike);
+      // Check if current user has liked this post
+      if (user) {
+        // For authenticated users, check by user_id
+        const userLike = likes?.find(like => like.user_id === user.id);
+        setIsLiked(!!userLike);
+      } else {
+        // For anonymous users, check by anonymous identifier
+        const anonymousId = getAnonymousUserId();
+        const anonymousLike = likes?.find(like => like.user_id === anonymousId);
+        setIsLiked(!!anonymousLike);
+      }
     } catch (error) {
       console.error('Error fetching likes:', error);
     }
@@ -72,8 +77,8 @@ export function LikeButton({ blogId }: LikeButtonProps) {
     setLoading(true);
 
     try {
-      // Determine the user ID (authenticated or anonymous)
-      const userId = user ? user.id : getAnonymousUserId();
+      // Determine the identifier to use
+      const identifier = user ? user.id : getAnonymousUserId();
 
       if (isLiked) {
         // Remove like from database
@@ -81,7 +86,7 @@ export function LikeButton({ blogId }: LikeButtonProps) {
           .from('likes')
           .delete()
           .eq('blog_id', blogId)
-          .eq('user_id', userId);
+          .eq('user_id', identifier);
 
         if (error) {
           console.error('Database error:', error);
@@ -97,7 +102,7 @@ export function LikeButton({ blogId }: LikeButtonProps) {
           .from('likes')
           .insert([{ 
             blog_id: blogId, 
-            user_id: userId,
+            user_id: identifier,
             created_at: new Date().toISOString()
           }]);
 
@@ -112,7 +117,7 @@ export function LikeButton({ blogId }: LikeButtonProps) {
         if (user) {
           toast.success('Post liked!');
         } else {
-          toast.success('Post liked! (Anonymous like saved)');
+          toast.success('Post liked! Thanks for your feedback');
         }
       }
     } catch (error) {

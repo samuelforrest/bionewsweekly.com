@@ -35,7 +35,7 @@ export function GeminiLinksComponent({ title, content }: GeminiLinksComponentPro
           setError(data.error || 'No links found.');
         }
       } catch (e) {
-        setError('Could not fetch further reading links.');
+        setError('Sorry mate, our AI aint feel well today.');
       } finally {
         setLoading(false);
       }

@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { AdminLogin } from "@/components/admin/AdminLogin";
+import { AdminNavbar } from "@/components/admin/AdminNavbar";
 import { BlogPostForm } from "@/components/admin/BlogPostForm";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,7 +9,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { getAllBlogPosts, type BlogPost } from "@/services/blogService";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Edit, Trash2, Plus, Info } from "lucide-react";
+import { Edit, Trash2, Plus, Info, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Admin = () => {
@@ -74,14 +75,20 @@ const Admin = () => {
     setEditingPost(null);
   };
 
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    toast.success("Logged out successfully");
+  };
+
   if (!isAuthenticated) {
     return <AdminLogin onLogin={() => setIsAuthenticated(true)} />;
   }
 
   if (showForm) {
     return (
-      <div className="min-h-screen bg-background p-8">
-        <div className="max-w-4xl mx-auto">
+      <div className="min-h-screen bg-background">
+        <AdminNavbar onLogout={handleLogout} />
+        <div className="container mx-auto px-6 py-8">
           <BlogPostForm
             post={editingPost || undefined}
             onSave={handleFormSave}
@@ -93,54 +100,67 @@ const Admin = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-6xl mx-auto text-white">
+    <div className="min-h-screen bg-background">
+      <AdminNavbar onLogout={handleLogout} />
+      
+      <div className="container mx-auto px-6 py-8">
+        {/* Header Section */}
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-lime-500">Blog Admin</h1>
-          <Button onClick={() => setShowForm(true)}>
-            <Plus className="h-4 w-4 mr-2 text-white" />
+          <div>
+            <h1 className="text-3xl font-bold text-foreground">Admin Dashboard</h1>
+            <p className="text-muted-foreground mt-2">Manage your blog content and settings</p>
+          </div>
+          <Button onClick={() => setShowForm(true)} className="bg-primary hover:bg-primary/90">
+            <Plus className="h-4 w-4 mr-2" />
             New Post
           </Button>
         </div>
 
         {/* Information Section */}
-        <Card className="mb-8 border-black bg-blue-50/10">
+        <Card className="mb-8 border-l-4 border-l-blue-500 bg-gradient-to-r from-blue-50/50 to-transparent dark:from-blue-950/30">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-red-500">
+            <CardTitle className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
               <Info className="h-5 w-5" />
               Important Guidelines
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4 text-sm">
+            <div className="space-y-6 text-sm">
               <div>
-                <h4 className="font-semibold text-white mb-2">Login Information:</h4>
-                <ul className="list-disc list-inside text-gray-300 space-y-1">
-                  <li>Password: <code className="bg-gray-800 px-2 py-1 rounded text-lime-500">bionews2025</code> (no caps)</li>
+                <h4 className="font-semibold text-foreground mb-2">Login Information:</h4>
+                <ul className="list-disc list-inside text-muted-foreground space-y-1">
+                  <li>Password: <code className="bg-muted px-2 py-1 rounded text-primary font-mono">bionews2025</code> (no caps)</li>
                 </ul>
               </div>
               
               <div>
-                <h4 className="font-semibold text-white mb-2">Article Guidelines:</h4>
-                <ul className="list-disc list-inside text-gray-300 space-y-1">
-                  <li><strong>Do not change the slug</strong> of existing articles - this will break links</li>
+                <h4 className="font-semibold text-foreground mb-2">Article Guidelines:</h4>
+                <ul className="list-disc list-inside text-muted-foreground space-y-1">
+                  <li><strong className="text-foreground">Do not change the slug</strong> of existing articles - this will break links</li>
                   <li>Always add proper headings (H1, H2, H3) to structure your content</li>
                   <li>Use the rich text editor formatting tools for better readability</li>
                 </ul>
               </div>
               
               <div>
-                <h4 className="font-semibold text-white mb-2">Images:</h4>
-                <ul className="list-disc list-inside text-gray-300 space-y-1">
-                  <li>Find royalty-free images on <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Unsplash</a> or <a href="https://pixabay.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Pixabay</a></li>
+                <h4 className="font-semibold text-foreground mb-2">Images:</h4>
+                <ul className="list-disc list-inside text-muted-foreground space-y-1">
+                  <li>Find royalty-free images on{' '}
+                    <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 underline underline-offset-2 inline-flex items-center gap-1">
+                      Unsplash <ExternalLink className="h-3 w-3" />
+                    </a>{' '}or{' '}
+                    <a href="https://pixabay.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 underline underline-offset-2 inline-flex items-center gap-1">
+                      Pixabay <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </li>
                   <li>Copy the direct image link and paste it in the "Cover Image URL" field</li>
                   <li>Ensure images are high quality and relevant to your article content</li>
                   <li>Recommended image size: at least 1200x600 pixels for best display</li>
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-white mb-2">Other Info:</h4>
-                <ul className="list-disc list-inside text-gray-300 space-y-1">
+                <h4 className="font-semibold text-foreground mb-2">Other Info:</h4>
+                <ul className="list-disc list-inside text-muted-foreground space-y-1">
                   <li>Database runs on Supabase, uptime is 99.9%</li>
                   <li>Swipe right across the blog article admins to the edit button.</li>
                 </ul>
@@ -151,62 +171,58 @@ const Admin = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Blog Posts</CardTitle>
+            <CardTitle className="text-foreground">Blog Posts ({blogPosts.length})</CardTitle>
           </CardHeader>
           <CardContent>
             {loading ? (
-              <div className="text-center p-8">Loading...</div>
+              <div className="text-center p-8 text-muted-foreground">Loading...</div>
             ) : (
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Title</TableHead>
-                    <TableHead>Category</TableHead>
-                    <TableHead>Actions</TableHead>
-                    <TableHead>Author</TableHead>
-                    <TableHead>Date</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {blogPosts.map((post) => (
-                    <TableRow key={post.id}>
-                      <TableCell className="font-medium">{post.title}</TableCell>
-                      <TableCell>{post.category}</TableCell>
-                      <TableCell>
-                        <div className="flex gap-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleEdit(post)}
-                          >
-                            <Edit className="h-4 w-4" />
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleDelete(post.id)}
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      </TableCell>
-                      <TableCell>{post.author}</TableCell>
-                      <TableCell>{post.date}</TableCell>
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="text-foreground">Title</TableHead>
+                      <TableHead className="text-foreground">Category</TableHead>
+                      <TableHead className="text-foreground">Author</TableHead>
+                      <TableHead className="text-foreground">Date</TableHead>
+                      <TableHead className="text-foreground">Actions</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                  </TableHeader>
+                  <TableBody>
+                    {blogPosts.map((post) => (
+                      <TableRow key={post.id} className="hover:bg-muted/50">
+                        <TableCell className="font-medium text-foreground">{post.title}</TableCell>
+                        <TableCell className="text-muted-foreground">{post.category}</TableCell>
+                        <TableCell className="text-muted-foreground">{post.author}</TableCell>
+                        <TableCell className="text-muted-foreground">{post.date}</TableCell>
+                        <TableCell>
+                          <div className="flex gap-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleEdit(post)}
+                              className="hover:bg-primary hover:text-primary-foreground"
+                            >
+                              <Edit className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleDelete(post.id)}
+                              className="hover:bg-destructive hover:text-destructive-foreground"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
             )}
           </CardContent>
         </Card>
-        
-        <div className="mt-8 text-center">
-          <Link to="/">
-            <Button variant="outline" className="border border-white text-white hover:bg-white hover:text-black">
-              Go back to home
-            </Button>
-          </Link>
-        </div>
       </div>
     </div>
   );

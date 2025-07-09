@@ -95,104 +95,104 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
   };
 
   return (
-    <Card className="border border-white">
+    <Card className="border-border bg-card">
       <CardHeader>
-        <CardTitle className="text-white">{post ? "Edit Blog Post" : "Create New Blog Post"}</CardTitle>
+        <CardTitle className="text-foreground">{post ? "Edit Blog Post" : "Create New Blog Post"}</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <Label htmlFor="title" className="text-white">Title</Label>
+            <Label htmlFor="title" className="text-foreground">Title</Label>
             <Input
               id="title"
               value={title}
               onChange={handleTitleChange}
               required
-              className="border border-white text-white"
+              className="border-input bg-background text-foreground"
             />
           </div>
 
           <div>
-            <Label htmlFor="slug" className="text-white">URL Slug</Label>
+            <Label htmlFor="slug" className="text-foreground">URL Slug</Label>
             <Input
               id="slug"
               value={slug}
               onChange={(e) => setSlug(e.target.value)}
               placeholder="url-friendly-version-of-title"
               required
-              className="border border-white text-white placeholder:text-gray-400"
+              className="border-input bg-background text-foreground placeholder:text-muted-foreground"
             />
-            <p className="text-sm text-white mt-1">
+            <p className="text-sm text-muted-foreground mt-1">
               This will be used in the URL: /blog/{slug}
             </p>
           </div>
 
           <div>
-            <Label htmlFor="preview" className="text-white">Preview</Label>
+            <Label htmlFor="preview" className="text-foreground">Preview</Label>
             <Textarea
               id="preview"
               value={preview}
               onChange={(e) => setPreview(e.target.value)}
               placeholder="Short preview text for blog listings"
               rows={3}
-              className="border border-white text-white placeholder:text-gray-400"
+              className="border-input bg-background text-foreground placeholder:text-muted-foreground"
             />
           </div>
 
           <div>
-            <Label htmlFor="category" className="text-white">Category</Label>
+            <Label htmlFor="category" className="text-foreground">Category</Label>
             <Input
               id="category"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               required
-              className="border border-white text-white"
+              className="border-input bg-background text-foreground"
             />
           </div>
 
           <div>
-            <Label htmlFor="author" className="text-white">Author</Label>
+            <Label htmlFor="author" className="text-foreground">Author</Label>
             <Input
               id="author"
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
               required
-              className="border border-white text-white"
+              className="border-input bg-background text-foreground"
             />
           </div>
 
           <div>
-            <Label htmlFor="coverImage" className="text-white">Cover Image URL</Label>
+            <Label htmlFor="coverImage" className="text-foreground">Cover Image URL</Label>
             <Input
               id="coverImage"
               value={coverImage}
               onChange={(e) => setCoverImage(e.target.value)}
               placeholder="https://example.com/image.jpg"
-              className="border border-white text-white placeholder:text-gray-400"
+              className="border-input bg-background text-foreground placeholder:text-muted-foreground"
             />
           </div>
 
           <div>
-            <Label htmlFor="tags" className="text-white">Tags (comma separated)</Label>
+            <Label htmlFor="tags" className="text-foreground">Tags (comma separated)</Label>
             <Input
               id="tags"
               value={tags}
               onChange={(e) => setTags(e.target.value)}
               placeholder="technology, programming, web development"
-              className="border border-white text-white placeholder:text-gray-400"
+              className="border-input bg-background text-foreground placeholder:text-muted-foreground"
             />
           </div>
 
           <div>
-            <Label className="text-white">Content</Label>
+            <Label className="text-foreground">Content</Label>
             <RichTextEditor content={content} onChange={setContent} />
           </div>
 
           <div className="flex gap-4">
-            <Button type="submit" disabled={loading} className="border border-white text-white hover:bg-white hover:text-black">
+            <Button type="submit" disabled={loading} className="bg-primary hover:bg-primary/90 text-primary-foreground">
               {loading ? "Saving..." : post ? "Update Post" : "Create Post"}
             </Button>
-            <Button type="button" variant="outline" onClick={onCancel} className="border border-white text-white hover:bg-white hover:text-black">
+            <Button type="button" variant="outline" onClick={onCancel} className="border-border text-foreground hover:bg-muted">
               Cancel
             </Button>
           </div>

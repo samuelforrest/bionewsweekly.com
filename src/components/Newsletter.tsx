@@ -11,23 +11,34 @@ export function Newsletter() {
   const [error, setError] = useState<string | null>(null)
 
   const subscribe = async () => {
+    if (!email.trim()) {
+      setStatus('error')
+      setError('Please enter your email address')
+      return
+    }
+    
     setStatus('loading')
     setError(null)
 
-    const res = await fetch('api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }),
-    })
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim() }),
+      })
 
-    const data = await res.json()
+      const data = await res.json()
 
-    if (res.ok) {
-      setStatus('success')
-      setEmail('')
-    } else {
+      if (res.ok) {
+        setStatus('success')
+        setEmail('')
+      } else {
+        setStatus('error')
+        setError(data.error || 'Subscription failed')
+      }
+    } catch (error) {
       setStatus('error')
-      setError(data.error || 'Subscription failed')
+      setError('Network error. Please try again.')
     }
   }
 
@@ -123,7 +134,7 @@ export function Newsletter() {
                 {status === 'success' && (
                   <div className="flex items-center justify-center gap-2 mt-4 p-4 bg-green-500/10 border border-green-500/20 rounded-xl">
                     <CheckCircle className="w-5 h-5 text-green-600" />
-                    <p className="text-green-600 font-medium">🎉 Thanks! Check your inbox to confirm.</p>
+                    <p className="text-green-600 font-medium">🎉 Welcome to BioNewsWeekly! You'll receive our weekly newsletter.</p>
                   </div>
                 )}
                 {status === 'error' && (

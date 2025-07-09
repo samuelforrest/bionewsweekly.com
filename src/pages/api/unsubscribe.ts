@@ -1,19 +1,19 @@
 import { NewsletterService } from '@/services/newsletterService'
 
-interface SubscribeRequest {
+interface UnsubscribeRequest {
   email: string
 }
 
-interface SubscribeResponse {
+interface UnsubscribeResponse {
   message?: string
   error?: string
 }
 
-// API endpoint for newsletter subscription
+// API endpoint for newsletter unsubscription
 export default async function handler(
-  req: { method: string; body: SubscribeRequest }, 
+  req: { method: string; body: UnsubscribeRequest }, 
   res: { 
-    status: (code: number) => { json: (data: SubscribeResponse) => void } 
+    status: (code: number) => { json: (data: UnsubscribeResponse) => void } 
   }
 ) {
   if (req.method !== 'POST') {
@@ -27,7 +27,7 @@ export default async function handler(
   }
 
   try {
-    const result = await NewsletterService.subscribe(email);
+    const result = await NewsletterService.unsubscribe(email);
     
     if (result.success) {
       return res.status(200).json({ message: result.message });
@@ -35,7 +35,7 @@ export default async function handler(
       return res.status(400).json({ error: result.message });
     }
   } catch (error) {
-    console.error('Subscription error:', error);
+    console.error('Unsubscription error:', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 }

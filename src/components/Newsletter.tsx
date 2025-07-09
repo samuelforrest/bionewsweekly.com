@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent } from '@/components/ui/card'
 import { Mail, Bell, Calendar, CheckCircle, AlertCircle, Sparkles } from 'lucide-react'
+import { NewsletterService } from '@/services/newsletterService'
 
 export function Newsletter() {
   const [email, setEmail] = useState('')
@@ -21,24 +22,19 @@ export function Newsletter() {
     setError(null)
 
     try {
-      const res = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim() }),
-      })
+      const result = await NewsletterService.subscribe(email.trim())
 
-      const data = await res.json()
-
-      if (res.ok) {
+      if (result.success) {
         setStatus('success')
         setEmail('')
       } else {
         setStatus('error')
-        setError(data.error || 'Subscription failed')
+        setError(result.error || result.message || 'Subscription failed')
       }
     } catch (error) {
+      console.error('Newsletter subscription error:', error)
       setStatus('error')
-      setError('Network error. Please try again.')
+      setError('Something went wrong. Please try again.')
     }
   }
 

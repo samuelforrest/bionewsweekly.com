@@ -85,19 +85,19 @@ export type Database = {
           blog_id: string
           created_at: string
           id: string
-          user_id: string
+          user_id: string | null
         }
         Insert: {
           blog_id: string
           created_at?: string
           id?: string
-          user_id: string
+          user_id?: string | null
         }
         Update: {
           blog_id?: string
           created_at?: string
           id?: string
-          user_id?: string
+          user_id?: string | null
         }
         Relationships: [
           {

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Loader2, ExternalLink } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Skeleton } from '@/components/ui/skeleton';
+import { ExternalLink, Lightbulb, Globe } from 'lucide-react';
 
 interface GeminiLinksComponentProps {
   title: string;
@@ -13,6 +15,13 @@ interface LinkInfo {
   description?: string;
 }
 
+// Function to strip HTML tags and get plain text
+function stripHtml(html: string): string {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  return tempDiv.textContent || tempDiv.innerText || '';
+}
+
 export function GeminiLinksComponent({ title, content }: GeminiLinksComponentProps) {
   const [links, setLinks] = useState<LinkInfo[]>([]);
   const [loading, setLoading] = useState(true);
@@ -22,65 +31,194 @@ export function GeminiLinksComponent({ title, content }: GeminiLinksComponentPro
     async function fetchLinks() {
       setLoading(true);
       setError(null);
+      
       try {
-        const res = await fetch('/api/gemini-links', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ title, content })
-        });
-        const data = await res.json();
-        if (data.links && Array.isArray(data.links)) {
-          setLinks(data.links);
-        } else {
-          setError(data.error || 'No links found.');
+        const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+        
+        if (!apiKey) {
+          throw new Error('Gemini API key not found. Please add VITE_GEMINI_API_KEY to your .env.local file.');
         }
-      } catch (e) {
-        setError('Sorry mate, our AI aint feel well today.');
+
+        const plainTextContent = stripHtml(content);
+        
+        const prompt = `Please suggest 3-5 reputable, up-to-date external links for further reading on the following topic. For each link, provide a title, URL, and a short description.
+
+Title: ${title}
+
+Content: ${plainTextContent.slice(0, 1000)}
+
+Please respond with ONLY a valid JSON array in this exact format (no markdown, no code blocks, no additional text):
+[
+  {
+    "title": "Link title",
+    "url": "https://example.com",
+    "description": "Brief description of the link"
+  }
+]
+
+Ensure all URLs are real, working links to reputable sources like scientific journals, educational institutions, or well-known science websites.`;
+
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
+        
+        const requestBody = {
+          contents: [
+            {
+              parts: [
+                {
+                  text: prompt
+                }
+              ]
+            }
+          ],
+          generationConfig: {
+            temperature: 0.3,
+            topK: 40,
+            topP: 0.95,
+            maxOutputTokens: 1024,
+          }
+        };
+        
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestBody)
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Gemini API error: ${response.status} ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        
+        if (!data.candidates || data.candidates.length === 0) {
+          throw new Error('No response from Gemini AI');
+        }
+
+        const generatedText = data.candidates[0].content.parts[0].text;
+        
+        // Clean the response by removing markdown code blocks
+        let cleanedText = generatedText.trim();
+        
+        // Remove ```json and ``` markers if present
+        if (cleanedText.startsWith('```json')) {
+          cleanedText = cleanedText.replace(/^```json\s*/, '').replace(/\s*```$/, '');
+        } else if (cleanedText.startsWith('```')) {
+          cleanedText = cleanedText.replace(/^```\s*/, '').replace(/\s*```$/, '');
+        }
+        
+        // Parse the JSON response
+        const parsedLinks = JSON.parse(cleanedText);
+        
+        if (Array.isArray(parsedLinks) && parsedLinks.length > 0) {
+          setLinks(parsedLinks);
+        } else {
+          throw new Error('No valid links found in response');
+        }
+        
+      } catch (err) {
+        console.error('Failed to generate further reading links:', err);
+        setError(err instanceof Error ? err.message : 'Unable to generate reading links');
       } finally {
         setLoading(false);
       }
     }
-    fetchLinks();
+    
+    if (title && content) {
+      fetchLinks();
+    }
   }, [title, content]);
 
-  return (
-    <Card className="mb-12 mt-8 bg-card/70 border-border/60 shadow-lg rounded-2xl">
-      <CardContent className="p-8">
-        <h3 className="text-xl font-bold mb-4 text-foreground flex items-center gap-2">
-          Further Reading
-          <span className="text-base font-normal text-muted-foreground">(AI suggested)</span>
-        </h3>
-        {loading ? (
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Loader2 className="animate-spin w-5 h-5" />
-            Fetching links...
+  if (loading) {
+    return (
+      <Card className="mb-8 border-l-4 border-l-green-500 bg-card border-border">
+        <CardHeader className="pb-3">
+          <div className="flex items-center gap-2">
+            <Globe className="h-5 w-5 text-green-500" />
+            <CardTitle className="text-lg text-green-500">Further Reading</CardTitle>
+            <Badge variant="secondary" className="text-xs">
+              <Lightbulb className="h-3 w-3 mr-1" />
+              Gemini AI
+            </Badge>
           </div>
-        ) : error ? (
-          <div className="text-red-500">{error}</div>
-        ) : (
-          <ul className="space-y-4">
-            {links.map((link, idx) => (
-              <li key={idx}>
-                <a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-3 group hover:text-primary transition-colors"
-                >
-                  <ExternalLink className="w-4 h-4 mt-1 text-muted-foreground group-hover:text-primary" />
-                  <span>
-                    <span className="font-semibold underline underline-offset-2 group-hover:text-primary">
-                      {link.title}
-                    </span>
-                    {link.description && (
-                      <span className="block text-sm text-muted-foreground mt-0.5">{link.description}</span>
-                    )}
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-3/4" />
+          <Skeleton className="h-4 w-1/2" />
+          <div className="space-y-2 mt-4">
+            <Skeleton className="h-3 w-full" />
+            <Skeleton className="h-3 w-2/3" />
+            <Skeleton className="h-3 w-3/4" />
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  if (error || !links.length) {
+    return (
+      <Card className="mb-8 border-l-4 border-l-red-500 bg-card border-border">
+        <CardHeader className="pb-3">
+          <div className="flex items-center gap-2">
+            <Globe className="h-5 w-5 text-red-500" />
+            <CardTitle className="text-lg text-green-500">Further Reading</CardTitle>
+            <Badge variant="destructive" className="text-xs">
+              Unavailable
+            </Badge>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-foreground">
+            {error || 'Further reading links could not be generated at this time.'}
+          </p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <Card className="mb-8 border-l-4 border-l-green-500 bg-card border-border">
+      <CardHeader className="pb-3">
+        <div className="flex items-center gap-2">
+          <Globe className="h-5 w-5 text-green-500" />
+          <CardTitle className="text-lg text-green-500">Further Reading</CardTitle>
+          <Badge variant="secondary" className="text-xs">
+            <Lightbulb className="h-3 w-3 mr-1" />
+            Gemini AI
+          </Badge>
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <p className="text-xs text-muted-foreground mb-4">
+          AI-suggested links for deeper exploration of this topic
+        </p>
+        <ul className="space-y-4">
+          {links.map((link, idx) => (
+            <li key={idx}>
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 group hover:text-primary transition-colors p-3 rounded-lg hover:bg-muted/30"
+              >
+                <ExternalLink className="w-4 h-4 mt-1 text-green-500 group-hover:text-primary flex-shrink-0" />
+                <div>
+                  <span className="font-semibold text-sm block group-hover:text-primary transition-colors">
+                    {link.title}
                   </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
+                  {link.description && (
+                    <span className="block text-xs text-muted-foreground mt-1 leading-relaxed">
+                      {link.description}
+                    </span>
+                  )}
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
       </CardContent>
     </Card>
   );

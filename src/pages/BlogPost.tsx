@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
@@ -8,6 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import { getBlogPostBySlug, type BlogPost } from "@/services/blogService";
 import { LikeButton } from "@/components/LikeButton";
 import { AISummaryComponent } from "@/components/AISummaryComponent";
+import { GeminiLinksComponent } from '@/components/GeminiLinksComponent';
 import "../components/QuillContent.css";
 
 const BlogPost = () => {
@@ -149,6 +149,9 @@ const BlogPost = () => {
               </Button>
             </div>
           </div>
+
+          {/* Gemini further reading links */}
+          <GeminiLinksComponent title={post.title} content={post.content || ''} />
         </article>
       </main>
       

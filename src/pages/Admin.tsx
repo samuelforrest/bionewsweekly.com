@@ -108,7 +108,7 @@ const Admin = () => {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-foreground">Admin Dashboard</h1>
-            <p className="text-muted-foreground mt-2">Manage your blog content and settings</p>
+            <p className="text-muted-foreground mt-2">Article Management Portal, best on Desktop.</p>
           </div>
           <Button onClick={() => setShowForm(true)} className="bg-primary hover:bg-primary/90">
             <Plus className="h-4 w-4 mr-2" />

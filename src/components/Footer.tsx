@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { Facebook, Instagram, Twitter, Youtube, ExternalLink, Heart } from 'lucide-react'
+import { Facebook, Instagram, Twitter, Youtube, ExternalLink } from 'lucide-react'
 
 export function Footer() {
   return (

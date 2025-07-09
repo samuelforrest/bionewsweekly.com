@@ -2,7 +2,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, Circle, Clock, Rocket, Zap, Users, Database, Palette, Shield, LucideIcon } from 'lucide-react';
+import { CheckCircle, Circle, Clock, Rocket, Zap, Users, Database, Palette, Shield, LucideIcon, Settings2 } from 'lucide-react';
 
 interface RoadmapItem {
   id: string;
@@ -52,7 +52,7 @@ const roadmapData: RoadmapItem[] = [
     description: 'Building community features and user interaction',
     status: 'in-progress',
     quarter: 'Q3 2025',
-    icon: Users,
+    icon: Settings2, // changed from Users to Settings2 (cogs)
     features: [
       'Article bookmarking',
       'Learning features for students - AI bot',
@@ -102,8 +102,7 @@ export default function Roadmap() {
             Development Roadmap
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Track our journey as we build the future of student-focused biology news. 
-            From humble beginnings to an advanced platform for the next generation of scientists.
+            Track the development of our website.
           </p>
         </div>
 

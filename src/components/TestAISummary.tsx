@@ -26,13 +26,13 @@ export function TestAISummary() {
   };
 
   return (
-    <div className="p-4 border rounded-lg">
-      <h3 className="text-lg font-semibold mb-4">Test AI Summary</h3>
+    <div className="p-4 border border-border rounded-lg bg-card">
+      <h3 className="text-lg font-semibold mb-4 text-foreground">Test AI Summary</h3>
       <Button onClick={testSummary} disabled={loading}>
         {loading ? 'Testing...' : 'Test AI Summary'}
       </Button>
       {result && (
-        <pre className="mt-4 p-4 bg-gray-100 rounded text-sm overflow-auto">
+        <pre className="mt-4 p-4 bg-muted rounded text-sm overflow-auto text-foreground">
           {result}
         </pre>
       )}

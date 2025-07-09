@@ -72,10 +72,10 @@ export function Hero() {
             ].map((stat, index) => (
               <div 
                 key={index}
-                className="group relative p-6 bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl hover:border-primary/50 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                className="group relative p-6 md:bg-card/50 md:backdrop-blur-sm md:border md:border-border/50 md:rounded-2xl md:hover:border-primary/50 transition-all duration-300 transform hover:scale-105 md:hover:shadow-lg"
                 style={{ animationDelay: stat.delay }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-green-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-green-500/5 md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative z-10 text-center">
                   <div className="text-3xl md:text-4xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                     {stat.number}

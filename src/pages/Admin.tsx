@@ -112,14 +112,13 @@ const Admin = () => {
           </div>
           <Button onClick={() => setShowForm(true)} className="bg-primary hover:bg-primary/90">
             <Plus className="h-4 w-4 mr-2" />
-            New Post
+            New Article
           </Button>
         </div>
 
-        {/* Information Section */}
-        <Card className="mb-8 border-l-4 border-l-blue-500 bg-gradient-to-r from-blue-50/50 to-transparent dark:from-blue-950/30">
+        <Card className="mb-8 border-l-4 border-l-red-500 bg-gradient-to-r from-red-50/50 to-transparent dark:from-red-950/30">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
+            <CardTitle className="flex items-center gap-2 text-red-600 dark:text-red-400">
               <Info className="h-5 w-5" />
               Important Guidelines
             </CardTitle>
@@ -129,21 +128,22 @@ const Admin = () => {
               <div>
                 <h4 className="font-semibold text-foreground mb-2">Login Information:</h4>
                 <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                  <li>Password: <code className="bg-muted px-2 py-1 rounded text-primary font-mono">bionews2025</code> (no caps)</li>
+                  <li>Password: <code className="bg-muted px-2 py-1 rounded text-primary font-mono">bionews2025</code> (no caps) - no sharing</li>
                 </ul>
               </div>
               
               <div>
                 <h4 className="font-semibold text-foreground mb-2">Article Guidelines:</h4>
                 <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                  <li><strong className="text-foreground">Do not change the slug</strong> of existing articles - this will break links</li>
+                  <li><strong className="text-foreground">Do not change the slug</strong> of existing articles - Google wont like it</li>
                   <li>Always add proper headings (H1, H2, H3) to structure your content</li>
-                  <li>Use the rich text editor formatting tools for better readability</li>
+                  <li>Use bold, italics and add images as and when you wish.</li>
+                  <li>It's best practice to make all text color <b>Black</b> as it auto-adapts to user's colour mode.</li>
                 </ul>
               </div>
               
               <div>
-                <h4 className="font-semibold text-foreground mb-2">Images:</h4>
+                <h4 className="font-semibold text-foreground mb-2">Images Guidelines</h4>
                 <ul className="list-disc list-inside text-muted-foreground space-y-1">
                   <li>Find royalty-free images on{' '}
                     <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 underline underline-offset-2 inline-flex items-center gap-1">
@@ -155,14 +155,14 @@ const Admin = () => {
                   </li>
                   <li>Copy the direct image link and paste it in the "Cover Image URL" field</li>
                   <li>Ensure images are high quality and relevant to your article content</li>
-                  <li>Recommended image size: at least 1200x600 pixels for best display</li>
+                  <li>Recommended image size: at least 1000x1000 pixels for best display</li>
                 </ul>
               </div>
               <div>
                 <h4 className="font-semibold text-foreground mb-2">Other Info:</h4>
                 <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                  <li>Database runs on Supabase, uptime is 99.9%</li>
-                  <li>Swipe right across the blog article admins to the edit button.</li>
+                  <li>Database runs on Supabase, the uptime is high</li>
+                  <li>If possible, back up or save your articles elsewhere, in the rare event of database failure.</li>
                 </ul>
               </div>
             </div>

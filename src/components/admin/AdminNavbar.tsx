@@ -25,7 +25,7 @@ export function AdminNavbar({ onLogout }: AdminNavbarProps) {
                 <h1 className="font-bold text-xl bg-gradient-to-r from-primary via-green-500 to-emerald-500 bg-clip-text text-transparent">
                   Admin Portal
                 </h1>
-                <p className="text-xs text-muted-foreground">BioNewsWeekly Management</p>
+                <p className="text-xs text-muted-foreground">BioNewsWeekly &copy; Management</p>
               </div>
             </Link>
           </div>

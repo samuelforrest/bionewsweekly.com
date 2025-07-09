@@ -1,9 +1,8 @@
-
 import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Calendar, Clock, ArrowRight, TrendingUp, User } from 'lucide-react'
+import { Calendar, Clock, ArrowRight, User } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { getAllBlogPosts, type BlogPost } from '@/services/blogService'
 
@@ -37,9 +36,11 @@ export function LatestNews() {
     <section id="articles" className="py-24 lg:py-32 bg-gradient-to-br from-muted/30 via-background to-muted/30">
       <div className="container px-6 mx-auto">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-green-500/10 border border-primary/20 rounded-full mb-6">
-            <TrendingUp className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-primary">LATEST UPDATES</span>
+          <div className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-primary/10 to-green-500/10 border border-primary/20 rounded-full mb-6">
+            <span className="w-4 h-4 rounded-full bg-green-500 animate-blinker"></span>
+            <span className="text-sm font-semibold text-primary">
+              UPDATING LIVE
+            </span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             The Latest{' '}

@@ -5,9 +5,10 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { getAllBlogPosts, type BlogPost } from "@/services/blogService";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Calendar, Clock } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, User } from 'lucide-react';
 
 // Helper function to estimate reading time
 const estimateReadingTime = (content: string = ''): string => {
@@ -86,48 +87,66 @@ const Blog = () => {
             </div>
           ) : filteredPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredPosts.map((post) => (
-                <Link key={post.id} to={`/blog/${post.slug}`}>
-                  <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden animate-fade-in cursor-pointer">
+              {filteredPosts.map((post, index) => (
+                <Link key={post.id} to={`/blog/${post.slug}`} className="group">
+                  <Card 
+                    className="h-full bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-500 overflow-hidden animate-fade-in cursor-pointer transform hover:scale-105 hover:shadow-2xl"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    {/* Image container with overlay */}
                     <div className="relative overflow-hidden">
-                      {post.cover_image && (
-                        <img 
-                          src={post.cover_image} 
-                          alt={post.title} 
-                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      )}
-                      {!post.cover_image && (
-                        <div className="flex items-center justify-center w-full h-48 bg-muted">
-                          <p className="text-muted-foreground">No image</p>
-                        </div>
-                      )}
+                      <img 
+                        src={post.cover_image || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop"} 
+                        alt={post.title}
+                        className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      
+                      {/* Floating category badge */}
                       <div className="absolute top-4 left-4">
-                        <span className="text-xs bg-secondary px-2 py-1 rounded-full text-secondary-foreground">
+                        <Badge className="bg-gradient-to-r from-primary to-green-500 text-white border-0 px-3 py-1 rounded-full shadow-lg font-medium">
                           {post.category}
-                        </span>
+                        </Badge>
+                      </div>
+                      
+                      {/* Hover overlay with arrow */}
+                      <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                        <div className="flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full">
+                          <ArrowRight className="w-5 h-5 text-white" />
+                        </div>
                       </div>
                     </div>
+                    
                     <CardHeader className="pb-4">
-                      <CardTitle className="line-clamp-2 text-foreground group-hover:scale-105 transition-transform duration-300">{post.title}</CardTitle>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="h-4 w-4" />
-                          <span>{post.date}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Clock className="h-4 w-4" />
-                          <span>{estimateReadingTime(post.content)}</span>
-                        </div>
-                      </div>
+                      <CardTitle className="line-clamp-2 text-foreground group-hover:text-primary transition-colors duration-300 text-xl leading-tight">
+                        {post.title}
+                      </CardTitle>
                     </CardHeader>
-                    <CardContent className="pt-0">
-                      <p className="text-muted-foreground line-clamp-3">
+                    
+                    <CardContent className="space-y-6">
+                      <p className="text-muted-foreground line-clamp-3 leading-relaxed">
                         {(post.preview || post.excerpt)?.length > 200
                           ? `${(post.preview || post.excerpt).substring(0, 200)}...` 
                           : (post.preview || post.excerpt)
                         }
                       </p>
+                      
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                          <div className="flex items-center gap-1.5">
+                            <Calendar className="h-4 w-4 text-primary" />
+                            <span className="font-medium">{post.date}</span>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <User className="h-4 w-4 text-primary" />
+                            <span className="font-medium">{post.author}</span>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <Clock className="h-4 w-4 text-primary" />
+                            <span className="font-medium">{estimateReadingTime(post.content)}</span>
+                          </div>
+                        </div>
+                      </div>
                     </CardContent>
                   </Card>
                 </Link>

@@ -27,37 +27,37 @@ export function AdminLogin({ onLogin }: AdminLoginProps) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background">
       <Header />
       
       <main className="flex-grow flex items-center justify-center mt-20 pt-6 pb-16">
-        <Card className="w-full max-w-md border border-white">
+        <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle className="text-white">Admin Access</CardTitle>
-            <CardDescription className="text-white">Enter the admin password to continue</CardDescription>
+            <CardTitle className="text-foreground">Admin Access</CardTitle>
+            <CardDescription className="text-muted-foreground">Enter the admin password to continue</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <Label htmlFor="password" className="text-white">Password</Label>
+                <Label htmlFor="password" className="text-foreground">Password</Label>
                 <Input
                   id="password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter admin password"
-                  className="border border-white text-white"
+                  className="bg-background text-foreground border-input"
                 />
               </div>
-              {error && <p className="text-sm text-red-400">{error}</p>}
-              <Button type="submit" className="w-full border border-white text-white hover:bg-white hover:text-black">
+              {error && <p className="text-sm text-destructive">{error}</p>}
+              <Button type="submit" className="w-full">
                 Login
               </Button>
             </form>
             
             <div className="mt-4 text-center">
               <Link to="/">
-                <Button variant="outline" className="border border-white text-white hover:bg-white hover:text-black">Back to Home</Button>
+                <Button variant="outline">Back to Home</Button>
               </Link>
             </div>
           </CardContent>

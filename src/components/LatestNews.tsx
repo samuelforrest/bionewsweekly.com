@@ -7,14 +7,6 @@ import { Calendar, Clock } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { getAllBlogPosts, type BlogPost } from '@/services/blogService'
 
-const categoryColors = {
-  Genetics: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
-  Ecology: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
-  Conservation: "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200",
-  Biology: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
-  Science: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-}
-
 // Created a simple helper function to estimate reading time
 const estimateReadingTime = (content: string = ''): string => {
   const wordsPerMinute = 200;
@@ -67,7 +59,7 @@ export function LatestNews() {
           articles.map((article, index) => (
             <Link key={article.id} to={`/blog/${article.slug}`}>
               <Card 
-                className={`group hover:shadow-xl transition-all duration-300 overflow-hidden animate-fade-in cursor-pointer ${
+                className={`group hover:shadow-xl transition-all duration-300 overflow-hidden animate-fade-in cursor-pointer bg-card border-border ${
                   index === 0 ? 'md:col-span-2 lg:col-span-1' : ''
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -80,17 +72,14 @@ export function LatestNews() {
                   />
                   <Badge 
                     variant="secondary" 
-                    className={`absolute top-4 left-4 ${
-                      categoryColors[article.category as keyof typeof categoryColors] || 
-                      categoryColors.Biology
-                    }`}
+                    className="absolute top-4 left-4 bg-secondary text-secondary-foreground"
                   >
                     {article.category}
                   </Badge>
                 </div>
                 
                 <CardHeader>
-                  <CardTitle className="line-clamp-2 text-foreground group-hover:scale-105 transition-transform duration-300">
+                  <CardTitle className="line-clamp-2 text-card-foreground group-hover:scale-105 transition-transform duration-300">
                     {article.title}
                   </CardTitle>
                 </CardHeader>

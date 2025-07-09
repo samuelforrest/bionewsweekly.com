@@ -47,8 +47,8 @@ export function UserMenu() {
           <span className="hidden sm:inline">Account</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={handleSignOut}>
+      <DropdownMenuContent align="end" className="bg-background border-border">
+        <DropdownMenuItem onClick={handleSignOut} className="text-foreground hover:bg-accent">
           <LogOut className="h-4 w-4 mr-2" />
           Sign Out
         </DropdownMenuItem>

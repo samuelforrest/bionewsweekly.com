@@ -15,7 +15,7 @@ export async function POST(request: Request) {
     }
 
     // Compose a prompt for Gemini to return 3-5 further reading links (title, url, description)
-    const prompt = `Suggest 3-5 reputable, up-to-date external links for further reading on the following topic. For each, provide a title, URL, and a short description. Return as a JSON array of objects with keys: title, url, description.\n\nTitle: ${title}\nContent: ${content.slice(0, 1000)}`;
+    const prompt = `Sugges 3 links, up-to-date external links, THEY NEED TO EXIST AND NOT HAVE 404 ERRORS, REPUTABLE AND INTERACTIVE SITES for further reading on the following topic. For each, provide a title, URL, and a short description. Return as a JSON array of objects with keys: title, url, description.\n\nTitle: ${title}\nContent: ${content.slice(0, 1000)}`;
 
     const geminiRes = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + apiKey, {
       method: 'POST',

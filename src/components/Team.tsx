@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
@@ -39,10 +40,10 @@ export function Team() {
 		<section id="team" className="py-24">
 			<div className="container px-4 mx-auto">
 				<div className="text-center mb-16">
-					<h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+					<h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
 						Meet Our <span className="gradient-text">Student Team</span>
 					</h2>
-					<p className="text-xl text-white max-w-2xl mx-auto">
+					<p className="text-xl text-muted-foreground max-w-2xl mx-auto">
 						Passionate A-Level students bringing fresh perspectives to biology
 						news
 					</p>
@@ -52,7 +53,7 @@ export function Team() {
 					{teamMembers.map((member, index) => (
 						<Card
 							key={member.name}
-							className="group hover:shadow-xl transition-all duration-300 animate-scale-in overflow-hidden bg-black border border-white"
+							className="group hover:shadow-xl transition-all duration-300 animate-scale-in overflow-hidden bg-card border-border"
 							style={{ animationDelay: `${index * 0.1}s` }}
 						>
 							<CardContent className="p-6">
@@ -68,19 +69,19 @@ export function Team() {
 
 									{/* Name and Role */}
 									<div>
-										<h3 className="text-xl text-white font-bold mb-1">
+										<h3 className="text-xl text-card-foreground font-bold mb-1">
 											{member.name}
 										</h3>
-										<p className="text-primary text-white font-medium">
+										<p className="text-primary font-medium">
 											{member.role}
 										</p>
-										<p className="text-sm text-white">
+										<p className="text-sm text-muted-foreground">
 											{member.specialty}
 										</p>
 									</div>
 
 									{/* Bio */}
-									<p className="text-sm text-white leading-relaxed">
+									<p className="text-sm text-muted-foreground leading-relaxed">
 										{member.bio}
 									</p>
 
@@ -89,7 +90,7 @@ export function Team() {
 										<div>
 											<a
 												href={member.epqLink}
-												className="text-sm text-lime-500 hover:text-lime-400 underline transition-colors duration-200"
+												className="text-sm text-primary hover:text-primary/80 underline transition-colors duration-200"
 												target="_blank"
 												rel="noopener noreferrer"
 											>
@@ -99,7 +100,7 @@ export function Team() {
 										<div>
 											<a
 												href={member.linkedinLink}
-												className="text-sm text-blue-400 hover:text-blue-300 underline transition-colors duration-200"
+												className="text-sm text-blue-500 hover:text-blue-400 underline transition-colors duration-200"
 												target="_blank"
 												rel="noopener noreferrer"
 											>
@@ -114,7 +115,7 @@ export function Team() {
 											<Badge
 												key={subject}
 												variant="secondary"
-												className="text-xs bg-white text-black hover:bg-gray-100 transition-colors"
+												className="text-xs"
 											>
 												{subject}
 											</Badge>
@@ -129,11 +130,11 @@ export function Team() {
 				{/* Join Team Call-to-Action */}
 				<div className="mt-12 text-center">
 					<div className="max-w-xl mx-auto">
-						<p className="text-sm text-gray-300 mb-2">
+						<p className="text-sm text-muted-foreground mb-2">
 							Want to join our team? Email{' '}
 							<a
 								href="mailto:sam@samuelforrest.me"
-								className="text-blue-400 hover:text-blue-300 underline transition-colors duration-200"
+								className="text-blue-500 hover:text-blue-400 underline transition-colors duration-200"
 							>
 								sam@samuelforrest.me
 							</a>

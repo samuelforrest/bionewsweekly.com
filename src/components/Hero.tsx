@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
@@ -15,20 +16,20 @@ export function Hero() {
       <div className="container px-4 mx-auto">
         <div className="flex flex-col items-center text-center space-y-8 max-w-4xl mx-auto">
           {/* Badge */}
-          <Badge variant="secondary" className="px-4 py-1 text-sm font-medium animate-fade-in bg-lime-600 text-black">
+          <Badge variant="secondary" className="px-4 py-1 text-sm font-medium animate-fade-in bg-primary text-primary-foreground">
             🧬 Weekly Biology Updates
           </Badge>
 
           {/* Main heading */}
           <div className="space-y-4 animate-slide-up">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground">
               Biology News by{' '}
               <span className="gradient-text">Students</span>
               <br />
               for{' '}
               <span className="gradient-text">Students</span>
             </h1>
-            <p className="text-xl md:text-2xl text-foreground max-w-2xl mx-auto leading-relaxed text-white">
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               The latest biology news, through the eyes of three A Level biology students.
             </p>
           </div>
@@ -36,11 +37,11 @@ export function Hero() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <Link to="/blog">
-              <Button size="lg" className="bg-lime-600 hover:bg-lime-400 transition-all duration-300 text-lg px-8 py-6 text-white rounded-xl">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 transition-all duration-300 text-lg px-8 py-6 text-primary-foreground rounded-xl">
                 Read Articles
               </Button>
             </Link>
-            <Button size="lg" variant="outline" className="bg-white hover:gray-200 text-black transition-all duration-300 text-lg px-8 py-6 rounded-xl">
+            <Button size="lg" variant="outline" className="transition-all duration-300 text-lg px-8 py-6 rounded-xl">
               Our Podcast
             </Button>
           </div>
@@ -48,16 +49,16 @@ export function Hero() {
           {/* Stats */}
           <div className="grid grid-cols-3 gap-8 pt-12">
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-white">10+</div>
-              <div className="text-sm text-white">Articles Published</div>
+              <div className="text-2xl md:text-3xl font-bold text-foreground">10+</div>
+              <div className="text-sm text-muted-foreground">Articles Published</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-white">3</div>
-              <div className="text-sm text-white">Student Writers</div>
+              <div className="text-2xl md:text-3xl font-bold text-foreground">3</div>
+              <div className="text-sm text-muted-foreground">Student Writers</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-white">200+</div>
-              <div className="text-sm text-white">Weekly Readers</div>
+              <div className="text-2xl md:text-3xl font-bold text-foreground">200+</div>
+              <div className="text-sm text-muted-foreground">Weekly Readers</div>
             </div>
           </div>
         </div>

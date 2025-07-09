@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
 
   return (
     <DropdownMenu>
@@ -21,12 +21,10 @@ export function ThemeToggle() {
           className="rounded-full transition-all"
           aria-label="Toggle theme"
         >
-          {theme === "light" ? (
-            <Sun className="h-5 w-5" />
-          ) : theme === "dark" ? (
+          {resolvedTheme === "dark" ? (
             <Moon className="h-5 w-5" />
           ) : (
-            <Monitor className="h-5 w-5" />
+            <Sun className="h-5 w-5" />
           )}
         </Button>
       </DropdownMenuTrigger>

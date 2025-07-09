@@ -12,7 +12,6 @@ interface GeminiLinksComponentProps {
 interface LinkInfo {
   title: string;
   url: string;
-  description?: string;
 }
 
 // Function to strip HTML tags and get plain text
@@ -51,8 +50,7 @@ Please respond with ONLY a valid JSON array in this exact format (no markdown, n
 [
   {
     "title": "Link title",
-    "url": "https://example.com",
-    "description": "Brief description of the link"
+    "url": "https://example.com"
   }
 ]
 
@@ -142,6 +140,9 @@ Ensure all URLs are real, working links to reputable sources like scientific jou
               <Lightbulb className="h-3 w-3 mr-1" />
               Gemini AI
             </Badge>
+            <Badge variant="outline" className="text-xs">
+              Beta
+            </Badge>
           </div>
         </CardHeader>
         <CardContent className="space-y-3">
@@ -189,6 +190,9 @@ Ensure all URLs are real, working links to reputable sources like scientific jou
             <Lightbulb className="h-3 w-3 mr-1" />
             Gemini AI
           </Badge>
+          <Badge variant="outline" className="text-xs">
+            Beta
+          </Badge>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -209,11 +213,6 @@ Ensure all URLs are real, working links to reputable sources like scientific jou
                   <span className="font-semibold text-sm block group-hover:text-primary transition-colors">
                     {link.title}
                   </span>
-                  {link.description && (
-                    <span className="block text-xs text-muted-foreground mt-1 leading-relaxed">
-                      {link.description}
-                    </span>
-                  )}
                 </div>
               </a>
             </li>

@@ -8,9 +8,9 @@ import { Footer } from '@/components/Footer'
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Header />
-      <main>
+      <main className="relative">
         <Hero />
         <LatestNews />
         <Team />

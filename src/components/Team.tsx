@@ -1,6 +1,7 @@
 
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { ExternalLink, Download, Linkedin } from 'lucide-react'
 
 const teamMembers = [
 	{
@@ -37,85 +38,104 @@ const teamMembers = [
 
 export function Team() {
 	return (
-		<section id="team" className="py-24">
-			<div className="container px-4 mx-auto">
-				<div className="text-center mb-16">
-					<h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-						Meet Our <span className="gradient-text">Student Team</span>
+		<section id="team" className="py-24 lg:py-32 bg-gradient-to-br from-background via-muted/20 to-background">
+			<div className="container px-6 mx-auto">
+				<div className="text-center mb-20">
+					<div className="inline-block p-1 bg-gradient-to-r from-primary to-green-500 rounded-2xl mb-6">
+						<div className="bg-background px-6 py-2 rounded-xl">
+							<span className="text-sm font-semibold bg-gradient-to-r from-primary to-green-500 bg-clip-text text-transparent">
+								OUR TEAM
+							</span>
+						</div>
+					</div>
+					<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+						Meet Our{' '}
+						<span className="bg-gradient-to-r from-primary via-green-500 to-emerald-500 bg-clip-text text-transparent">
+							Student Team
+						</span>
 					</h2>
-					<p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-						Passionate A-Level students bringing fresh perspectives to biology
-						news
+					<p className="text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+						Passionate A-Level students bringing fresh perspectives to biology news with cutting-edge research and insights
 					</p>
 				</div>
 
-				<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+				<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
 					{teamMembers.map((member, index) => (
 						<Card
 							key={member.name}
-							className="group hover:shadow-xl transition-all duration-300 animate-scale-in overflow-hidden bg-card border-border"
-							style={{ animationDelay: `${index * 0.1}s` }}
+							className="group relative overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl animate-scale-in"
+							style={{ animationDelay: `${index * 0.2}s` }}
 						>
-							<CardContent className="p-6">
-								<div className="text-center space-y-4">
-									{/* Avatar */}
-									<div className="relative mx-auto w-24 h-24 mb-4">
-										<img
-											src={member.avatar}
-											alt={member.name}
-											className="w-full h-full rounded-full object-cover shadow-lg"
-										/>
+							{/* Gradient overlay */}
+							<div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-green-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+							
+							{/* Floating elements */}
+							<div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-primary/20 to-green-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+							
+							<CardContent className="relative z-10 p-8">
+								<div className="text-center space-y-6">
+									{/* Avatar with hover effect */}
+									<div className="relative mx-auto w-32 h-32 mb-6">
+										<div className="absolute inset-0 bg-gradient-to-r from-primary to-green-500 rounded-full p-1 group-hover:animate-pulse">
+											<img
+												src={member.avatar}
+												alt={member.name}
+												className="w-full h-full rounded-full object-cover border-4 border-background shadow-lg"
+											/>
+										</div>
 									</div>
 
 									{/* Name and Role */}
-									<div>
-										<h3 className="text-xl text-card-foreground font-bold mb-1">
+									<div className="space-y-2">
+										<h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
 											{member.name}
 										</h3>
-										<p className="text-primary font-medium">
-											{member.role}
-										</p>
-										<p className="text-sm text-muted-foreground">
-											{member.specialty}
-										</p>
+										<div className="space-y-1">
+											<p className="text-lg font-semibold bg-gradient-to-r from-primary to-green-500 bg-clip-text text-transparent">
+												{member.role}
+											</p>
+											<p className="text-sm text-muted-foreground font-medium">
+												Specialty: {member.specialty}
+											</p>
+										</div>
 									</div>
 
 									{/* Bio */}
-									<p className="text-sm text-muted-foreground leading-relaxed">
+									<p className="text-muted-foreground leading-relaxed text-center">
 										{member.bio}
 									</p>
 
-									{/* EPQ Download Link and LinkedIn */}
-									<div className="pt-2 space-y-1">
-										<div>
+									{/* Action buttons */}
+									<div className="flex flex-col gap-3 pt-4">
+										<div className="flex gap-2 justify-center">
 											<a
 												href={member.epqLink}
-												className="text-sm text-primary hover:text-primary/80 underline transition-colors duration-200"
+												className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-green-500/10 hover:from-primary/20 hover:to-green-500/20 border border-primary/20 rounded-xl text-sm font-medium text-primary hover:text-primary transition-all duration-300 transform hover:scale-105"
 												target="_blank"
 												rel="noopener noreferrer"
 											>
-												Download EPQ
+												<Download className="w-4 h-4" />
+												EPQ
 											</a>
-										</div>
-										<div>
 											<a
 												href={member.linkedinLink}
-												className="text-sm text-blue-500 hover:text-blue-400 underline transition-colors duration-200"
+												className="flex items-center gap-2 px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 rounded-xl text-sm font-medium text-blue-600 hover:text-blue-700 transition-all duration-300 transform hover:scale-105"
 												target="_blank"
 												rel="noopener noreferrer"
 											>
-												LinkedIn Profile
+												<Linkedin className="w-4 h-4" />
+												LinkedIn
 											</a>
 										</div>
 									</div>
 
 									{/* Subjects */}
-									<div className="flex flex-wrap gap-2 justify-center">
-										{member.subjects.map((subject) => (
+									<div className="flex flex-wrap gap-2 justify-center pt-4">
+										{member.subjects.map((subject, subIndex) => (
 											<Badge
 												key={subject}
 												variant="secondary"
-												className="text-xs"
+												className="bg-secondary/50 hover:bg-secondary text-secondary-foreground border border-border/50 px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 hover:scale-105"
 											>
 												{subject}
 											</Badge>
@@ -127,18 +147,20 @@ export function Team() {
 					))}
 				</div>
 
-				{/* Join Team Call-to-Action */}
-				<div className="mt-12 text-center">
-					<div className="max-w-xl mx-auto">
-						<p className="text-sm text-muted-foreground mb-2">
-							Want to join our team? Email{' '}
-							<a
-								href="mailto:sam@samuelforrest.me"
-								className="text-blue-500 hover:text-blue-400 underline transition-colors duration-200"
-							>
-								sam@samuelforrest.me
-							</a>
+				{/* Join Team CTA */}
+				<div className="mt-20 text-center">
+					<div className="max-w-2xl mx-auto p-8 bg-gradient-to-r from-primary/5 via-green-500/5 to-emerald-500/5 border border-border/50 rounded-3xl backdrop-blur-sm">
+						<h3 className="text-2xl font-bold text-foreground mb-4">Want to Join Our Team?</h3>
+						<p className="text-muted-foreground mb-6">
+							We're always looking for passionate biology students to contribute to our mission of making science accessible and exciting.
 						</p>
+						<a
+							href="mailto:sam@samuelforrest.me"
+							className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-green-500 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+						>
+							<ExternalLink className="w-4 h-4" />
+							Get in Touch
+						</a>
 					</div>
 				</div>
 			</div>

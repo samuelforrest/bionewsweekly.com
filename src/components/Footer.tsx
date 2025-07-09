@@ -1,67 +1,125 @@
 
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react'
+import { Facebook, Instagram, Twitter, Youtube, ExternalLink, Heart } from 'lucide-react'
 
 export function Footer() {
   return (
-    <footer className="bg-background border-t border-border">
-      <div className="container px-4 mx-auto py-12">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="bg-gradient-to-br from-card via-background to-muted/30 border-t border-border/50">
+      <div className="container px-6 mx-auto py-16">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4 mb-12">
           {/* Brand */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded-lg flex items-center justify-center">
-                <img 
-                  src="/favicon.png" 
-                  alt="BioNewsWeekly Logo" 
-                  className="h-8 w-8 rounded-lg"
-                />
+          <div className="lg:col-span-2 space-y-6">
+            <div className="flex items-center space-x-4">
+              <div className="relative">
+                <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary to-green-500 p-2.5 shadow-lg">
+                  <img 
+                    src="/favicon.png" 
+                    alt="BioNewsWeekly Logo" 
+                    className="h-full w-full rounded-lg"
+                  />
+                </div>
+                <div className="absolute -top-1 -right-1 h-4 w-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full animate-pulse"></div>
               </div>
-              <span className="font-bold text-xl gradient-text">BioNewsWeekly.com</span>
+              <div>
+                <h3 className="font-bold text-2xl bg-gradient-to-r from-primary via-green-500 to-emerald-500 bg-clip-text text-transparent">
+                  BioNewsWeekly.com
+                </h3>
+                <p className="text-sm text-muted-foreground">Biology by students, for students</p>
+              </div>
             </div>
-            <p className="text-sm text-muted-foreground">
-              Biology news by students, for students. Making science accessible and exciting for the next generation.
+            <p className="text-muted-foreground leading-relaxed max-w-md">
+              Biology news by students, for students. Making science accessible and exciting for the next generation through passionate storytelling and cutting-edge research.
             </p>
+            
+            {/* Social links */}
             <div className="flex space-x-2">
-              <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
-                <Facebook className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
-                <Instagram className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
-                <Twitter className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
-                <Youtube className="h-4 w-4" />
-              </Button>
+              {[
+                { icon: Facebook, href: "#", color: "hover:text-blue-600" },
+                { icon: Instagram, href: "#", color: "hover:text-pink-600" },
+                { icon: Twitter, href: "#", color: "hover:text-blue-400" },
+                { icon: Youtube, href: "#", color: "hover:text-red-600" }
+              ].map((social, index) => (
+                <Button 
+                  key={index}
+                  variant="ghost" 
+                  size="icon" 
+                  className={`h-12 w-12 rounded-xl bg-card/50 border border-border/50 text-muted-foreground ${social.color} hover:bg-card transition-all duration-300 transform hover:scale-110 hover:shadow-lg`}
+                >
+                  <social.icon className="h-5 w-5" />
+                </Button>
+              ))}
             </div>
           </div>
 
-          {/* Spacer columns for alignment */}
-          <div className="hidden lg:block"></div>
-          <div className="hidden lg:block"></div>
+          {/* Quick Links */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-bold text-foreground">Quick Links</h4>
+            <ul className="space-y-3">
+              {[
+                { name: "Home", href: "/" },
+                { name: "Latest Articles", href: "/blog" },
+                { name: "Our Team", href: "#team" },
+                { name: "About Us", href: "#" }
+              ].map((link, index) => (
+                <li key={index}>
+                  <a 
+                    href={link.href} 
+                    className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
+                  >
+                    <span>{link.name}</span>
+                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          {/* Content */}
-          <div className="space-y-4 md:text-right lg:text-right">
-            <h4 className="text-sm font-bold text-foreground">Content</h4>
-            <ul className="space-y-2">
-              <li><a href="/" className="text-sm text-muted-foreground hover:text-foreground hover:underline transition-colors">Home</a></li>
-              <li><a href="/blog" className="text-sm text-muted-foreground hover:text-foreground hover:underline transition-colors">Latest Articles</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-foreground hover:underline transition-colors">Podcast</a></li>
+          {/* Resources */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-bold text-foreground">Resources</h4>
+            <ul className="space-y-3">
+              {[
+                { name: "Study Guides", href: "#" },
+                { name: "Podcast", href: "#" },
+                { name: "Newsletter", href: "#" },
+                { name: "Contact", href: "mailto:sam@samuelforrest.me" }
+              ].map((link, index) => (
+                <li key={index}>
+                  <a 
+                    href={link.href} 
+                    className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
+                  >
+                    <span>{link.name}</span>
+                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        <Separator className="my-8" />
+        <Separator className="my-8 bg-border/50" />
 
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-muted-foreground">
-            © 2025 Bio News Weekly. All rights reserved. Made by <a href="https://www.samuelforrest.me" className="hover:text-foreground hover:underline transition-colors">Samuel Forrest (visit portfolio)</a>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-muted-foreground flex items-center gap-2">
+            © 2025 Bio News Weekly. Made with 
+            <Heart className="w-4 h-4 text-red-500 fill-current" /> 
+            by 
+            <a 
+              href="https://www.samuelforrest.me" 
+              className="text-primary hover:text-primary/80 underline underline-offset-2 transition-colors font-medium"
+            >
+              Samuel Forrest
+            </a>
           </p>
-          <div className="flex items-center space-x-4 mt-4 md:mt-0">
-            <a href="/terms" className="text-sm text-muted-foreground hover:text-foreground hover:underline transition-colors">Terms</a>
+          <div className="flex items-center space-x-6">
+            <a href="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              Terms of Service
+            </a>
+            <a href="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              Privacy Policy
+            </a>
           </div>
         </div>
       </div>

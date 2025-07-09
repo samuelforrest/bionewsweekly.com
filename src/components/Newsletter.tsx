@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent } from '@/components/ui/card'
-import { Mail, Bell, Calendar } from 'lucide-react'
+import { Mail, Bell, Calendar, CheckCircle, AlertCircle, Sparkles } from 'lucide-react'
 
 export function Newsletter() {
   const [email, setEmail] = useState('')
@@ -30,71 +30,111 @@ export function Newsletter() {
       setError(data.error || 'Subscription failed')
     }
   }
+
   return (
-    <section className="py-24 bg-muted/50">
-      <div className="container px-4 mx-auto">
-        <Card className="max-w-4xl mx-auto shadow-2xl bg-card border-border">
-          <CardContent className="p-8 md:p-12">
-            <div className="text-center space-y-8">
-              <div className="space-y-4">
-                <h2 className="text-3xl md:text-4xl font-bold text-card-foreground">
-                  Stay Updated with <span className="gradient-text">BioNewsWeekly</span>
-                </h2>
-                <p className="text-xl max-w-2xl mx-auto text-muted-foreground">
-                  Get the latest biology news, student insights, and exclusive content delivered to your inbox every week.
-                </p>
-              </div>
+    <section className="py-24 lg:py-32 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-green-500/5 to-emerald-500/5"></div>
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
 
-              <div className="grid md:grid-cols-3 gap-6 my-12">
-                <div className="text-center space-y-2">
-                  <div className="mx-auto w-12 h-12 bg-bio-blue-100 dark:bg-bio-blue-900/30 rounded-full flex items-center justify-center">
-                    <Calendar className="h-6 w-6 text-bio-blue-600 dark:text-bio-blue-400" />
-                  </div>
-                  <h3 className="font-semibold gradient-text">Weekly Digest</h3>
-                  <p className="text-sm text-muted-foreground">Fresh articles every Friday</p>
+      <div className="container px-6 mx-auto relative z-10">
+        <Card className="max-w-5xl mx-auto bg-card/50 backdrop-blur-xl border-border/50 shadow-2xl rounded-3xl overflow-hidden">
+          <CardContent className="p-12 md:p-16">
+            <div className="text-center space-y-10">
+              {/* Header with icon */}
+              <div className="space-y-6">
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary to-green-500 rounded-2xl shadow-lg mx-auto">
+                  <Sparkles className="w-10 h-10 text-white" />
                 </div>
-                <div className="text-center space-y-2">
-                  <div className="mx-auto w-12 h-12 bg-bio-teal-100 dark:bg-bio-teal-900/30 rounded-full flex items-center justify-center">
-                    <Bell className="h-6 w-6 text-bio-teal-600 dark:text-bio-teal-400" />
-                  </div>
-                  <h3 className="font-semibold gradient-text">Breaking News</h3>
-                  <p className="text-sm text-muted-foreground">Important discoveries first</p>
-                </div>
-                <div className="text-center space-y-2">
-                  <div className="mx-auto w-12 h-12 bg-bio-green-100 dark:bg-bio-green-900/30 rounded-full flex items-center justify-center">
-                    <Mail className="h-6 w-6 text-bio-green-600 dark:text-bio-green-400" />
-                  </div>
-                  <h3 className="font-semibold gradient-text">Student Exclusive</h3>
-                  <p className="text-sm text-muted-foreground">Study tips and exam help</p>
+                <div>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                    Stay Updated with{' '}
+                    <span className="bg-gradient-to-r from-primary via-green-500 to-emerald-500 bg-clip-text text-transparent">
+                      BioNewsWeekly
+                    </span>
+                  </h2>
+                  <p className="text-xl lg:text-2xl max-w-3xl mx-auto text-muted-foreground leading-relaxed">
+                    Get the latest biology news, student insights, and exclusive content delivered to your inbox every week.
+                  </p>
                 </div>
               </div>
 
-              <div className="max-w-md mx-auto">
-                <div className="flex flex-col sm:flex-row gap-3">
+              {/* Features grid */}
+              <div className="grid md:grid-cols-3 gap-8 my-16">
+                {[
+                  {
+                    icon: Calendar,
+                    title: "Weekly Digest",
+                    description: "Fresh articles every Friday",
+                    gradient: "from-blue-500 to-cyan-500"
+                  },
+                  {
+                    icon: Bell,
+                    title: "Breaking News",
+                    description: "Important discoveries first",
+                    gradient: "from-primary to-green-500"
+                  },
+                  {
+                    icon: Mail,
+                    title: "Student Exclusive",
+                    description: "Study tips and exam help",
+                    gradient: "from-emerald-500 to-teal-500"
+                  }
+                ].map((feature, index) => (
+                  <div key={index} className="group text-center space-y-4 p-6 rounded-2xl hover:bg-card/30 transition-all duration-300">
+                    <div className={`mx-auto w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110`}>
+                      <feature.icon className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="font-bold text-lg bg-gradient-to-r from-primary to-green-500 bg-clip-text text-transparent">
+                      {feature.title}
+                    </h3>
+                    <p className="text-muted-foreground font-medium">{feature.description}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Subscription form */}
+              <div className="max-w-lg mx-auto">
+                <div className="flex flex-col sm:flex-row gap-4 p-2 bg-background/50 backdrop-blur-sm border border-border/50 rounded-2xl shadow-lg">
                   <Input 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email address"
-                    className="flex-1 h-12 text-center sm:text-left border-input text-foreground placeholder:text-muted-foreground rounded-xl text-lg px-8"
+                    className="flex-1 border-0 bg-transparent text-center sm:text-left placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/20 rounded-xl text-lg px-6 py-4"
                   />
                   <Button
-                    className="bg-primary hover:bg-primary/90 transition-all duration-300 text-lg px-8 h-12 text-primary-foreground rounded-xl"
+                    className="bg-gradient-to-r from-primary to-green-500 hover:from-primary/90 hover:to-green-500/90 text-white border-0 font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                     onClick={subscribe}
                     disabled={status === 'loading'}
                   >
-                    <span className="text-primary-foreground">
-                      {status === 'loading' ? 'Subscribing...' : 'Subscribe Now'}
-                    </span>
+                    {status === 'loading' ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Subscribing...
+                      </div>
+                    ) : (
+                      'Subscribe Now'
+                    )}
                   </Button>
                 </div>
+
+                {/* Status messages */}
                 {status === 'success' && (
-                  <p className="text-sm text-green-600 dark:text-green-400 mt-3">🎉 Thanks! Check your inbox to confirm.</p>
+                  <div className="flex items-center justify-center gap-2 mt-4 p-4 bg-green-500/10 border border-green-500/20 rounded-xl">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <p className="text-green-600 font-medium">🎉 Thanks! Check your inbox to confirm.</p>
+                  </div>
                 )}
                 {status === 'error' && (
-                  <p className="text-sm text-red-600 dark:text-red-400 mt-3">❌ {error}</p>
+                  <div className="flex items-center justify-center gap-2 mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
+                    <AlertCircle className="w-5 h-5 text-red-600" />
+                    <p className="text-red-600 font-medium">❌ {error}</p>
+                  </div>
                 )}
-                <p className="text-xs text-muted-foreground mt-3">
-                  No spam, unsubscribe anytime. We respect your privacy.
+
+                <p className="text-sm text-muted-foreground mt-4 leading-relaxed">
+                  No spam, unsubscribe anytime. We respect your privacy and will never share your information.
                 </p>
               </div>
             </div>

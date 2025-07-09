@@ -32,24 +32,6 @@ export function Footer() {
               Biology news by students, for students. Making science accessible and exciting for the next generation through passionate storytelling and cutting-edge research.
             </p>
             
-            {/* Social links */}
-            <div className="flex space-x-2">
-              {[
-                { icon: Facebook, href: "#", color: "hover:text-blue-600" },
-                { icon: Instagram, href: "#", color: "hover:text-pink-600" },
-                { icon: Twitter, href: "#", color: "hover:text-blue-400" },
-                { icon: Youtube, href: "#", color: "hover:text-red-600" }
-              ].map((social, index) => (
-                <Button 
-                  key={index}
-                  variant="ghost" 
-                  size="icon" 
-                  className={`h-12 w-12 rounded-xl bg-card/50 border border-border/50 text-muted-foreground ${social.color} hover:bg-card transition-all duration-300 transform hover:scale-110 hover:shadow-lg`}
-                >
-                  <social.icon className="h-5 w-5" />
-                </Button>
-              ))}
-            </div>
           </div>
 
           {/* Quick Links */}

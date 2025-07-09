@@ -55,7 +55,7 @@ export function Team() {
 						</span>
 					</h2>
 					<p className="text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-						Passionate A-Level students bringing fresh perspectives to biology news with cutting-edge research and insights
+						3 Passionate A-Level students bringing fresh perspectives to biology news
 					</p>
 				</div>
 
@@ -150,9 +150,9 @@ export function Team() {
 				{/* Join Team CTA */}
 				<div className="mt-20 text-center">
 					<div className="max-w-2xl mx-auto p-8 bg-gradient-to-r from-primary/5 via-green-500/5 to-emerald-500/5 border border-border/50 rounded-3xl backdrop-blur-sm">
-						<h3 className="text-2xl font-bold text-foreground mb-4">Want to Join Our Team?</h3>
+						<h3 className="text-2xl font-bold text-foreground mb-4">We Probably Want You!</h3>
 						<p className="text-muted-foreground mb-6">
-							We're always looking for passionate biology students to contribute to our mission of making science accessible and exciting.
+							We're always looking for passionate biology students to contribute to our mission of making intriguing biology news.
 						</p>
 						<a
 							href="mailto:sam@samuelforrest.me"

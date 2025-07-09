@@ -10,7 +10,7 @@ const estimateReadingTime = (content: string = ''): string => {
   const wordsPerMinute = 200;
   const words = content.split(' ').length;
   const minutes = Math.ceil(words / wordsPerMinute);
-  return `${minutes} min read`;
+  return `${minutes} min`;
 }
 
 export function LatestNews() {

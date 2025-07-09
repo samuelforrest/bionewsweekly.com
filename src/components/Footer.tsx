@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { Facebook, Instagram, Twitter, Youtube, ExternalLink } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 
 export function Footer() {
   return (
@@ -29,7 +29,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-muted-foreground leading-relaxed max-w-md">
-              Biology news by students, for students. Making science accessible and exciting for the next generation through passionate storytelling and cutting-edge research.
+              Biology news by students, for students. The latest biology news - what isn't in your textbook!
             </p>
             
           </div>

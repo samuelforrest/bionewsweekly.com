@@ -1,41 +1,34 @@
 import { NewsletterService } from '@/services/newsletterService'
 
-interface SubscribeRequest {
-  email: string
-}
-
-interface SubscribeResponse {
-  message?: string
-  error?: string
-}
-
-// API endpoint for newsletter subscription
-export default async function handler(
-  req: { method: string; body: SubscribeRequest }, 
-  res: { 
-    status: (code: number) => { json: (data: SubscribeResponse) => void } 
-  }
-) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  const { email } = req.body;
-
-  if (!email) {
-    return res.status(400).json({ error: 'Email is required' });
-  }
-
+export async function POST(request: Request) {
   try {
-    const result = await NewsletterService.subscribe(email);
+    const { email } = await request.json();
+    
+    if (!email || typeof email !== 'string') {
+      return new Response(JSON.stringify({ error: 'Email is required' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    const result = await NewsletterService.subscribe(email.trim());
     
     if (result.success) {
-      return res.status(200).json({ message: result.message });
+      return new Response(JSON.stringify({ message: result.message || 'Successfully subscribed!' }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
     } else {
-      return res.status(400).json({ error: result.message });
+      return new Response(JSON.stringify({ error: result.error || result.message || 'Subscription failed' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
   } catch (error) {
     console.error('Subscription error:', error);
-    return res.status(500).json({ error: 'Internal server error' });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 }

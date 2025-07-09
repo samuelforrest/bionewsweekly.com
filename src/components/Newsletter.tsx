@@ -55,9 +55,6 @@ export function Newsletter() {
             <div className="text-center space-y-10">
               {/* Header with icon */}
               <div className="space-y-6">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary to-green-500 rounded-2xl shadow-lg mx-auto">
-                  <Sparkles className="w-10 h-10 text-white" />
-                </div>
                 <div>
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                     Stay Updated with{' '}

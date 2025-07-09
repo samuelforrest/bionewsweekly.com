@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { getBlogPostBySlug, type BlogPost } from "@/services/blogService";
 import { LikeButton } from "@/components/LikeButton";
-import { CommentsSection } from "@/components/CommentsSection";
 import { AISummaryComponent } from "@/components/AISummaryComponent";
 import "../components/QuillContent.css";
 
@@ -150,8 +149,6 @@ const BlogPost = () => {
               </Button>
             </div>
           </div>
-
-          <CommentsSection blogId={post.id} />
         </article>
       </main>
       

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
@@ -41,10 +42,10 @@ const BlogPost = () => {
   
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-background">
         <Header />
         <div className="flex-grow flex items-center justify-center">
-          <div className="animate-pulse text-white">Loading post...</div>
+          <div className="animate-pulse text-foreground">Loading post...</div>
         </div>
         <Footer />
       </div>
@@ -53,12 +54,12 @@ const BlogPost = () => {
   
   if (!post) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-background">
         <Header />
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-3xl font-bold mb-4 text-white">Post Not Found</h1>
-            <p className="text-white mb-8">The blog post you're looking for doesn't exist or has been removed.</p>
+            <h1 className="text-3xl font-bold mb-4 text-foreground">Post Not Found</h1>
+            <p className="text-muted-foreground mb-8">The blog post you're looking for doesn't exist or has been removed.</p>
             <Link to="/blog">
               <Button>Back to Blog</Button>
             </Link>
@@ -70,24 +71,24 @@ const BlogPost = () => {
   }
   
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background">
       <Header />
       
       <main className="flex-grow mt-20 pt-6 pb-16">
         <article className="container px-4 mx-auto max-w-4xl">
-          <Link to="/blog" className="inline-flex items-center text-white hover:text-primary mb-8">
+          <Link to="/blog" className="inline-flex items-center text-foreground hover:text-primary mb-8">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to all posts
           </Link>
           
           <div className="mb-8">
-            <h1 className="text-4xl font-bold mb-4 font-serif text-white">{post.title}</h1>
-            <div className="flex flex-wrap items-center gap-4 text-sm text-white">
+            <h1 className="text-4xl font-bold mb-4 font-serif text-foreground">{post.title}</h1>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
               <span>{post.date}</span>
               <span>•</span>
               <span>By {post.author}</span>
               <span>•</span>
-              <span className="bg-secondary px-2 py-1 rounded-full text-xs text-black">
+              <span className="bg-secondary px-2 py-1 rounded-full text-xs text-secondary-foreground">
                 {post.category}
               </span>
             </div>
@@ -110,17 +111,16 @@ const BlogPost = () => {
           />
           
           <div 
-            className="ql-editor prose prose-lg prose-invert max-w-none mb-8 text-white"
+            className="ql-editor prose prose-lg max-w-none mb-8 text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-em:text-foreground prose-blockquote:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-li:text-foreground"
             dangerouslySetInnerHTML={{ __html: post.content || '' }}
           />
 
-          <div className="flex items-center gap-4 mb-8 py-4 border-y border-white">
+          <div className="flex items-center gap-4 mb-8 py-4 border-y border-border">
             <LikeButton blogId={post.id} />
             <div className="flex gap-4">
               <Button
                 variant="outline"
                 size="sm"
-                className="border border-white text-white hover:bg-white hover:text-black"
                 onClick={() => {
                   const url = encodeURIComponent(window.location.href);
                   const text = encodeURIComponent(post.title);
@@ -136,7 +136,6 @@ const BlogPost = () => {
               <Button
                 variant="outline"
                 size="sm"
-                className="border border-white text-white hover:bg-white hover:text-black"
                 onClick={() => {
                   const url = encodeURIComponent(window.location.href);
                   const title = encodeURIComponent(post.title);

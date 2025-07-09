@@ -8,11 +8,11 @@ import { Link } from 'react-router-dom'
 import { getAllBlogPosts, type BlogPost } from '@/services/blogService'
 
 const categoryColors = {
-  Genetics: "bg-bio-blue-100 text-bio-blue-800 dark:bg-bio-blue-900 dark:text-bio-blue-200",
-  Ecology: "bg-bio-green-100 text-bio-green-800 dark:bg-bio-green-900 dark:text-bio-green-200",
-  Conservation: "bg-bio-teal-100 text-bio-teal-800 dark:bg-bio-teal-900 dark:text-bio-teal-200",
-  Biology: "bg-bio-blue-100 text-bio-blue-800 dark:bg-bio-blue-900 dark:text-bio-blue-200",
-  Science: "bg-bio-green-100 text-bio-green-800 dark:bg-bio-green-900 dark:text-bio-green-200"
+  Genetics: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
+  Ecology: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
+  Conservation: "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200",
+  Biology: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
+  Science: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
 }
 
 // Created a simple helper function to estimate reading time
@@ -43,13 +43,13 @@ export function LatestNews() {
     fetchArticles();
   }, []);
   return (
-    <section id="articles" className="py-24 bg-gray-900">
+    <section id="articles" className="py-24 bg-muted">
       <div className="container px-4 mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
             The Latest <span className="gradient-text">News</span>
           </h2>
-          <p className="text-xl text-white max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Fresh perspectives on biology from the next generation of scientists
           </p>
         </div>
@@ -57,17 +57,17 @@ export function LatestNews() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {loading ? (
           <div className="col-span-full text-center py-12">
-            <div className="animate-pulse">Loading latest articles...</div>
+            <div className="animate-pulse text-muted-foreground">Loading latest articles...</div>
           </div>
         ) : articles.length === 0 ? (
           <div className="col-span-full text-center py-12">
-            <p className="text-white">No articles available yet.</p>
+            <p className="text-muted-foreground">No articles available yet.</p>
           </div>
         ) : (
           articles.map((article, index) => (
             <Link key={article.id} to={`/blog/${article.slug}`}>
               <Card 
-                className={`group hover:shadow-xl transition-all duration-300 overflow-hidden animate-fade-in bg-gray-800 cursor-pointer border border-white ${
+                className={`group hover:shadow-xl transition-all duration-300 overflow-hidden animate-fade-in cursor-pointer ${
                   index === 0 ? 'md:col-span-2 lg:col-span-1' : ''
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -90,17 +90,17 @@ export function LatestNews() {
                 </div>
                 
                 <CardHeader>
-                  <CardTitle className="line-clamp-2 text-white group-hover:scale-105 transition-transform duration-300">
+                  <CardTitle className="line-clamp-2 text-foreground group-hover:scale-105 transition-transform duration-300">
                     {article.title}
                   </CardTitle>
                 </CardHeader>
                 
                 <CardContent className="space-y-4">
-                  <p className="text-white line-clamp-3">
+                  <p className="text-muted-foreground line-clamp-3">
                     {article.preview || article.excerpt}
                   </p>
                   
-                  <div className="flex items-center justify-between text-sm text-white">
+                  <div className="flex items-center justify-between text-sm text-muted-foreground">
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center space-x-1">
                         <Calendar className="h-4 w-4" />
@@ -121,7 +121,7 @@ export function LatestNews() {
 
         <div className="text-center mt-12">
           <Link to="/blog">
-            <Button size="lg" className="bg-lime-600 hover:bg-lime-400 transition-all duration-300 text-lg px-8 py-6 text-white rounded-xl">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 transition-all duration-300 text-lg px-8 py-6 text-primary-foreground rounded-xl">
               View All Articles
             </Button>
           </Link>

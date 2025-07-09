@@ -11,7 +11,7 @@ export function Header() {
     <header className="fixed top-0 z-50 w-full bg-background/80 backdrop-blur-xl border-b border-border/50 supports-[backdrop-filter]:bg-background/80">
       <div className="container flex h-20 items-center px-6">
         {/* Logo */}
-        <div className="flex items-center space-x-3">
+        <a href="/" className="flex items-center space-x-3 group transition-all duration-300 hover:scale-105">
           <div className="relative">
             <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary to-primary/70 p-2.5 shadow-lg">
               <img 
@@ -20,15 +20,15 @@ export function Header() {
                 className="h-full w-full rounded-lg"
               />
             </div>
-            <div className="absolute -top-1 -right-1 h-4 w-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full animate-pulse"></div>
+            <div className="absolute -top-0.5 -right-0.5 h-3 w-3 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full animate-pulse"></div>
           </div>
           <div className="hidden sm:block">
-            <h1 className="font-bold text-2xl bg-gradient-to-r from-primary via-green-500 to-emerald-500 bg-clip-text text-transparent">
+            <h1 className="font-bold text-2xl bg-gradient-to-r from-primary via-green-500 to-emerald-500 bg-clip-text text-transparent group-hover:from-primary/80 group-hover:via-green-500/80 group-hover:to-emerald-500/80 transition-all duration-300">
               BioNewsWeekly
             </h1>
             <p className="text-xs text-muted-foreground -mt-1">Biology by students</p>
           </div>
-        </div>
+        </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-1 ml-auto">

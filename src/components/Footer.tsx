@@ -99,24 +99,19 @@ export function Footer() {
         <Separator className="my-8 bg-border/50" />
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground flex items-center gap-2">
-            © 2025 Bio News Weekly. Made with 
-            <Heart className="w-4 h-4 text-red-500 fill-current" /> 
-            by 
-            <a 
-              href="https://www.samuelforrest.me" 
-              className="text-primary hover:text-primary/80 underline underline-offset-2 transition-colors font-medium"
-            >
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <p className="text-sm text-muted-foreground flex items-center gap-2">
+              © 2025 Bio News Weekly. Website developed by
+              <a 
+                href="https://www.samuelforrest.me" 
+                className="text-primary hover:text-primary/80 underline underline-offset-2 transition-colors font-medium"
+              >
               Samuel Forrest
-            </a>
-          </p>
-          <div className="flex items-center space-x-6">
-            <a href="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Terms of Service
-            </a>
-            <a href="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Privacy Policy
-            </a>
+              </a>
+            </p>
+            <p className="text-xs text-muted-foreground/80 text-center md:text-left">
+              GDPR: We store email addresses, names, comments, and likes for site functionality. Data is processed lawfully and securely.
+            </p>
           </div>
         </div>
       </div>

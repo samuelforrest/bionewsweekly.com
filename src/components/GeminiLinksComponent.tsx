@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ExternalLink, Lightbulb, Globe } from 'lucide-react';
+import { ExternalLink, Lightbulb, Globe, X } from 'lucide-react';
 
 interface GeminiLinksComponentProps {
   title: string;
@@ -25,6 +25,7 @@ export function GeminiLinksComponent({ title, content }: GeminiLinksComponentPro
   const [links, setLinks] = useState<LinkInfo[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     async function fetchLinks() {
@@ -129,6 +130,10 @@ Ensure all URLs are real, working links to reputable sources like scientific jou
     }
   }, [title, content]);
 
+  if (!isVisible) {
+    return null;
+  }
+
   if (loading) {
     return (
       <Card className="mb-8 border-l-4 border-l-green-500 bg-card border-border">
@@ -143,6 +148,13 @@ Ensure all URLs are real, working links to reputable sources like scientific jou
             <Badge variant="outline" className="text-xs">
               Beta
             </Badge>
+            <button
+              onClick={() => setIsVisible(false)}
+              className="ml-auto p-1 hover:bg-muted rounded-full transition-colors"
+              aria-label="Hide Further Reading"
+            >
+              <X className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+            </button>
           </div>
         </CardHeader>
         <CardContent className="space-y-3">
@@ -169,6 +181,13 @@ Ensure all URLs are real, working links to reputable sources like scientific jou
             <Badge variant="destructive" className="text-xs">
               Unavailable
             </Badge>
+            <button
+              onClick={() => setIsVisible(false)}
+              className="ml-auto p-1 hover:bg-muted rounded-full transition-colors"
+              aria-label="Hide Further Reading"
+            >
+              <X className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+            </button>
           </div>
         </CardHeader>
         <CardContent>
@@ -193,6 +212,13 @@ Ensure all URLs are real, working links to reputable sources like scientific jou
           <Badge variant="outline" className="text-xs">
             Beta
           </Badge>
+          <button
+            onClick={() => setIsVisible(false)}
+            className="ml-auto p-1 hover:bg-muted rounded-full transition-colors"
+            aria-label="Hide Further Reading"
+          >
+            <X className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+          </button>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">

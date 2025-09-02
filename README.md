@@ -24,8 +24,7 @@ A web app built with React and Vite, news, AI-powered summaries, and a newslette
 
 **Styling & UI**
 - [Tailwind CSS](https://tailwindcss.com/)
-- [Radix UI](https://www.radix-ui.com/)
-  <sub>Accordion, Avatar, Badge, Button, Card, Dialog, Dropdown, Label, Separator, Sheet, Tabs, Tooltip, etc.</sub>
+- [Shadcn UI](https://ui.shadcn.com/)
 - [Quill](https://quilljs.com/) (Rich Text Editor)
 
 **Integrations**

@@ -1,4 +1,4 @@
-# BioNewsWeekly
+# BioNewsWeekly.com
 
 > **A modern biology news website made for a client. — [bionewsweekly.com](https://bionewsweekly.com)**
 

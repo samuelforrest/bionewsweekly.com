@@ -1,0 +1,87 @@
+
+/* Quill content styles for blog display */
+.ql-editor h1,
+.ql-editor h2,
+.ql-editor h3,
+.ql-editor h4,
+.ql-editor h5,
+.ql-editor h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+.ql-editor h1 { font-size: 2.5rem; }
+.ql-editor h2 { font-size: 2rem; }
+.ql-editor h3 { font-size: 1.75rem; }
+.ql-editor h4 { font-size: 1.5rem; }
+.ql-editor h5 { font-size: 1.25rem; }
+.ql-editor h6 { font-size: 1.125rem; }
+
+.ql-editor p {
+  margin-bottom: 1rem;
+}
+
+.ql-editor ul,
+.ql-editor ol {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+.ql-editor li {
+  margin-bottom: 0.5rem;
+}
+
+.ql-editor blockquote {
+  border-left: 4px solid hsl(var(--border));
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+.ql-editor code {
+  background: hsl(var(--secondary));
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-family: monospace;
+}
+
+.ql-editor pre {
+  background: hsl(var(--secondary));
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.ql-editor img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.ql-editor .ql-align-center {
+  text-align: center;
+}
+
+.ql-editor .ql-align-right {
+  text-align: right;
+}
+
+.ql-editor .ql-align-justify {
+  text-align: justify;
+}
+
+.ql-editor .ql-size-small {
+  font-size: 0.875rem;
+}
+
+.ql-editor .ql-size-large {
+  font-size: 1.25rem;
+}
+
+.ql-editor .ql-size-huge {
+  font-size: 1.5rem;
+}

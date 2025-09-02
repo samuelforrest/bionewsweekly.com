@@ -1,19 +1,19 @@
 # BioNewsWeekly
 
-> **A modern news and blog platform for the life sciences — [bionewsweekly.com](https://bionewsweekly.com)**
+> **A modern biology news website made for a client. — [bionewsweekly.com](https://bionewsweekly.com)**
 
-A feature-rich web app built with React and Vite, offering curated news, AI-powered summaries, and a newsletter system. Includes an admin dashboard for blog management and a clean, responsive design.
+A web app built with React and Vite, news, AI-powered summaries, and a newsletter system. Includes an admin dashboard for blog management / CMS and a clean, responsive design.
 
 ## Features
 
 - **Modern Design:** Clean, responsive UI with dark/light theme support.
 - **Blog System:** Admin dashboard for creating and managing posts.
-- **AI Summaries:** Automated news summaries powered by AI.
-- **Newsletter:** Subscribe/unsubscribe to weekly updates.
+- **AI Summaries:** Automated news summaries powered by AI, specifically Gemini 2.0 flash.
+- **Newsletter:** Subscribe/unsubscribe to updates.
 - **Responsive:** Mobile-first design for all devices.
 - **Performance:** Optimized for speed and SEO.
 - **Theme Toggle:** Easily switch between dark and light mode.
-- **Supabase Integration:** Secure authentication and backend data management.
+- **Supabase Integration:** Backend management, CMS, storage of the blog posts.
 
 ## Tech Stack
 
@@ -30,4 +30,4 @@ A feature-rich web app built with React and Vite, offering curated news, AI-powe
 
 **Integrations**
 - [Supabase](https://supabase.com/) (Auth & Database)
-- AI summary service
+- [Google Gemini API](https://ai.google.dev) (AI summaries)

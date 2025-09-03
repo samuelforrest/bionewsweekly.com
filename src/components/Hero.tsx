@@ -65,9 +65,9 @@ export function Hero() {
           {/* Stats with floating cards */}
           <div className="grid grid-cols-3 gap-8 pt-16 w-full max-w-3xl">
             {[
-              { number: "10+", label: "Articles Published", delay: "0s" },
+              { number: "5+", label: "Articles Published", delay: "0s" },
               { number: "3", label: "Student Writers", delay: "0.1s" },
-              { number: "200+", label: "Weekly Readers", delay: "0.2s" }
+              { number: "100+", label: "Weekly Readers", delay: "0.2s" }
             ].map((stat, index) => (
               <div 
                 key={index}

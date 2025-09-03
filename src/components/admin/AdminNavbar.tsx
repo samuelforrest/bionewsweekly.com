@@ -12,7 +12,6 @@ export function AdminNavbar({ onLogout }: AdminNavbarProps) {
     <nav className="border-b border-border sticky top-0 z-50 backdrop-blur-md bg-card/95">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Left side - Logo/Brand */}
           <div className="flex items-center space-x-4">
             <Link to="/admin" className="flex items-center space-x-3 group">
               <div className="relative">
@@ -30,7 +29,6 @@ export function AdminNavbar({ onLogout }: AdminNavbarProps) {
             </Link>
           </div>
 
-          {/* Right side - Navigation */}
           <div className="flex items-center space-x-3">
             <Link to="/">
               <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">

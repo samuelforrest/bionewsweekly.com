@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,9 +30,9 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
   const generateSlug = (title: string) => {
     return title
       .toLowerCase()
-      .replace(/[^\w\s-]/g, '') // Remove special characters
-      .replace(/\s+/g, '-') // Replace spaces with hyphens
-      .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
       .trim();
   };
 
@@ -41,7 +40,7 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
     const newTitle = e.target.value;
     setTitle(newTitle);
     
-    // Auto-generate slug if it's empty or matches the previous title's slug
+    // Auto-generate slug if it's empty 
     if (!slug || slug === generateSlug(post?.title || "")) {
       setSlug(generateSlug(newTitle));
     }
@@ -66,7 +65,6 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
       };
 
       if (post?.id) {
-        // Update existing post
         const { error } = await supabase
           .from('blogs')
           .update(postData)
@@ -75,7 +73,6 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
         if (error) throw error;
         toast.success("Blog post updated successfully!");
       } else {
-        // Create new post
         const { error } = await supabase
           .from('blogs')
           .insert([postData]);

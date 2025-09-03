@@ -2,7 +2,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, Circle, Clock, Rocket, Zap, Users, Database, Palette, Shield, LucideIcon, Settings2 } from 'lucide-react';
+import { CheckCircle, Circle, Clock, Rocket, Palette, LucideIcon, Settings2 } from 'lucide-react';
 
 interface RoadmapItem {
   id: string;
@@ -52,7 +52,7 @@ const roadmapData: RoadmapItem[] = [
     description: 'Building community features and user interaction',
     status: 'in-progress',
     quarter: 'Q3 2025',
-    icon: Settings2, // changed from Users to Settings2 (cogs)
+    icon: Settings2,
     features: [
       'Article bookmarking',
       'Learning features for students - AI bot',
@@ -96,7 +96,6 @@ export default function Roadmap() {
       <Header />
       
       <main className="container mx-auto px-6 py-8 mt-20">
-        {/* Hero Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Development Roadmap
@@ -106,9 +105,8 @@ export default function Roadmap() {
           </p>
         </div>
 
-        {/* Timeline */}
         <div className="relative">
-          {/* Vertical line */}
+
           <div className="absolute left-8 top-0 bottom-0 w-px bg-border hidden md:block"></div>
           
           <div className="space-y-8">
@@ -119,12 +117,11 @@ export default function Roadmap() {
               
               return (
                 <div key={item.id} className="relative">
-                  {/* Timeline dot */}
+
                   <div className="absolute left-6 w-4 h-4 rounded-full border-4 border-background bg-card hidden md:block">
                     <div className={`w-full h-full rounded-full ${config.color}`}></div>
                   </div>
                   
-                  {/* Content card */}
                   <div className="md:ml-16">
                     <Card className={`${config.bgColor} ${config.borderColor} border-l-4`}>
                       <CardHeader>
@@ -176,7 +173,6 @@ export default function Roadmap() {
           </div>
         </div>
 
-        {/* Statistics */}
         <div className="mt-16 grid gap-6 md:grid-cols-3">
           <Card className="text-center">
             <CardContent className="pt-6">
@@ -206,7 +202,6 @@ export default function Roadmap() {
           </Card>
         </div>
 
-        {/* Call to Action */}
         <div className="mt-16 text-center">
           <Card className="bg-gradient-to-r from-primary/10 via-green-500/10 to-emerald-500/10 border-primary/20">
             <CardContent className="pt-8 pb-8">

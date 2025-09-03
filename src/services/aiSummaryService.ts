@@ -7,7 +7,6 @@ export interface AISummary {
   createdAt: string;
 }
 
-// Simple cache to store summaries in memory
 const summaryCache = new Map<string, AISummary>();
 
 // Function to estimate reading time based on content length
@@ -18,7 +17,6 @@ function estimateReadingTime(content: string): string {
   return `${minutes} min read`;
 }
 
-// Function to strip HTML tags and get plain text
 function stripHtml(html: string): string {
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = html;
@@ -54,8 +52,6 @@ Keep the summary concise and the key points as bullet-worthy insights. Limit to 
 
   try {
     console.log('Making API request to Gemini...');
-    
-    // Test if the API key is accessible
     console.log('Environment variables:', import.meta.env);
     
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
@@ -109,10 +105,8 @@ Keep the summary concise and the key points as bullet-worthy insights. Limit to 
     const generatedText = data.candidates[0].content.parts[0].text;
     console.log('Generated text:', generatedText);
     
-    // Clean the response by removing markdown code blocks
     let cleanedText = generatedText.trim();
     
-    // Remove ```json and ``` markers if present
     if (cleanedText.startsWith('```json')) {
       cleanedText = cleanedText.replace(/^```json\s*/, '').replace(/\s*```$/, '');
     } else if (cleanedText.startsWith('```')) {
@@ -121,7 +115,6 @@ Keep the summary concise and the key points as bullet-worthy insights. Limit to 
     
     console.log('Cleaned text:', cleanedText);
     
-    // Try to parse JSON response
     try {
       const parsedResponse = JSON.parse(cleanedText);
       return {
@@ -132,10 +125,8 @@ Keep the summary concise and the key points as bullet-worthy insights. Limit to 
       console.error('JSON parse error:', parseError);
       console.error('Failed to parse:', cleanedText);
       
-      // If JSON parsing still fails, try to extract summary and keyPoints manually
       if (cleanedText.includes('"summary"') && cleanedText.includes('"keyPoints"')) {
         try {
-          // Try to find the JSON part within the text
           const jsonMatch = cleanedText.match(/\{[\s\S]*\}/);
           if (jsonMatch) {
             const extractedJson = JSON.parse(jsonMatch[0]);
@@ -149,7 +140,6 @@ Keep the summary concise and the key points as bullet-worthy insights. Limit to 
         }
       }
       
-      // Final fallback: use the raw text as summary
       return {
         summary: cleanedText.substring(0, 300) + (cleanedText.length > 300 ? '...' : ''),
         keyPoints: []
@@ -162,7 +152,6 @@ Keep the summary concise and the key points as bullet-worthy insights. Limit to 
 }
 
 export async function getCachedBlogSummary(postId: string, title: string, content: string): Promise<AISummary> {
-  // Check cache first
   if (summaryCache.has(postId)) {
     return summaryCache.get(postId)!;
   }
@@ -191,7 +180,7 @@ export async function getCachedBlogSummary(postId: string, title: string, conten
   }
 }
 
-// Function to clear cache (useful for development)
+// Function to clear the cache
 export function clearSummaryCache(): void {
   summaryCache.clear();
 }

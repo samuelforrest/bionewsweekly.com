@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { AdminLogin } from "@/components/admin/AdminLogin";
 import { AdminNavbar } from "@/components/admin/AdminNavbar";
@@ -10,7 +9,6 @@ import { getAllBlogPosts, type BlogPost } from "@/services/blogService";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Edit, Trash2, Plus, Info, ExternalLink } from "lucide-react";
-import { Link } from "react-router-dom";
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -104,7 +102,6 @@ const Admin = () => {
       <AdminNavbar onLogout={handleLogout} />
       
       <div className="container mx-auto px-6 py-8">
-        {/* Header Section */}
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-foreground">Admin Dashboard</h1>

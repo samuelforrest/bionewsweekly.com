@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ExternalLink, Lightbulb, Globe, X } from 'lucide-react';
 
-interface GeminiLinksComponentProps {
+interface AILinksComponentProps {
   title: string;
   content: string;
 }
@@ -21,7 +21,7 @@ function stripHtml(html: string): string {
   return tempDiv.textContent || tempDiv.innerText || '';
 }
 
-export function GeminiLinksComponent({ title, content }: GeminiLinksComponentProps) {
+export function GeminiLinksComponent({ title, content }: AILinksComponentProps) {
   const [links, setLinks] = useState<LinkInfo[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -57,7 +57,7 @@ Please respond with a JSON object containing a "links" array in this exact forma
   ]
 }
 
-Ensure all URLs are real, working links to reputable sources like scientific journals, educational institutions, or well-known science websites.`;
+Ensure all URLs are real, working links to reputable interesting sources on the topic; a mix of sources. They need to work and not have 404 errors.`;
 
         const apiUrl = 'https://api.openai.com/v1/chat/completions';
         
@@ -200,7 +200,7 @@ Ensure all URLs are real, working links to reputable sources like scientific jou
           <CardTitle className="text-lg text-green-500">Further Reading</CardTitle>
           <Badge variant="secondary" className="text-xs">
             <Lightbulb className="h-3 w-3 mr-1" />
-            Gemini AI
+            ChatGPT
           </Badge>
           <Badge variant="outline" className="text-xs">
             Beta

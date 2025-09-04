@@ -53,7 +53,7 @@ export function AISummaryComponent({ postId, title, content }: AISummaryComponen
             <CardTitle className="text-lg text-blue-500">AI Summary</CardTitle>
             <Badge variant="secondary" className="text-xs">
               <Lightbulb className="h-3 w-3 mr-1" />
-              Gemini AI
+              Powered by ChatGPT
             </Badge>
             <button
               onClick={() => setIsVisible(false)}
@@ -115,7 +115,7 @@ export function AISummaryComponent({ postId, title, content }: AISummaryComponen
             <CardTitle className="text-lg text-blue-500">AI Summary</CardTitle>
             <Badge variant="secondary" className="text-xs">
               <Lightbulb className="h-3 w-3 mr-1" />
-              Gemini AI
+              ChatGPT Response
             </Badge>
           </div>
           <div className="flex items-center gap-2">

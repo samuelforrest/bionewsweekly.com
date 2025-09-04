@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
@@ -7,7 +6,6 @@ import { ArrowRight, Sparkles, Users, BookOpen } from 'lucide-react';
 export function Hero() {
   return (
     <section id="home" className="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-32">
-      {/* Animated background gradients */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
@@ -37,8 +35,6 @@ export function Hero() {
               The latest biology news, through the eyes of three passionate A Level biology students.
             </p>
           </div>
-
-          {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-8">
             <Link to="/blog">
               <Button 
@@ -60,7 +56,6 @@ export function Hero() {
             </Button>
           </div>
 
-          {/* Stats with floating cards */}
           <div className="grid grid-cols-3 gap-8 pt-16 w-full max-w-3xl">
             {[
               { number: "6+", label: "Articles Published", delay: "0s" },

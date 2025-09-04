@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Heart } from 'lucide-react';
@@ -10,7 +9,6 @@ interface LikeButtonProps {
   blogId: string;
 }
 
-// Helper functions for anonymous likes in localStorage
 const getAnonymousLikes = (): string[] => {
   if (typeof window === 'undefined') return [];
   const likes = localStorage.getItem('bionews_anonymous_likes');
@@ -30,7 +28,6 @@ export function LikeButton({ blogId }: LikeButtonProps) {
 
   const fetchLikes = useCallback(async () => {
     try {
-      // Get total likes count
       const { data: likes, error: likesError } = await supabase
         .from('likes')
         .select('*')

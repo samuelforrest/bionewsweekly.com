@@ -23,14 +23,14 @@ function stripHtml(html: string): string {
   return tempDiv.textContent || tempDiv.innerText || '';
 }
 
-// Function to call Gemini AI API
+// Function to call OpenAI ChatGPT API
 async function generateAISummary(title: string, content: string): Promise<{ summary: string; keyPoints: string[] }> {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
   
   console.log('API Key check:', apiKey ? 'API key is present' : 'API key is missing');
   
   if (!apiKey) {
-    throw new Error('Gemini API key not found. Please add VITE_GEMINI_API_KEY to your .env.local file.');
+    throw new Error('OpenAI API key not found. Please add VITE_OPENAI_API_KEY to your .env.local file.');
   }
 
   const plainTextContent = stripHtml(content);
@@ -51,28 +51,26 @@ Please respond with ONLY a valid JSON object in this exact format (no markdown, 
 Keep the summary concise and the key points as bullet-worthy insights. Limit to 3-5 key points maximum. Return only the JSON object without any markdown formatting.`;
 
   try {
-    console.log('Making API request to Gemini...');
-    console.log('Environment variables:', import.meta.env);
+    console.log('Making API request to OpenAI ChatGPT...');
     
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
-    console.log('API URL (key redacted):', apiUrl.replace(apiKey, '[REDACTED]'));
+    const apiUrl = 'https://api.openai.com/v1/chat/completions';
+    console.log('API URL:', apiUrl);
     
     const requestBody = {
-      contents: [
+      model: "gpt-4o-mini",
+      messages: [
         {
-          parts: [
-            {
-              text: prompt
-            }
-          ]
+          role: "system",
+          content: "You are a helpful assistant that creates concise summaries and key points for blog posts. Always respond with valid JSON only, no markdown formatting or code blocks."
+        },
+        {
+          role: "user",
+          content: prompt
         }
       ],
-      generationConfig: {
-        temperature: 0.3,
-        topK: 40,
-        topP: 0.95,
-        maxOutputTokens: 1024,
-      }
+      temperature: 0.3,
+      max_tokens: 1024,
+      response_format: { type: "json_object" }
     };
     
     console.log('Request body:', requestBody);
@@ -81,28 +79,28 @@ Keep the summary concise and the key points as bullet-worthy insights. Limit to 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
       },
       body: JSON.stringify(requestBody)
     });
 
     console.log('Response status:', response.status);
     console.log('Response ok:', response.ok);
-    console.log('Response headers:', Object.fromEntries(response.headers.entries()));
 
     if (!response.ok) {
       const errorText = await response.text();
       console.error('API Error Response:', errorText);
-      throw new Error(`Gemini API error: ${response.status} ${response.statusText} - ${errorText}`);
+      throw new Error(`OpenAI API error: ${response.status} ${response.statusText} - ${errorText}`);
     }
 
     const data = await response.json();
     console.log('API Response data:', data);
     
-    if (!data.candidates || data.candidates.length === 0) {
-      throw new Error('No response from Gemini AI');
+    if (!data.choices || data.choices.length === 0) {
+      throw new Error('No response from OpenAI ChatGPT');
     }
 
-    const generatedText = data.candidates[0].content.parts[0].text;
+    const generatedText = data.choices[0].message.content;
     console.log('Generated text:', generatedText);
     
     let cleanedText = generatedText.trim();
@@ -146,7 +144,7 @@ Keep the summary concise and the key points as bullet-worthy insights. Limit to 
       };
     }
   } catch (error) {
-    console.error('Error calling Gemini API:', error);
+    console.error('Error calling OpenAI ChatGPT API:', error);
     throw error;
   }
 }
@@ -157,7 +155,6 @@ export async function getCachedBlogSummary(postId: string, title: string, conten
   }
 
   try {
-    // Generate new summary
     const { summary, keyPoints } = await generateAISummary(title, content);
     const estimatedReadTime = estimateReadingTime(content);
     
@@ -169,8 +166,6 @@ export async function getCachedBlogSummary(postId: string, title: string, conten
       estimatedReadTime,
       createdAt: new Date().toISOString()
     };
-
-    // Cache the result
     summaryCache.set(postId, aiSummary);
     
     return aiSummary;
@@ -180,7 +175,7 @@ export async function getCachedBlogSummary(postId: string, title: string, conten
   }
 }
 
-// Function to clear the cache
+
 export function clearSummaryCache(): void {
   summaryCache.clear();
 }

@@ -33,83 +33,76 @@ export function GeminiLinksComponent({ title, content }: GeminiLinksComponentPro
       setError(null);
       
       try {
-        const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+        const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
         
         if (!apiKey) {
-          throw new Error('Gemini API key not found. Please add VITE_GEMINI_API_KEY to your .env.local file.');
+          throw new Error('OpenAI API key not found. Please add VITE_OPENAI_API_KEY to your .env.local file.');
         }
 
         const plainTextContent = stripHtml(content);
         
-        const prompt = `Please suggest 3-5 reputable, up-to-date external links for further reading on the following topic. For each link, provide a title, URL, and a short description.
+        const prompt = `Please suggest 3-5 reputable, up-to-date external links for further reading on the following topic. For each link, provide a title and URL.
 
 Title: ${title}
 
 Content: ${plainTextContent.slice(0, 1000)}
 
-Please respond with ONLY a valid JSON array in this exact format (no markdown, no code blocks, no additional text):
-[
-  {
-    "title": "Link title",
-    "url": "https://example.com"
-  }
-]
+Please respond with a JSON object containing a "links" array in this exact format:
+{
+  "links": [
+    {
+      "title": "Link title",
+      "url": "https://example.com"
+    }
+  ]
+}
 
 Ensure all URLs are real, working links to reputable sources like scientific journals, educational institutions, or well-known science websites.`;
 
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
+        const apiUrl = 'https://api.openai.com/v1/chat/completions';
         
         const requestBody = {
-          contents: [
+          model: "gpt-4o",
+          messages: [
             {
-              parts: [
-                {
-                  text: prompt
-                }
-              ]
+              role: "system",
+              content: "You are a helpful assistant that suggests relevant external links for further reading on scientific and educational topics. Always respond with valid JSON only, no markdown formatting or code blocks."
+            },
+            {
+              role: "user",
+              content: prompt
             }
           ],
-          generationConfig: {
-            temperature: 0.3,
-            topK: 40,
-            topP: 0.95,
-            maxOutputTokens: 1024,
-          }
+          temperature: 0.3,
+          max_tokens: 1024,
+          response_format: { type: "json_object" }
         };
         
         const response = await fetch(apiUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
           },
           body: JSON.stringify(requestBody)
         });
 
         if (!response.ok) {
           const errorText = await response.text();
-          throw new Error(`Gemini API error: ${response.status} ${response.statusText}`);
+          throw new Error(`OpenAI API error: ${response.status} ${response.statusText}`);
         }
 
         const data = await response.json();
         
-        if (!data.candidates || data.candidates.length === 0) {
-          throw new Error('No response from Gemini AI');
+        if (!data.choices || data.choices.length === 0) {
+          throw new Error('No response from OpenAI ChatGPT');
         }
 
-        const generatedText = data.candidates[0].content.parts[0].text;
-        
-        // Clean the response by removing markdown code blocks
-        let cleanedText = generatedText.trim();
-        
-        // Remove ```json and ``` markers if present
-        if (cleanedText.startsWith('```json')) {
-          cleanedText = cleanedText.replace(/^```json\s*/, '').replace(/\s*```$/, '');
-        } else if (cleanedText.startsWith('```')) {
-          cleanedText = cleanedText.replace(/^```\s*/, '').replace(/\s*```$/, '');
-        }
+        const generatedText = data.choices[0].message.content;
         
         // Parse the JSON response
-        const parsedLinks = JSON.parse(cleanedText);
+        const parsedResponse = JSON.parse(generatedText);
+        const parsedLinks = parsedResponse.links || parsedResponse;
         
         if (Array.isArray(parsedLinks) && parsedLinks.length > 0) {
           setLinks(parsedLinks);
@@ -143,7 +136,7 @@ Ensure all URLs are real, working links to reputable sources like scientific jou
             <CardTitle className="text-lg text-green-500">Further Reading</CardTitle>
             <Badge variant="secondary" className="text-xs">
               <Lightbulb className="h-3 w-3 mr-1" />
-              Gemini AI
+              ChatGPT
             </Badge>
             <Badge variant="outline" className="text-xs">
               Beta

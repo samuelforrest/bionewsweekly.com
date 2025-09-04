@@ -11,6 +11,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Admin from "./pages/Admin";
 import Roadmap from "./pages/Roadmap";
+import AI from "./pages/AI";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/roadmap" element={<Roadmap />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/ai" element={<AI />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

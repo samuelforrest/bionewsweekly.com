@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, Users, BookOpen } from 'lucide-react';
+import { ArrowRight, Brain, BookOpen } from 'lucide-react';
 
 export function Hero() {
   return (
@@ -46,14 +46,16 @@ export function Hero() {
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="group border-2 border-border hover:border-primary bg-background/50 backdrop-blur-sm text-lg px-8 py-6 rounded-2xl transition-all duration-300 hover:bg-primary/5 transform hover:scale-105"
-            >
-              <Users className="w-5 h-5 mr-2" />
-              Our Podcast
-            </Button>
+            <Link to="/ai">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="group border-2 border-border hover:border-primary bg-background/50 backdrop-blur-sm text-lg px-8 py-6 rounded-2xl transition-all duration-300 hover:bg-primary/5 transform hover:scale-105"
+              >
+                <Brain className="w-5 h-5 mr-2" />
+                Talk to BioAI
+              </Button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-3 gap-8 pt-16 w-full max-w-3xl">

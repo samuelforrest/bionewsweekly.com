@@ -36,6 +36,7 @@ const AI = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [isLoadingPosts, setIsLoadingPosts] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
@@ -65,8 +66,10 @@ const AI = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Auto-scroll to bottom when new messages are added
+  // Auto-scroll to bottom when new messages are added (only after user interaction)
   useEffect(() => {
+    if (!hasInteracted) return;
+    
     const scrollToBottom = () => {
       if (messagesEndRef.current) {
         messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -79,10 +82,15 @@ const AI = () => {
     // Also scroll after a short delay to handle any rendering delays
     const timer = setTimeout(scrollToBottom, 100);
     return () => clearTimeout(timer);
-  }, [messages, isLoading]);
+  }, [messages, isLoading, hasInteracted]);
 
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
+
+    // Mark that user has interacted with the chat
+    if (!hasInteracted) {
+      setHasInteracted(true);
+    }
 
     const userMessage: ChatMessage = {
       id: Date.now().toString(),
@@ -131,17 +139,19 @@ const AI = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
       
-      <main className="flex-grow mt-20 pt-4">
-        <div className="container mx-auto px-4 py-4 md:py-8">
-          <div className="max-w-4xl mx-auto">
+      {/* Main content with fixed height to prevent overflow into footer */}
+      <main className="flex-1 mt-20 pt-4 pb-4 flex flex-col">
+        <div className="container mx-auto px-4 py-4 md:py-8 flex-1 flex flex-col">
+          <div className="max-w-4xl mx-auto flex-1 flex flex-col">
             {/* Header */}
-            <div className="text-center mb-4 md:mb-8">
+            <div className="text-center mb-4 md:mb-8 flex-shrink-0">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <Brain className="h-6 w-6 md:h-8 md:w-8 text-primary" />
                 <h1 className="text-2xl md:text-4xl font-bold text-foreground">AI Biology Tutor</h1>
               </div>
               <p className="text-sm md:text-lg text-muted-foreground mb-4 px-4">
                 Get personalized help with biology concepts using our AI tutor trained on all BioNewsWeekly articles
+                <br></br>🫢 Disclaimer: I do not remember stuff if you leave this tab 🫢
               </p>
               <div className="flex items-center justify-center gap-2 flex-wrap">
                 <Badge variant="secondary" className="text-xs">
@@ -154,23 +164,22 @@ const AI = () => {
               </div>
             </div>
 
-            {/* Chat Interface */}
-            <Card className="h-[calc(100vh-280px)] md:h-[600px] flex flex-col">
+            {/* Chat Interface - takes remaining space */}
+            <Card className="flex-1 flex flex-col min-h-0">
               <CardHeader className="flex-shrink-0 pb-2 md:pb-3">
                 <CardTitle className="flex items-center gap-2 text-lg md:text-xl">
                   <Bot className="h-4 w-4 md:h-5 md:w-5 text-primary" />
                   Chat with AI Tutor
                 </CardTitle>
-            </CardHeader>
+              </CardHeader>
             
-            <CardContent className="flex-1 flex flex-col p-0">
-              {/* Messages */}
-              <div 
-                ref={chatContainerRef}
-                className="flex-1 p-3 md:p-4 overflow-y-auto"
-                style={{ maxHeight: 'calc(100vh - 350px)' }}
-              >
-                <div className="space-y-3 md:space-y-4">
+              <CardContent className="flex-1 flex flex-col p-0 min-h-0">
+                {/* Messages - scrollable area */}
+                <div 
+                  ref={chatContainerRef}
+                  className="flex-1 p-3 md:p-4 overflow-y-auto min-h-0"
+                >
+                  <div className="space-y-3 md:space-y-4">
                   {messages.map((message) => (
                     <div
                       key={message.id}
@@ -228,8 +237,8 @@ const AI = () => {
                 </div>
               </div>
 
-              {/* Input */}
-              <div className="p-3 md:p-4 border-t bg-background">
+              {/* Input - fixed at bottom */}
+              <div className="flex-shrink-0 p-3 md:p-4 border-t bg-background">
                 <div className="flex gap-2">
                   {isMobile ? (
                     <Textarea
@@ -266,39 +275,6 @@ const AI = () => {
               </div>
             </CardContent>
           </Card>
-
-          {/* Features */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-6 md:mt-8">
-            <Card>
-              <CardContent className="p-4 md:p-6 text-center">
-                <BookOpen className="h-6 w-6 md:h-8 md:w-8 text-primary mx-auto mb-3" />
-                <h3 className="font-semibold mb-2 text-sm md:text-base">Article Knowledge</h3>
-                <p className="text-xs md:text-sm text-muted-foreground">
-                  Trained on all BioNewsWeekly articles for comprehensive biology knowledge
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardContent className="p-4 md:p-6 text-center">
-                <Brain className="h-6 w-6 md:h-8 md:w-8 text-primary mx-auto mb-3" />
-                <h3 className="font-semibold mb-2 text-sm md:text-base">Personalized Help</h3>
-                <p className="text-xs md:text-sm text-muted-foreground">
-                  Get explanations tailored to your level and learning style
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardContent className="p-4 md:p-6 text-center">
-                <Bot className="h-6 w-6 md:h-8 md:w-8 text-primary mx-auto mb-3" />
-                <h3 className="font-semibold mb-2 text-sm md:text-base">24/7 Available</h3>
-                <p className="text-xs md:text-sm text-muted-foreground">
-                  Study anytime with instant responses to your biology questions
-                </p>
-              </CardContent>
-            </Card>
-          </div>
         </div>
       </div>
       </main>

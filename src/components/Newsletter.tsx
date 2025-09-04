@@ -58,13 +58,9 @@ export function Newsletter() {
                       BioNewsWeekly
                     </span>
                   </h2>
-                  <p className="text-xl lg:text-2xl max-w-3xl mx-auto text-muted-foreground leading-relaxed">
-                    Get the latest biology news, student insights, and exclusive content delivered to your inbox every week.
-                  </p>
                 </div>
               </div>
 
-              {/* Features grid */}
               <div className="grid md:grid-cols-3 gap-8 my-16">
                 {[
                   {
@@ -98,7 +94,6 @@ export function Newsletter() {
                 ))}
               </div>
 
-              {/* Subscription form */}
               <div className="max-w-lg mx-auto">
                 <div className="flex flex-col sm:flex-row gap-4 p-2 bg-background/50 backdrop-blur-sm border border-border/50 rounded-2xl shadow-lg">
                   <Input 
@@ -127,13 +122,13 @@ export function Newsletter() {
                 {status === 'success' && (
                   <div className="flex items-center justify-center gap-2 mt-4 p-4 bg-green-500/10 border border-green-500/20 rounded-xl">
                     <CheckCircle className="w-5 h-5 text-green-600" />
-                    <p className="text-green-600 font-medium">🎉 Welcome to BioNewsWeekly! You'll receive our weekly newsletter.</p>
+                    <p className="text-green-600 font-medium"> Welcome to BioNewsWeekly! You'll receive our weekly newsletter.</p>
                   </div>
                 )}
                 {status === 'error' && (
                   <div className="flex items-center justify-center gap-2 mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
                     <AlertCircle className="w-5 h-5 text-red-600" />
-                    <p className="text-red-600 font-medium">❌ {error}</p>
+                    <p className="text-red-600 font-medium"> {error}</p>
                   </div>
                 )}
 

@@ -48,10 +48,6 @@ export function Header() {
             <span className="relative z-10">Admin</span>
             <div className="absolute inset-0 bg-primary/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
           </a>
-          <a href="/auth" className="group relative px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-all duration-300">
-            <span className="relative z-10">Login</span>
-            <div className="absolute inset-0 bg-primary/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-          </a>
           <div className="ml-4">
             <ThemeToggle />
           </div>
@@ -102,13 +98,6 @@ export function Header() {
               onClick={() => setIsMenuOpen(false)}
             >
               <span className="text-sm font-medium">Admin</span>
-            </a>
-            <a 
-              href="/auth" 
-              className="flex items-center space-x-3 px-4 py-3 text-foreground hover:text-primary hover:bg-primary/5 rounded-xl transition-all duration-300"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <span className="text-sm font-medium">Login</span>
             </a>
           </nav>
         </div>

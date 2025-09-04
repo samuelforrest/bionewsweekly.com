@@ -245,7 +245,7 @@ const AI = () => {
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
                       onKeyPress={handleKeyPress}
-                      placeholder="Ask me about biology concepts, articles, or get study help..."
+                      placeholder="Ask about our articles or bio!"
                       className="flex-1 text-sm resize-none min-h-[40px] max-h-24"
                       disabled={isLoading}
                       rows={1}

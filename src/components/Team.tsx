@@ -66,15 +66,15 @@ export function Team() {
 							className="group relative overflow-hidden bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl animate-scale-in"
 							style={{ animationDelay: `${index * 0.2}s` }}
 						>
-							{/* Gradient overlay */}
+							
 							<div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-green-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 							
-							{/* Floating elements */}
+							
 							<div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-primary/20 to-green-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 							
 							<CardContent className="relative z-10 p-8">
 								<div className="text-center space-y-6">
-									{/* Avatar with hover effect */}
+									
 									<div className="relative mx-auto w-32 h-32 mb-6">
 										<div className="absolute inset-0 bg-gradient-to-r from-primary to-green-500 rounded-full p-1 group-hover:animate-pulse">
 											<img
@@ -85,7 +85,7 @@ export function Team() {
 										</div>
 									</div>
 
-									{/* Name and Role */}
+									
 									<div className="space-y-2">
 										<h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
 											{member.name}
@@ -100,12 +100,12 @@ export function Team() {
 										</div>
 									</div>
 
-									{/* Bio */}
+									
 									<p className="text-muted-foreground leading-relaxed text-center">
 										{member.bio}
 									</p>
 
-									{/* Action buttons */}
+									
 									<div className="flex flex-col gap-3 pt-4">
 										<div className="flex gap-2 justify-center">
 											<a
@@ -129,7 +129,7 @@ export function Team() {
 										</div>
 									</div>
 
-									{/* Subjects */}
+									
 									<div className="flex flex-wrap gap-2 justify-center pt-4">
 										{member.subjects.map((subject, subIndex) => (
 											<Badge
@@ -147,7 +147,7 @@ export function Team() {
 					))}
 				</div>
 
-				{/* Join Team CTA */}
+				
 				<div className="mt-20 text-center">
 					<div className="max-w-2xl mx-auto p-8 bg-gradient-to-r from-primary/5 via-green-500/5 to-emerald-500/5 border border-border/50 rounded-3xl backdrop-blur-sm">
 						<h3 className="text-2xl font-bold text-foreground mb-4">We Probably Want You!</h3>

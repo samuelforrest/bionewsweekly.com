@@ -139,11 +139,11 @@ const AI = () => {
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
       
-      {/* Main content with fixed height to prevent overflow into footer */}
+      
       <main className="flex-1 mt-20 pt-4 pb-4 flex flex-col">
         <div className="container mx-auto px-4 py-4 md:py-8 flex-1 flex flex-col">
           <div className="max-w-4xl mx-auto flex-1 flex flex-col">
-            {/* Header */}
+            
             <div className="text-center mb-4 md:mb-8 flex-shrink-0">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <Brain className="h-6 w-6 md:h-8 md:w-8 text-primary" />
@@ -164,7 +164,7 @@ const AI = () => {
               </div>
             </div>
 
-            {/* Chat Interface - takes remaining space */}
+            
             <Card className="flex-1 flex flex-col min-h-0">
               <CardHeader className="flex-shrink-0 pb-2 md:pb-3">
                 <CardTitle className="flex items-center gap-2 text-lg md:text-xl">
@@ -174,7 +174,7 @@ const AI = () => {
               </CardHeader>
             
               <CardContent className="flex-1 flex flex-col p-0 min-h-0">
-                {/* Messages - scrollable area */}
+                
                 <div 
                   ref={chatContainerRef}
                   className="flex-1 p-3 md:p-4 overflow-y-auto min-h-0"
@@ -231,13 +231,11 @@ const AI = () => {
                       </div>
                     </div>
                   )}
-                  
-                  {/* Scroll anchor */}
+                
                   <div ref={messagesEndRef} />
                 </div>
               </div>
 
-              {/* Input - fixed at bottom */}
               <div className="flex-shrink-0 p-3 md:p-4 border-t bg-background">
                 <div className="flex gap-2">
                   {isMobile ? (

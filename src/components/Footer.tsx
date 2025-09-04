@@ -34,7 +34,7 @@ export function Footer() {
             
           </div>
 
-          {/* Quick Links */}
+          
           <div className="space-y-4">
             <h4 className="text-lg font-bold text-foreground">Quick Links</h4>
             <ul className="space-y-3">
@@ -57,7 +57,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Resources */}
+          
           <div className="space-y-4">
             <h4 className="text-lg font-bold text-foreground">Resources</h4>
             <ul className="space-y-3">

@@ -150,7 +150,6 @@ const BlogPost = () => {
             </div>
           </div>
 
-          {/* Gemini further reading links */}
           <GeminiLinksComponent title={post.title} content={post.content || ''} />
         </article>
       </main>

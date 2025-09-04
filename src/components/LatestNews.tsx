@@ -76,7 +76,7 @@ export function LatestNews() {
                 }`}
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
-                {/* Image container with overlay */}
+                
                 <div className="relative overflow-hidden">
                   <img 
                     src={article.cover_image || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop"} 
@@ -85,14 +85,14 @@ export function LatestNews() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
-                  {/* Floating category badge */}
+                  
                   <div className="absolute top-4 left-4">
                     <Badge className="bg-gradient-to-r from-primary to-green-500 text-white border-0 px-3 py-1 rounded-full shadow-lg font-medium">
                       {article.category}
                     </Badge>
                   </div>
                   
-                  {/* Hover overlay with arrow */}
+                  
                   <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
                     <div className="flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full">
                       <ArrowRight className="w-5 h-5 text-white" />

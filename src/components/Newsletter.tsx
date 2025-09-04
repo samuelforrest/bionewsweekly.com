@@ -40,7 +40,7 @@ export function Newsletter() {
 
   return (
     <section id="newsletter" className="py-24 lg:py-32 relative overflow-hidden">
-      {/* Background decoration */}
+      
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-green-500/5 to-emerald-500/5"></div>
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float"></div>
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
@@ -49,7 +49,7 @@ export function Newsletter() {
         <Card className="max-w-5xl mx-auto bg-card/50 backdrop-blur-xl border-border/50 shadow-2xl rounded-3xl overflow-hidden">
           <CardContent className="p-12 md:p-16">
             <div className="text-center space-y-10">
-              {/* Header with icon */}
+              
               <div className="space-y-6">
                 <div>
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
@@ -118,7 +118,7 @@ export function Newsletter() {
                   </Button>
                 </div>
 
-                {/* Status messages */}
+                
                 {status === 'success' && (
                   <div className="flex items-center justify-center gap-2 mt-4 p-4 bg-green-500/10 border border-green-500/20 rounded-xl">
                     <CheckCircle className="w-5 h-5 text-green-600" />

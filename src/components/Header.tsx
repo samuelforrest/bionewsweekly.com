@@ -9,7 +9,7 @@ export function Header() {
   return (
     <header className="fixed top-0 z-50 w-full bg-background/80 backdrop-blur-xl border-b border-border/50 supports-[backdrop-filter]:bg-background/80">
       <div className="container flex h-20 items-center px-6">
-        {/* Logo */}
+        
         <a href="/" className="flex items-center space-x-3 group transition-all duration-300 hover:scale-105">
           <div className="relative">
             <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary to-primary/70 p-2.5 shadow-lg">
@@ -29,7 +29,7 @@ export function Header() {
           </div>
         </a>
 
-        {/* Desktop Navigation */}
+        
         <nav className="hidden md:flex items-center space-x-1 ml-auto">
           <a href="/" className="group relative px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-all duration-300">
             <span className="relative z-10">Home</span>
@@ -56,7 +56,7 @@ export function Header() {
           </div>
         </nav>
 
-        {/* Mobile Menu Button */}
+        
         <div className="flex items-center ml-auto md:hidden space-x-3">
           <ThemeToggle />
           <Button 
@@ -70,7 +70,7 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      
       {isMenuOpen && (
         <div className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-xl">
           <nav className="container py-6 flex flex-col space-y-1 px-6">

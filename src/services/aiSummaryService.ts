@@ -9,7 +9,6 @@ export interface AISummary {
 
 const summaryCache = new Map<string, AISummary>();
 
-// Function to estimate reading time based on content length
 function estimateReadingTime(content: string): string {
   const wordsPerMinute = 200;
   const words = content.split(/\s+/).length;

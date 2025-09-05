@@ -16,7 +16,7 @@ const teamMembers = [
 	},
 	{
 		name: 'Danny Mellor',
-		role: 'Writer',
+		role: 'Content Writer',
 		bio: 'Danny is an aspiring biologist driven by a deep fascination for understanding life and research.',
 		subjects: ['Biology', 'Mathematics', 'Psychology'],
 		avatar: '/danny_pfp.jpg',
@@ -26,7 +26,7 @@ const teamMembers = [
 	},
 	{
 		name: 'Aditi Deshpande',
-		role: 'Writer',
+		role: 'Editor',
 		bio: 'Aditi has dreamt of becoming a doctor since she was young. She intends to study medicine at University.',
 		subjects: ['Biology', 'Chemistry', 'Mathematics'],
 		avatar: '/aditi_pfp.jpeg',

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Brain, Clock, Lightbulb, X } from 'lucide-react';
+import { Brain, Clock, Lightbulb, KeyRound, X } from 'lucide-react';
 import { getCachedBlogSummary, type AISummary } from '@/services/aiSummaryService';
 
 interface AISummaryComponentProps {
@@ -143,7 +143,7 @@ export function AISummaryComponent({ postId, title, content }: AISummaryComponen
         {summary.keyPoints.length > 0 && (
           <div>
             <h4 className="text-sm font-semibold mb-2 flex items-center gap-1 text-foreground">
-              <Lightbulb className="h-3 w-3" />
+              <KeyRound className="h-3 w-3" />
               Key Takeaways
             </h4>
             <ul className="space-y-1">

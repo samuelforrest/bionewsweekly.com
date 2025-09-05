@@ -62,7 +62,6 @@ export function AdminLogin({ onLogin }: AdminLoginProps) {
           </CardContent>
         </Card>
       </main>
-      
       <Footer />
     </div>
   );

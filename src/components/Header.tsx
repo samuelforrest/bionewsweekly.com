@@ -12,7 +12,7 @@ export function Header() {
         
         <a href="/" className="flex items-center space-x-3 group transition-all duration-300 hover:scale-105">
           <div className="relative">
-            <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary to-primary/70 p-2.5 shadow-lg">
+            <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary to-primary/70 p-1.5 shadow-lg">
               <img 
                 src="/favicon.png" 
                 alt="BioNewsWeekly Logo" 

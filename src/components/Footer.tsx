@@ -1,5 +1,3 @@
-
-import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { ExternalLink } from 'lucide-react'
 
@@ -8,11 +6,10 @@ export function Footer() {
     <footer className="bg-gradient-to-br from-card via-background to-muted/30 border-t border-border/50">
       <div className="container px-6 mx-auto py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4 mb-12">
-          {/* Brand */}
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center space-x-4">
               <div className="relative">
-                <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary to-green-500 p-2.5 shadow-lg">
+                <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary to-green-500 p-1.5 shadow-lg">
                   <img 
                     src="/favicon.png" 
                     alt="BioNewsWeekly Logo" 
@@ -31,10 +28,8 @@ export function Footer() {
             <p className="text-muted-foreground leading-relaxed max-w-md">
               Biology news by students, for students. The latest biology news - what isn't in your textbook!
             </p>
-            
           </div>
 
-          
           <div className="space-y-4">
             <h4 className="text-lg font-bold text-foreground">Quick Links</h4>
             <ul className="space-y-3">
@@ -56,7 +51,6 @@ export function Footer() {
               ))}
             </ul>
           </div>
-
           
           <div className="space-y-4">
             <h4 className="text-lg font-bold text-foreground">Resources</h4>

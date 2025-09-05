@@ -32,7 +32,7 @@ const teamMembers = [
 		avatar: '/aditi_pfp.jpeg',
 		specialty: 'Medicine',
 		epqLink: '/epq/aditi-deshpande-epq.pdf',
-		linkedinLink: '/',
+		linkedinLink: 'https://www.linkedin.com/in/aditi-deshpande-176560382/',
 	},
 ]
 

@@ -22,18 +22,15 @@ function stripHtml(html: string): string {
   return tempDiv.textContent || tempDiv.innerText || '';
 }
 
-// Function to call OpenAI ChatGPT API
 async function generateAISummary(title: string, content: string): Promise<{ summary: string; keyPoints: string[] }> {
   const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
   
-  console.log('API Key check:', apiKey ? 'API key is present' : 'API key is missing');
   
   if (!apiKey) {
-    throw new Error('OpenAI API key not found. Please add VITE_OPENAI_API_KEY to your .env.local file.');
+    throw new Error('OpenAI API key not found error.');
   }
 
   const plainTextContent = stripHtml(content);
-  console.log('Content length:', plainTextContent.length);
   
   const prompt = `Please provide a concise summary and key takeaways for this blog post, use Great British UK English:
 
@@ -50,10 +47,8 @@ Please respond with ONLY a valid JSON object in this exact format (no markdown, 
 Keep the summary concise and the key points as bullet-worthy insights. Limit to 3-5 key points maximum. Return only the JSON object without any markdown formatting.`;
 
   try {
-    console.log('Making API request to OpenAI ChatGPT...');
     
     const apiUrl = 'https://api.openai.com/v1/chat/completions';
-    console.log('API URL:', apiUrl);
     
     const requestBody = {
       model: "gpt-4o-mini",
@@ -72,8 +67,6 @@ Keep the summary concise and the key points as bullet-worthy insights. Limit to 
       response_format: { type: "json_object" }
     };
     
-    console.log('Request body:', requestBody);
-    
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
@@ -83,9 +76,6 @@ Keep the summary concise and the key points as bullet-worthy insights. Limit to 
       body: JSON.stringify(requestBody)
     });
 
-    console.log('Response status:', response.status);
-    console.log('Response ok:', response.ok);
-
     if (!response.ok) {
       const errorText = await response.text();
       console.error('API Error Response:', errorText);
@@ -93,14 +83,12 @@ Keep the summary concise and the key points as bullet-worthy insights. Limit to 
     }
 
     const data = await response.json();
-    console.log('API Response data:', data);
     
     if (!data.choices || data.choices.length === 0) {
       throw new Error('No response from OpenAI ChatGPT');
     }
 
     const generatedText = data.choices[0].message.content;
-    console.log('Generated text:', generatedText);
     
     let cleanedText = generatedText.trim();
     
@@ -109,8 +97,6 @@ Keep the summary concise and the key points as bullet-worthy insights. Limit to 
     } else if (cleanedText.startsWith('```')) {
       cleanedText = cleanedText.replace(/^```\s*/, '').replace(/\s*```$/, '');
     }
-    
-    console.log('Cleaned text:', cleanedText);
     
     try {
       const parsedResponse = JSON.parse(cleanedText);

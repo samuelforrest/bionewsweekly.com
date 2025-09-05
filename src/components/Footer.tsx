@@ -81,7 +81,7 @@ export function Footer() {
               © 2025 Bio News Weekly. Website developed by <a href="https://www.samuelforrest.me?utm_source=bionewsweekly&utm_medium=footer&utm_campaign=website_credit" className="text-primary hover:text-primary/80 underline underline-offset-2 transition-colors">Samuel Forrest</a>
             </p>
             <p className="text-xs text-muted-foreground/80 text-center md:text-left">
-              GDPR: We store email addresses, names, and likes. Anonymous likes are stored without personal identifiers. Data is processed lawfully and securely.
+              UK GDPR: We store email addresses. Anonymous likes are stored without personal identifiers. Data is processed lawfully and securely.
             </p>
           </div>
         </div>

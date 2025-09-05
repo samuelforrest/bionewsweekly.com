@@ -23,9 +23,8 @@ export function AISummaryComponent({ postId, title, content }: AISummaryComponen
         setLoading(true);
         setError(null);
         
-        console.log('Fetching summary for post:', postId);
         const aiSummary = await getCachedBlogSummary(postId, title, content);
-        console.log('Summary received:', aiSummary);
+
         setSummary(aiSummary);
       } catch (err) {
         console.error('Failed to generate AI summary:', err);

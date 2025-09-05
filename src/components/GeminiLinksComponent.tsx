@@ -14,7 +14,6 @@ interface LinkInfo {
   url: string;
 }
 
-// Function to strip HTML tags and get plain text
 function stripHtml(html: string): string {
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = html;
@@ -100,7 +99,6 @@ Ensure all URLs are real, working links to reputable interesting sources on the 
 
         const generatedText = data.choices[0].message.content;
         
-        // Parse the JSON response
         const parsedResponse = JSON.parse(generatedText);
         const parsedLinks = parsedResponse.links || parsedResponse;
         
@@ -216,7 +214,7 @@ Ensure all URLs are real, working links to reputable interesting sources on the 
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="text-xs text-muted-foreground mb-4">
-          AI-suggested links for deeper exploration of this topic
+          AI-suggested links. No responsibility is taken by BNW of these links.
         </p>
         <ul className="space-y-4">
           {links.map((link, idx) => (

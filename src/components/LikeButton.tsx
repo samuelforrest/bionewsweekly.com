@@ -37,13 +37,10 @@ export function LikeButton({ blogId }: LikeButtonProps) {
 
       setLikeCount(likes?.length || 0);
 
-      // Check if current user has liked this post
       if (user) {
-        // For authenticated users, check by user_id
         const userLike = likes?.find(like => like.user_id === user.id);
         setIsLiked(!!userLike);
       } else {
-        // For anonymous users, check localStorage since we can't uniquely identify them in DB
         const anonymousLikes = getAnonymousLikes();
         setIsLiked(anonymousLikes.includes(blogId));
       }
@@ -62,9 +59,7 @@ export function LikeButton({ blogId }: LikeButtonProps) {
     try {
 
       if (isLiked) {
-        // Remove like from database
         if (user) {
-          // For authenticated users, delete their specific like
           const { error } = await supabase
             .from('likes')
             .delete()
@@ -76,7 +71,6 @@ export function LikeButton({ blogId }: LikeButtonProps) {
             throw error;
           }
         } else {
-          // For anonymous users, delete one anonymous like and update localStorage
           const { error } = await supabase
             .from('likes')
             .delete()
@@ -89,7 +83,6 @@ export function LikeButton({ blogId }: LikeButtonProps) {
             throw error;
           }
 
-          // Update localStorage
           const anonymousLikes = getAnonymousLikes();
           const updatedLikes = anonymousLikes.filter(id => id !== blogId);
           saveAnonymousLikes(updatedLikes);
@@ -99,7 +92,6 @@ export function LikeButton({ blogId }: LikeButtonProps) {
         setLikeCount(prev => prev - 1);
         toast.success('Like removed');
       } else {
-        // Add like to database
         const likeData: { 
           blog_id: string; 
           created_at: string;
@@ -112,7 +104,7 @@ export function LikeButton({ blogId }: LikeButtonProps) {
         if (user) {
           likeData.user_id = user.id;
         } else {
-          likeData.user_id = null; // Anonymous users get null user_id
+          likeData.user_id = null;
         }
 
         const { data, error } = await supabase
@@ -147,7 +139,6 @@ export function LikeButton({ blogId }: LikeButtonProps) {
       console.error('Error toggling like:', error);
       console.error('Full error object:', JSON.stringify(error, null, 2));
       
-      // Provide more specific error information
       if (error && typeof error === 'object' && 'message' in error) {
         const errorObj = error as { message?: string; code?: string; details?: string };
         console.error('Error message:', errorObj.message);

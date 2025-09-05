@@ -9,7 +9,6 @@ interface UnsubscribeResponse {
   error?: string
 }
 
-// API endpoint for newsletter unsubscription
 export default async function handler(
   req: { method: string; body: UnsubscribeRequest }, 
   res: { 

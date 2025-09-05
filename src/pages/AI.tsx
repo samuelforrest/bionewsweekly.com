@@ -294,7 +294,6 @@ async function generateAIResponse(
     throw new Error('OpenAI API key not found. Please add VITE_OPENAI_API_KEY to your .env.local file.');
   }
 
-  // Create context from blog posts
   const articlesContext = blogPosts.map(post => {
     const content = stripHtml(post.content || '');
     return `Title: ${post.title}\nExcerpt: ${post.excerpt || ''}\nContent Preview: ${content.slice(0, 500)}...`;

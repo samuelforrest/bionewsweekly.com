@@ -5,7 +5,7 @@ export async function POST(request: Request) {
       return new Response(JSON.stringify({ error: 'Missing title or content' }), { status: 400 });
     }
 
-    const apiKey = process.env.VITE_GEMINI_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       return new Response(JSON.stringify({ error: 'Gemini API key not set' }), { status: 500 });
     }

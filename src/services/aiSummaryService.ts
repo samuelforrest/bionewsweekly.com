@@ -23,7 +23,7 @@ function stripHtml(html: string): string {
 }
 
 async function generateAISummary(title: string, content: string): Promise<{ summary: string; keyPoints: string[] }> {
-  const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+  const apiKey = import.meta.env.OPENAI_API_KEY;
   
   
   if (!apiKey) {

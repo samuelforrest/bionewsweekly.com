@@ -32,10 +32,10 @@ export function GeminiLinksComponent({ title, content }: AILinksComponentProps) 
       setError(null);
       
       try {
-        const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+        const apiKey = import.meta.env.OPENAI_API_KEY;
         
         if (!apiKey) {
-          throw new Error('OpenAI API key not found. Please add VITE_OPENAI_API_KEY to your .env.local file.');
+          throw new Error('OpenAI API key not found. Please add OPENAI_API_KEY to your .env.local file.');
         }
 
         const plainTextContent = stripHtml(content);

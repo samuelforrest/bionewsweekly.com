@@ -288,75 +288,46 @@ async function generateAIResponse(
   blogPosts: BlogPost[], 
   chatHistory: ChatMessage[]
 ): Promise<string> {
-  const apiKey = import.meta.env.OPENAI_API_KEY;
-  
-  if (!apiKey) {
-    throw new Error('OpenAI API key not found. Please add OPENAI_API_KEY to your .env.local file.');
-  }
-
   const articlesContext = blogPosts.map(post => {
     const content = stripHtml(post.content || '');
     return `Title: ${post.title}\nExcerpt: ${post.excerpt || ''}\nContent Preview: ${content.slice(0, 500)}...`;
   }).join('\n\n---\n\n');
 
-  // Create chat history context
-  const recentHistory = chatHistory.slice(-6).map(msg => 
-    `${msg.role}: ${msg.content}`
-  ).join('\n');
-
-  const systemPrompt = `You are an expert biology tutor with access to a comprehensive database of biology articles from BioNewsWeekly. Your role is to:
-
-1. Help students understand complex biology concepts
-2. Provide clear, educational explanations
-3. Reference relevant articles when appropriate
-4. Adapt your teaching style to the student's level
-5. Encourage curiosity and deeper learning
-
-Available Articles Context:
-${articlesContext}
-
-Guidelines:
-- Be encouraging and supportive
-- Use analogies and examples to explain complex concepts
-- Break down difficult topics into digestible parts
-- Reference specific articles when they're relevant to the question
-- Ask follow-up questions to ensure understanding
-- Provide study tips and learning strategies when helpful
-
-Keep responses conversational, informative, and educational. Aim for 2-3 paragraphs unless a longer explanation is needed.`;
+  // Create chat history for context
+  const recentHistory = chatHistory.slice(-6).map(msg => ({
+    role: msg.role,
+    content: msg.content
+  }));
 
   try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
       },
       body: JSON.stringify({
-        model: 'gpt-4o',
         messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: `Chat History:\n${recentHistory}\n\nCurrent Question: ${userMessage}` }
+          ...recentHistory,
+          { role: 'user', content: userMessage }
         ],
-        temperature: 0.7,
-        max_tokens: 1000
+        context: articlesContext
       })
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`OpenAI API error: ${response.status} ${response.statusText} - ${errorText}`);
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || `Server error: ${response.status}`);
     }
 
     const data = await response.json();
     
-    if (!data.choices || data.choices.length === 0) {
-      throw new Error('No response from OpenAI ChatGPT');
+    if (!data.message) {
+      throw new Error('No response from AI service');
     }
 
-    return data.choices[0].message.content;
+    return data.message;
   } catch (error) {
-    console.error('Error calling OpenAI API:', error);
+    console.error('Error calling AI API:', error);
     throw error;
   }
 }

@@ -23,113 +23,40 @@ function stripHtml(html: string): string {
 }
 
 async function generateAISummary(title: string, content: string): Promise<{ summary: string; keyPoints: string[] }> {
-  const apiKey = import.meta.env.OPENAI_API_KEY;
-  
-  
-  if (!apiKey) {
-    throw new Error('OpenAI API key not found error.');
-  }
-
   const plainTextContent = stripHtml(content);
   
-  const prompt = `Please provide a concise summary and key takeaways for this blog post, use Great British UK English:
-
-Title: ${title}
-
-Content: ${plainTextContent}
-
-Please respond with ONLY a valid JSON object in this exact format (no markdown, no code blocks, no additional text):
-{
-  "summary": "A 2-3 sentence summary of the main points",
-  "keyPoints": ["Key point 1", "Key point 2", "Key point 3"]
-}
-
-Keep the summary concise and the key points as bullet-worthy insights. Limit to 3-5 key points maximum. Return only the JSON object without any markdown formatting.`;
-
   try {
-    
-    const apiUrl = 'https://api.openai.com/v1/chat/completions';
-    
-    const requestBody = {
-      model: "gpt-4o-mini",
-      messages: [
-        {
-          role: "system",
-          content: "You are a helpful assistant that creates concise summaries and key points for blog posts. Always respond with valid JSON only, no markdown formatting or code blocks."
-        },
-        {
-          role: "user",
-          content: prompt
-        }
-      ],
-      temperature: 0.3,
-      max_tokens: 1024,
-      response_format: { type: "json_object" }
-    };
-    
-    const response = await fetch(apiUrl, {
+    const response = await fetch('/api/summarize', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
       },
-      body: JSON.stringify(requestBody)
+      body: JSON.stringify({
+        content: `Title: ${title}\n\nContent: ${plainTextContent}`
+      })
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('API Error Response:', errorText);
-      throw new Error(`OpenAI API error: ${response.status} ${response.statusText} - ${errorText}`);
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || `Server error: ${response.status}`);
     }
 
     const data = await response.json();
     
-    if (!data.choices || data.choices.length === 0) {
-      throw new Error('No response from OpenAI ChatGPT');
+    if (!data.summary) {
+      throw new Error('No summary received from AI service');
     }
 
-    const generatedText = data.choices[0].message.content;
-    
-    let cleanedText = generatedText.trim();
-    
-    if (cleanedText.startsWith('```json')) {
-      cleanedText = cleanedText.replace(/^```json\s*/, '').replace(/\s*```$/, '');
-    } else if (cleanedText.startsWith('```')) {
-      cleanedText = cleanedText.replace(/^```\s*/, '').replace(/\s*```$/, '');
-    }
-    
-    try {
-      const parsedResponse = JSON.parse(cleanedText);
-      return {
-        summary: parsedResponse.summary || 'Summary not available',
-        keyPoints: parsedResponse.keyPoints || []
-      };
-    } catch (parseError) {
-      console.error('JSON parse error:', parseError);
-      console.error('Failed to parse:', cleanedText);
-      
-      if (cleanedText.includes('"summary"') && cleanedText.includes('"keyPoints"')) {
-        try {
-          const jsonMatch = cleanedText.match(/\{[\s\S]*\}/);
-          if (jsonMatch) {
-            const extractedJson = JSON.parse(jsonMatch[0]);
-            return {
-              summary: extractedJson.summary || 'Summary not available',
-              keyPoints: extractedJson.keyPoints || []
-            };
-          }
-        } catch (extractError) {
-          console.error('JSON extraction error:', extractError);
-        }
-      }
-      
-      return {
-        summary: cleanedText.substring(0, 300) + (cleanedText.length > 300 ? '...' : ''),
-        keyPoints: []
-      };
-    }
+    // Parse the summary to extract key points (basic implementation)
+    const sentences = data.summary.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    const keyPoints = sentences.slice(0, 3).map(s => s.trim());
+
+    return {
+      summary: data.summary,
+      keyPoints: keyPoints.length > 0 ? keyPoints : ["AI-generated summary available"]
+    };
   } catch (error) {
-    console.error('Error calling OpenAI ChatGPT API:', error);
+    console.error('Error calling AI summary API:', error);
     throw error;
   }
 }

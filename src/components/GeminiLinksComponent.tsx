@@ -32,80 +32,30 @@ export function GeminiLinksComponent({ title, content }: AILinksComponentProps) 
       setError(null);
       
       try {
-        const apiKey = import.meta.env.OPENAI_API_KEY;
-        
-        if (!apiKey) {
-          throw new Error('OpenAI API key not found. Please add OPENAI_API_KEY to your .env.local file.');
-        }
-
         const plainTextContent = stripHtml(content);
         
-        const prompt = `Please suggest 3-5 reputable, up-to-date external links for further reading on the following topic. For each link, provide a title and URL.
-
-Title: ${title}
-
-Content: ${plainTextContent.slice(0, 1000)}
-
-Please respond with a JSON object containing a "links" array in this exact format:
-{
-  "links": [
-    {
-      "title": "Link title",
-      "url": "https://example.com"
-    }
-  ]
-}
-
-Ensure all URLs are real, working links to reputable interesting sources on the topic; a mix of sources. They need to work and not have 404 errors.`;
-
-        const apiUrl = 'https://api.openai.com/v1/chat/completions';
-        
-        const requestBody = {
-          model: "gpt-4o",
-          messages: [
-            {
-              role: "system",
-              content: "You are a helpful assistant that suggests relevant external links for further reading on scientific and educational topics. Always respond with valid JSON only, no markdown formatting or code blocks."
-            },
-            {
-              role: "user",
-              content: prompt
-            }
-          ],
-          temperature: 0.3,
-          max_tokens: 1024,
-          response_format: { type: "json_object" }
-        };
-        
-        const response = await fetch(apiUrl, {
+        const response = await fetch('/api/links', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`
           },
-          body: JSON.stringify(requestBody)
+          body: JSON.stringify({
+            title: title,
+            content: plainTextContent
+          })
         });
 
         if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(`OpenAI API error: ${response.status} ${response.statusText}`);
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.error || `Server error: ${response.status}`);
         }
 
         const data = await response.json();
         
-        if (!data.choices || data.choices.length === 0) {
-          throw new Error('No response from OpenAI ChatGPT');
-        }
-
-        const generatedText = data.choices[0].message.content;
-        
-        const parsedResponse = JSON.parse(generatedText);
-        const parsedLinks = parsedResponse.links || parsedResponse;
-        
-        if (Array.isArray(parsedLinks) && parsedLinks.length > 0) {
-          setLinks(parsedLinks);
+        if (data.links && Array.isArray(data.links)) {
+          setLinks(data.links);
         } else {
-          throw new Error('No valid links found in response');
+          throw new Error('Invalid response format');
         }
         
       } catch (err) {

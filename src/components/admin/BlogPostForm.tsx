@@ -40,7 +40,6 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
     const newTitle = e.target.value;
     setTitle(newTitle);
     
-    // Auto-generate slug if it's empty 
     if (!slug || slug === generateSlug(post?.title || "")) {
       setSlug(generateSlug(newTitle));
     }

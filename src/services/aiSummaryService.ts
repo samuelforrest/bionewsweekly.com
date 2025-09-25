@@ -47,7 +47,6 @@ async function generateAISummary(title: string, content: string): Promise<{ summ
       throw new Error('No summary received from AI service');
     }
 
-    // Parse the summary to extract key points (basic implementation)
     const sentences = data.summary.split(/[.!?]+/).filter(s => s.trim().length > 0);
     const keyPoints = sentences.slice(0, 3).map(s => s.trim());
 

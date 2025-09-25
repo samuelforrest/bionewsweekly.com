@@ -13,7 +13,7 @@ export function Hero() {
 
       <div className="container px-6 mx-auto">
         <div className="flex flex-col items-center text-center space-y-10 max-w-5xl mx-auto">
-          <div className="space-y-6 animate-slide-up">
+          <div className="space-y-6">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               <span className="block text-foreground mb-2">Biology News by</span>
               <span className="block bg-gradient-to-r from-primary via-green-500 to-emerald-500 bg-clip-text text-transparent mb-2">

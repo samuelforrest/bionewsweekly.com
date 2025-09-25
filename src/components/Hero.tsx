@@ -14,12 +14,6 @@ export function Hero() {
 
       <div className="container px-6 mx-auto">
         <div className="flex flex-col items-center text-center space-y-10 max-w-5xl mx-auto">
-          <div className="animate-fade-in">
-            <Badge className="px-6 py-3 text-sm font-medium bg-gradient-to-r from-primary to-green-500 text-white border-0 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              🧬 Weekly Biology Updates
-            </Badge>
-          </div>
-
           <div className="space-y-6 animate-slide-up">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               <span className="block text-foreground mb-2">Biology News by</span>

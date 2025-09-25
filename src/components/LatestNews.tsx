@@ -36,13 +36,7 @@ export function LatestNews() {
     <section id="articles" className="py-24 lg:py-32 bg-gradient-to-br from-muted/30 via-background to-muted/30">
       <div className="container px-6 mx-auto">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-primary/10 to-green-500/10 border border-primary/20 rounded-full mb-6">
-            <span className="w-4 h-4 rounded-full bg-green-500 animate-blinker"></span>
-            <span className="text-sm font-semibold text-primary">
-              UPDATING LIVE
-            </span>
-          </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-5">
             The Latest{' '}
             <span className="bg-gradient-to-r from-primary via-green-500 to-emerald-500 bg-clip-text text-transparent">
               News

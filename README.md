@@ -8,7 +8,7 @@ A web app built with React and Vite, news, AI-powered summaries, and a newslette
 
 - **Modern Design:** Clean, responsive UI with dark/light theme support.
 - **Blog System:** Admin dashboard for creating and managing posts.
-- **AI Summaries:** Automated news summaries powered by AI, specifically Gemini 2.0 flash.
+- **AI Summaries:** Automated news summaries powered by AI, changed the model from Gemini to ChatGPT for increased performance, cost and consitency.
 - **Newsletter:** Subscribe/unsubscribe to updates.
 - **Responsive:** Mobile-first design for all devices.
 - **Performance:** Optimized for speed and SEO.

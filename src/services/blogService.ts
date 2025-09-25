@@ -58,7 +58,6 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     return null;
   }
   
-  // Find the post by slug (which we generate from title)
   const post = data.find(p => 
     p.title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '') === slug
   );

@@ -7,7 +7,6 @@ import { ArrowLeft } from "lucide-react";
 import { getBlogPostBySlug, type BlogPost } from "@/services/blogService";
 import { LikeButton } from "@/components/LikeButton";
 import { AISummaryComponent } from "@/components/AISummaryComponent";
-import { GeminiLinksComponent } from '@/components/GeminiLinksComponent';
 import "../components/QuillContent.css";
 
 const BlogPost = () => {
@@ -122,21 +121,6 @@ const BlogPost = () => {
                 size="sm"
                 onClick={() => {
                   const url = encodeURIComponent(window.location.href);
-                  const text = encodeURIComponent(post.title);
-                  window.open(
-                    `https://twitter.com/intent/tweet?url=${url}&text=${text}`,
-                    "_blank",
-                    "noopener,noreferrer"
-                  );
-                }}
-              >
-                Share on Twitter
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  const url = encodeURIComponent(window.location.href);
                   const title = encodeURIComponent(post.title);
                   window.open(
                     `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`,
@@ -149,8 +133,6 @@ const BlogPost = () => {
               </Button>
             </div>
           </div>
-
-          <GeminiLinksComponent title={post.title} content={post.content || ''} />
         </article>
       </main>
       

@@ -12,6 +12,7 @@ import BlogPost from "./pages/BlogPost";
 import Admin from "./pages/Admin";
 import Roadmap from "./pages/Roadmap";
 import AI from "./pages/AI";
+import { Analytics } from '@vercel/analytics/react';
 
 const queryClient = new QueryClient();
 
@@ -36,7 +37,9 @@ const App = () => (
         </TooltipProvider>
       </AuthProvider>
     </ThemeProvider>
+    <Analytics />
   </QueryClientProvider>
+  
 );
 
 export default App;

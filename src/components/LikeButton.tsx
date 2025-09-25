@@ -117,7 +117,6 @@ export function LikeButton({ blogId }: LikeButtonProps) {
           throw error;
         }
 
-        // Update localStorage for anonymous users
         if (!user) {
           const anonymousLikes = getAnonymousLikes();
           if (!anonymousLikes.includes(blogId)) {

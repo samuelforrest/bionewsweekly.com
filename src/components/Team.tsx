@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { ExternalLink, Download, Linkedin } from 'lucide-react'

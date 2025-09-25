@@ -19,7 +19,6 @@ export function Header() {
                 className="h-full w-full rounded-lg"
               />
             </div>
-            <div className="absolute -top-0.5 -right-0.5 h-3 w-3 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full animate-pulse"></div>
           </div>
           <div className="hidden sm:block">
             <h1 className="font-bold text-2xl bg-gradient-to-r from-primary via-green-500 to-emerald-500 bg-clip-text text-transparent group-hover:from-primary/80 group-hover:via-green-500/80 group-hover:to-emerald-500/80 transition-all duration-300">

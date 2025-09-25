@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Brain, BookOpen } from 'lucide-react';
+import { ArrowRight, BookOpen } from 'lucide-react';
 
 export function Hero() {
   return (
@@ -28,7 +28,7 @@ export function Hero() {
               The latest biology news, through the eyes of three passionate A Level biology students.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 pt-8">
+          <div className="pt-8">
             <Link to="/blog">
               <Button 
                 size="lg" 
@@ -37,16 +37,6 @@ export function Hero() {
                 <BookOpen className="w-5 h-5 mr-2" />
                 Read Articles
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-            <Link to="/ai">
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="group border-2 border-border hover:border-primary bg-background/50 backdrop-blur-sm text-lg px-8 py-6 rounded-2xl transition-all duration-300 hover:bg-primary/5 transform hover:scale-105"
-              >
-                <Brain className="w-5 h-5 mr-2" />
-                Talk to BioAI
               </Button>
             </Link>
           </div>

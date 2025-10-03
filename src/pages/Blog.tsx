@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { getAllBlogPosts, type BlogPost } from "@/services/blogService";
 import { Calendar, Clock, ArrowRight, User } from 'lucide-react';
 
-// Function to estimate the reading time of an article
+// Estimate reading time
 const estimateReadingTime = (content: string = ''): string => {
   const wordsPerMinute = 200;
   const words = content.split(' ').length;

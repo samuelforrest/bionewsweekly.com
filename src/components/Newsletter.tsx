@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent } from '@/components/ui/card'
-import { Mail, Bell, Calendar, CheckCircle, AlertCircle, Sparkles } from 'lucide-react'
+import { Mail, Bell, CheckCircle, AlertCircle } from 'lucide-react'
 import { NewsletterService } from '@/services/newsletterService'
 
 export function Newsletter() {
@@ -51,7 +51,7 @@ export function Newsletter() {
               
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                  <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
                     Stay Updated with{' '}
                     <span className="bg-gradient-to-r from-primary via-green-500 to-emerald-500 bg-clip-text text-transparent">
                       BioNewsWeekly
@@ -60,14 +60,8 @@ export function Newsletter() {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-3 gap-8 my-16">
+              <div className="grid md:grid-cols-2 gap-8 my-16">
                 {[
-                  {
-                    icon: Calendar,
-                    title: "Weekly Digest",
-                    description: "Fresh articles every Friday",
-                    gradient: "from-blue-500 to-cyan-500"
-                  },
                   {
                     icon: Bell,
                     title: "Breaking News",
@@ -132,7 +126,7 @@ export function Newsletter() {
                 )}
 
                 <p className="text-sm text-muted-foreground mt-4 leading-relaxed">
-                  No spam, unsubscribe anytime. We respect your privacy and will never share your information.
+                  No spam. Contact us to unsubscribe.
                 </p>
               </div>
             </div>

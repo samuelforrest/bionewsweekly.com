@@ -19,13 +19,13 @@ export function Footer() {
               </div>
               <div>
                 <h3 className="font-bold text-2xl bg-gradient-to-r from-primary via-green-500 to-emerald-500 bg-clip-text text-transparent">
-                  BioNewsWeekly.com
+                  BioNewsWeekly
                 </h3>
                 <p className="text-sm text-muted-foreground">Biology by students, for students</p>
               </div>
             </div>
             <p className="text-muted-foreground leading-relaxed max-w-md">
-              Biology news by students, for students. The latest biology news - what isn't in your textbook!
+              The latest biology news, through the eyes of three passionate A Level biology students.
             </p>
           </div>
 
@@ -95,7 +95,7 @@ export function Footer() {
               © 2025 Bio News Weekly. Website developed by<a href="https://www.samuelforrest.me?utm_source=bionewsweekly&utm_medium=footer&utm_campaign=website_credit" className="text-primary hover:text-primary/80 underline underline-offset-2 transition-colors">Samuel Forrest</a>
             </p>
             <p className="text-xs text-muted-foreground/80 text-center md:text-left">
-              UK GDPR: We store email addresses. Anonymous likes are stored without personal identifiers. Data is processed lawfully and securely.
+              Privacy: Email addresses stored if you subscribe. Trackers & Cookies for Analytics. Likes are anonymous.
             </p>
           </div>
         </div>

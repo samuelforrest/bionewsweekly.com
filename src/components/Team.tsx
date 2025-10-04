@@ -72,7 +72,7 @@ export function Team() {
 								<div className="text-center space-y-6">
 									
 									<div className="relative mx-auto w-32 h-32 mb-6">
-										<div className="absolute inset-0 bg-gradient-to-r from-primary to-green-500 rounded-full p-1 group-hover:animate-pulse">
+										<div className="absolute inset-0 bg-gradient-to-r from-primary to-green-500 rounded-full p-1">
 											<img
 												src={member.avatar}
 												alt={member.name}
@@ -106,7 +106,7 @@ export function Team() {
 										<div className="flex justify-center">
 											<a
 												href={member.linkedinLink}
-												className="flex items-center gap-2 px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 rounded-xl text-sm font-medium text-blue-600 hover:text-blue-700 transition-all duration-300 transform hover:scale-105"
+												className="flex items-center gap-2 px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 rounded-xl text-sm font-medium text-blue-600 hover:text-blue-700 transition-all duration-300 transform hover:scale-105 hover:rotate-3"
 												target="_blank"
 												rel="noopener noreferrer"
 											>
@@ -143,7 +143,7 @@ export function Team() {
 						</p>
 						<a
 							href="mailto:sam@samuelforrest.me"
-							className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-green-500 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+							className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-green-500 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 hover:rotate-3"
 						>
 							<ExternalLink className="w-4 h-4" />
 							Get in Touch

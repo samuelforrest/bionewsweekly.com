@@ -73,7 +73,7 @@ const BlogPost = () => {
       <Header />
       
       <main className="flex-grow mt-20 pt-6 pb-16">
-        <article className="container px-4 mx-auto max-w-4xl">
+        <article className="container px-3 md:px-4 mx-auto max-w-5xl">
           <Link to="/blog" className="inline-flex items-center text-foreground hover:text-primary mb-8">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to all posts

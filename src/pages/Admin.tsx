@@ -122,13 +122,7 @@ const Admin = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-6 text-sm">
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">Login Information:</h4>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                  <li>Password: <code className="bg-muted px-2 py-1 rounded text-primary font-mono">bionews2025</code> (no caps) - no sharing</li>
-                </ul>
-              </div>
-              
+            
               <div>
                 <h4 className="font-semibold text-foreground mb-2">Article Guidelines:</h4>
                 <ul className="list-disc list-inside text-muted-foreground space-y-1">
@@ -151,15 +145,7 @@ const Admin = () => {
                     </a>
                   </li>
                   <li>Copy the direct image link and paste it in the "Cover Image URL" field</li>
-                  <li>Ensure images are high quality and relevant to your article content</li>
-                  <li>Recommended image size: at least 1000x1000 pixels for best display</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">Other Info:</h4>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                  <li>Database runs on Supabase, the uptime is high</li>
-                  <li>If possible, back up or save your articles elsewhere, in the rare event of database failure.</li>
+                  <li>Ensure images are high quality and relevant to your article content, as well as appropriate.</li>
                 </ul>
               </div>
             </div>

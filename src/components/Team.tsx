@@ -21,7 +21,7 @@ const teamMembers = [
 		avatar: '/danny_pfp.jpg',
 		specialty: 'Research',
 		epqLink: '/epq/danny-mellor-epq.pdf',
-		linkedinLink: 'https://www.linkedin.com/in/daniel-mellor-8abb96366/',
+		linkedinLink: 'https://www.linkedin.com/in/danny-mellor-8abb96366',
 	},
 	{
 		name: 'Aditi Deshpande',

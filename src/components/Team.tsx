@@ -1,6 +1,6 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { ExternalLink, Download, Linkedin } from 'lucide-react'
+import { ExternalLink, Linkedin } from 'lucide-react'
 
 const teamMembers = [
 	{
@@ -10,7 +10,6 @@ const teamMembers = [
 		subjects: ['Biology', 'Chemistry', 'Mathematics'],
 		avatar: '/freddie_pfp.jpeg',
 		specialty: 'Medicine',
-		epqLink: '/epq/freddie-rees-epq.pdf',
 		linkedinLink: 'https://www.linkedin.com/in/freddie-rees-161a2a353/',
 	},
 	{
@@ -20,7 +19,6 @@ const teamMembers = [
 		subjects: ['Biology', 'Mathematics', 'Psychology'],
 		avatar: '/danny_pfp.jpg',
 		specialty: 'Research',
-		epqLink: '/epq/danny-mellor-epq.pdf',
 		linkedinLink: 'https://www.linkedin.com/in/danny-mellor-8abb96366',
 	},
 	{
@@ -30,7 +28,6 @@ const teamMembers = [
 		subjects: ['Biology', 'Chemistry', 'Mathematics'],
 		avatar: '/aditi_pfp.jpeg',
 		specialty: 'Medicine',
-		epqLink: '/epq/aditi-deshpande-epq.pdf',
 		linkedinLink: 'https://www.linkedin.com/in/aditi-deshpande-176560382/',
 	},
 ]
@@ -106,16 +103,7 @@ export function Team() {
 
 									
 									<div className="flex flex-col gap-3 pt-4">
-										<div className="flex gap-2 justify-center">
-											<a
-												href={member.epqLink}
-												className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-green-500/10 hover:from-primary/20 hover:to-green-500/20 border border-primary/20 rounded-xl text-sm font-medium text-primary hover:text-primary transition-all duration-300 transform hover:scale-105"
-												target="_blank"
-												rel="noopener noreferrer"
-											>
-												<Download className="w-4 h-4" />
-												EPQ
-											</a>
+										<div className="flex justify-center">
 											<a
 												href={member.linkedinLink}
 												className="flex items-center gap-2 px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 rounded-xl text-sm font-medium text-blue-600 hover:text-blue-700 transition-all duration-300 transform hover:scale-105"

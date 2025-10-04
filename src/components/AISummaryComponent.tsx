@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Brain, Clock, Lightbulb, KeyRound, X } from 'lucide-react';
+import { Brain, Clock, Lightbulb, KeyRound, X, Cpu } from 'lucide-react';
 import { getCachedBlogSummary, type AISummary } from '@/services/aiSummaryService';
 
 interface AISummaryComponentProps {
@@ -51,8 +51,8 @@ export function AISummaryComponent({ postId, title, content }: AISummaryComponen
             <Brain className="h-5 w-5 text-blue-500" />
             <CardTitle className="text-lg text-blue-500">AI Summary</CardTitle>
             <Badge variant="secondary" className="text-xs">
-              <Lightbulb className="h-3 w-3 mr-1" />
-              Powered by ChatGPT
+              <Cpu className="h-3 w-3 mr-1" />
+              ChatGPT
             </Badge>
             <button
               onClick={() => setIsVisible(false)}
@@ -113,8 +113,8 @@ export function AISummaryComponent({ postId, title, content }: AISummaryComponen
             <Brain className="h-5 w-5 text-blue-500" />
             <CardTitle className="text-lg text-blue-500">AI Summary</CardTitle>
             <Badge variant="secondary" className="text-xs">
-              <Lightbulb className="h-3 w-3 mr-1" />
-              ChatGPT Response
+              <Cpu className="h-3 w-3 mr-1" />
+              ChatGPT
             </Badge>
           </div>
           <div className="flex items-center gap-2">

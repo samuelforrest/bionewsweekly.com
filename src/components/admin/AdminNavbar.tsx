@@ -22,20 +22,15 @@ export function AdminNavbar({ onLogout }: AdminNavbarProps) {
               </div>
               <div>
                 <h1 className="font-bold text-xl bg-gradient-to-r from-primary via-green-500 to-emerald-500 bg-clip-text text-transparent">
-                  Admin Portal
+                  Admin / CMS
                 </h1>
-                <p className="text-xs text-muted-foreground">BioNewsWeekly &copy; Management</p>
+                <p className="text-xs text-muted-foreground">BioNewsWeekly CMS</p>
               </div>
             </Link>
           </div>
 
           <div className="flex items-center space-x-3">
-            <Link to="/">
-              <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-                <Home className="h-4 w-4 mr-2" />
-                Home
-              </Button>
-            </Link>
+          
             
             <ThemeToggle />
             

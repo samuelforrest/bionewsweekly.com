@@ -51,7 +51,7 @@ export function Hero() {
                     7
                   </div>
                   <div className="text-sm text-muted-foreground font-medium">
-                    Articles published
+                    Articles
                   </div>
                 </div>
               </div>
@@ -64,7 +64,7 @@ export function Hero() {
                     2
                   </div>
                   <div className="text-sm text-muted-foreground font-medium">
-                    Schools using BioNewsWeekly
+                    Schools
                   </div>
                 </div>
               </div>
@@ -74,10 +74,10 @@ export function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-green-500/5 md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative z-10 text-center">
                   <div className="text-3xl md:text-4xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                    200+
+                    200
                   </div>
                   <div className="text-sm text-muted-foreground font-medium">
-                    Monthly readers
+                    Readers
                   </div>
                 </div>
               </div>

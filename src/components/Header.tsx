@@ -80,18 +80,11 @@ export function Header() {
               <span className="text-sm font-medium">Articles</span>
             </a>
             <a 
-              href="/roadmap" 
-              className="flex items-center space-x-3 px-4 py-3 text-foreground hover:text-primary hover:bg-primary/5 rounded-xl transition-all duration-300"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <span className="text-sm font-medium">Roadmap</span>
-            </a>
-            <a 
               href="/admin" 
               className="flex items-center space-x-3 px-4 py-3 text-foreground hover:text-primary hover:bg-primary/5 rounded-xl transition-all duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
-              <span className="text-sm font-medium">Admin</span>
+              <span className="text-sm font-medium">Admin / CMS</span>
             </a>
           </nav>
         </div>

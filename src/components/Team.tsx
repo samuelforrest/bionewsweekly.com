@@ -5,7 +5,7 @@ import { ExternalLink, Linkedin } from 'lucide-react'
 const teamMembers = [
 	{
 		name: 'Freddie Rees',
-		role: 'Editor-in-Chief',
+		role: 'Founder & Editor',
 		bio: 'Freddie is truly passionate about Biology and aspires to become a doctor, or maybe a vet.',
 		subjects: ['Biology', 'Chemistry', 'Mathematics'],
 		avatar: '/freddie_pfp.jpeg',

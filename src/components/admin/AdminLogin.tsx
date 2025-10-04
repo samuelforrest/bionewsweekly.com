@@ -14,14 +14,51 @@ interface AdminLoginProps {
 export function AdminLogin({ onLogin }: AdminLoginProps) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === "bionews2025") {
-      onLogin();
-      setError("");
-    } else {
-      setError("Incorrect password");
+    setIsLoading(true);
+    setError("");
+
+    try {
+      // Development mode fallback - use environment variable
+      if (import.meta.env.DEV) {
+        // In development, we'll use a client-side env var
+        const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD || "bionews2025";
+        
+        if (password === adminPassword) {
+          onLogin();
+          setError("");
+        } else {
+          setError("Invalid password");
+        }
+        setIsLoading(false);
+        return;
+      }
+
+      // Production mode - use secure API
+      const response = await fetch('/api/admin-auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        onLogin();
+        setError("");
+      } else {
+        setError(data.error || "Authentication failed");
+      }
+    } catch (err) {
+      console.error('Admin login error:', err);
+      setError("Network error. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -49,8 +86,8 @@ export function AdminLogin({ onLogin }: AdminLoginProps) {
                 />
               </div>
               {error && <p className="text-sm text-destructive">{error}</p>}
-              <Button type="submit" className="w-full">
-                Login
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? "Verifying..." : "Login"}
               </Button>
             </form>
             

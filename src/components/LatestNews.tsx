@@ -132,7 +132,7 @@ export function LatestNews() {
           <Link to="/blog">
             <Button 
               size="lg" 
-              className="group bg-gradient-to-r from-primary to-green-500 hover:from-primary/90 hover:to-green-500/90 text-white border-0 text-lg px-8 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              className="group bg-gradient-to-r from-primary to-green-500 hover:from-primary/90 hover:to-green-500/90 text-white border-0 text-lg px-8 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:rotate-3"
             >
               View All Articles
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />

@@ -32,7 +32,7 @@ export function Hero() {
             <Link to="/blog">
               <Button 
                 size="lg" 
-                className="group bg-gradient-to-r from-primary to-green-500 hover:from-primary/90 hover:to-green-500/90 text-white border-0 text-lg px-8 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="group bg-gradient-to-r from-primary to-green-500 hover:from-primary/90 hover:to-green-500/90 text-white border-0 text-lg px-8 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:rotate-3"
               >
                 <BookOpen className="w-5 h-5 mr-2" />
                 Read Articles
@@ -42,27 +42,45 @@ export function Hero() {
           </div>
 
           <div className="grid grid-cols-3 gap-8 pt-16 w-full max-w-3xl">
-            {[
-              { number: "6+", label: "Articles Published", delay: "0s" },
-              { number: "3", label: "Student Writers", delay: "0.1s" },
-              { number: "150+", label: "Weekly Readers", delay: "0.2s" }
-            ].map((stat, index) => (
               <div 
-                key={index}
                 className="group relative p-6 md:bg-card/50 md:backdrop-blur-sm md:border md:border-border/50 md:rounded-2xl md:hover:border-primary/50 transition-all duration-300 transform hover:scale-105 md:hover:shadow-lg"
-                style={{ animationDelay: stat.delay }}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-green-500/5 md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative z-10 text-center">
                   <div className="text-3xl md:text-4xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                    {stat.number}
+                    7
                   </div>
                   <div className="text-sm text-muted-foreground font-medium">
-                    {stat.label}
+                    Articles published
                   </div>
                 </div>
               </div>
-            ))}
+              <div 
+                className="group relative p-6 md:bg-card/50 md:backdrop-blur-sm md:border md:border-border/50 md:rounded-2xl md:hover:border-primary/50 transition-all duration-300 transform hover:scale-105 md:hover:shadow-lg"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-green-500/5 md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10 text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                    2
+                  </div>
+                  <div className="text-sm text-muted-foreground font-medium">
+                    Schools using BioNewsWeekly
+                  </div>
+                </div>
+              </div>
+              <div 
+                className="group relative p-6 md:bg-card/50 md:backdrop-blur-sm md:border md:border-border/50 md:rounded-2xl md:hover:border-primary/50 transition-all duration-300 transform hover:scale-105 md:hover:shadow-lg"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-green-500/5 md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10 text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                    200+
+                  </div>
+                  <div className="text-sm text-muted-foreground font-medium">
+                    Monthly readers
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
       </div>

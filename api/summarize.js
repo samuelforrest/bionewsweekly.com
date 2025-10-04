@@ -28,7 +28,7 @@ export default async function handler(req, res) {
         messages: [
           {
             role: 'system',
-            content: 'You are a helpful assistant that creates concise summaries and key points for biology blog posts. Focus on the key findings, implications, and significance. Keep summaries to 2-3 sentences. Use Great British UK English.'
+            content: 'You are a helpful assistant that creates concise summaries and key points for biology blog posts. Focus on the key findings, implications, and significance. Keep summaries to 2 sentences. Use Great British UK English.'
           },
           {
             role: 'user',

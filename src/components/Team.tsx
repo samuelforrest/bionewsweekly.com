@@ -5,7 +5,7 @@ import { ExternalLink, Linkedin } from 'lucide-react'
 const teamMembers = [
 	{
 		name: 'Freddie Rees',
-		role: 'Founder & Editor',
+		role: 'Founder',
 		bio: 'Freddie is truly passionate about Biology and aspires to become a doctor, or maybe a vet.',
 		subjects: ['Biology', 'Chemistry', 'Mathematics'],
 		avatar: '/freddie_pfp.jpeg',
@@ -14,7 +14,7 @@ const teamMembers = [
 	},
 	{
 		name: 'Danny Mellor',
-		role: 'Content Writer',
+		role: 'Founder',
 		bio: 'Danny is an aspiring biologist driven by a deep fascination for understanding life and research.',
 		subjects: ['Biology', 'Mathematics', 'Psychology'],
 		avatar: '/danny_pfp.jpg',
@@ -23,7 +23,7 @@ const teamMembers = [
 	},
 	{
 		name: 'Aditi Deshpande',
-		role: 'Editor',
+		role: 'Founder',
 		bio: 'Aditi has dreamt of becoming a doctor since she was young. She intends to study medicine at University.',
 		subjects: ['Biology', 'Chemistry', 'Mathematics'],
 		avatar: '/aditi_pfp.jpeg',

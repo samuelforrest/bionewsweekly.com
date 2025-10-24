@@ -24,7 +24,7 @@ function stripHtml(html: string): string {
 
 async function generateAISummary(
   title: string,
-  content: string,
+  content: string
 ): Promise<{ summary: string; keyPoints: string[] }> {
   const plainTextContent = stripHtml(content);
 
@@ -47,7 +47,7 @@ async function generateAISummary(
     const data = await response.json();
 
     if (!data.summary) {
-      throw new Error("No summary received from AI service");
+      throw new Error("Error contacting AI");
     }
 
     const sentences = data.summary
@@ -69,7 +69,7 @@ async function generateAISummary(
 export async function getCachedBlogSummary(
   postId: string,
   title: string,
-  content: string,
+  content: string
 ): Promise<AISummary> {
   if (summaryCache.has(postId)) {
     return summaryCache.get(postId)!;

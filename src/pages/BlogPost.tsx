@@ -13,15 +13,15 @@ const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     async function fetchPost() {
       if (!slug) return;
-      
+
       try {
         const fetchedPost = await getBlogPostBySlug(slug);
         setPost(fetchedPost);
-        
+
         if (fetchedPost) {
           document.title = `${fetchedPost.title} | Samuel Forrest`;
         } else {
@@ -37,7 +37,7 @@ const BlogPost = () => {
     fetchPost();
     window.scrollTo(0, 0);
   }, [slug]);
-  
+
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col bg-background">
@@ -49,15 +49,20 @@ const BlogPost = () => {
       </div>
     );
   }
-  
+
   if (!post) {
     return (
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-3xl font-bold mb-4 text-foreground">Post Not Found</h1>
-            <p className="text-muted-foreground mb-8">The blog post you're looking for doesn't exist or has been removed.</p>
+            <h1 className="text-3xl font-bold mb-4 text-foreground">
+              Post Not Found
+            </h1>
+            <p className="text-muted-foreground mb-8">
+              The blog post you're looking for doesn't exist or has been
+              removed.
+            </p>
             <Link to="/blog">
               <Button>Back to Blog</Button>
             </Link>
@@ -67,20 +72,25 @@ const BlogPost = () => {
       </div>
     );
   }
-  
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      
+
       <main className="flex-grow mt-20 pt-6 pb-16">
         <article className="container px-3 md:px-4 mx-auto max-w-5xl">
-          <Link to="/blog" className="inline-flex items-center text-foreground hover:text-primary mb-8">
+          <Link
+            to="/blog"
+            className="inline-flex items-center text-foreground hover:text-primary mb-8"
+          >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to all posts
           </Link>
-          
+
           <div className="mb-8">
-            <h1 className="text-4xl font-bold mb-4 font-serif text-foreground">{post.title}</h1>
+            <h1 className="text-4xl font-bold mb-4 font-serif text-foreground">
+              {post.title}
+            </h1>
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
               <span>{post.date}</span>
               <span>•</span>
@@ -91,26 +101,26 @@ const BlogPost = () => {
               </span>
             </div>
           </div>
-          
+
           {post.cover_image && (
             <div className="mb-8">
-              <img 
-                src={post.cover_image} 
-                alt={post.title} 
-                className="w-full h-auto rounded-lg shadow-lg" 
+              <img
+                src={post.cover_image}
+                alt={post.title}
+                className="w-full h-auto rounded-lg shadow-lg"
               />
             </div>
           )}
 
-          <AISummaryComponent 
-            postId={post.id} 
-            title={post.title} 
-            content={post.content || ''} 
+          <AISummaryComponent
+            postId={post.id}
+            title={post.title}
+            content={post.content || ""}
           />
-          
-          <div 
+
+          <div
             className="ql-editor prose prose-lg max-w-none mb-8 text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-em:text-foreground prose-blockquote:text-foreground prose-code:text-foreground prose-pre:text-foreground prose-li:text-foreground"
-            dangerouslySetInnerHTML={{ __html: post.content || '' }}
+            dangerouslySetInnerHTML={{ __html: post.content || "" }}
           />
 
           <div className="flex items-center gap-4 mb-8 py-4 border-y border-border">
@@ -125,7 +135,7 @@ const BlogPost = () => {
                   window.open(
                     `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`,
                     "_blank",
-                    "noopener,noreferrer"
+                    "noopener,noreferrer",
                   );
                 }}
               >
@@ -135,7 +145,7 @@ const BlogPost = () => {
           </div>
         </article>
       </main>
-      
+
       <Footer />
     </div>
   );

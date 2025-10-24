@@ -30,16 +30,16 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
   const generateSlug = (title: string) => {
     return title
       .toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
       .trim();
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTitle = e.target.value;
     setTitle(newTitle);
-    
+
     if (!slug || slug === generateSlug(post?.title || "")) {
       setSlug(generateSlug(newTitle));
     }
@@ -50,31 +50,33 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
     setLoading(true);
 
     try {
-      const tagsArray = tags.split(",").map(tag => tag.trim()).filter(tag => tag);
-      
+      const tagsArray = tags
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter((tag) => tag);
+
       const postData = {
         title,
         content,
         preview: preview || null,
         category,
         author,
-        cover_image: coverImage || "https://via.placeholder.com/800x400?text=No+Image",
+        cover_image:
+          coverImage || "https://via.placeholder.com/800x400?text=No+Image",
         slug: slug || generateSlug(title),
         tags: tagsArray.length > 0 ? tagsArray : null,
       };
 
       if (post?.id) {
         const { error } = await supabase
-          .from('blogs')
+          .from("blogs")
           .update(postData)
-          .eq('id', post.id);
+          .eq("id", post.id);
 
         if (error) throw error;
         toast.success("Blog post updated successfully!");
       } else {
-        const { error } = await supabase
-          .from('blogs')
-          .insert([postData]);
+        const { error } = await supabase.from("blogs").insert([postData]);
 
         if (error) throw error;
         toast.success("Blog post created successfully!");
@@ -84,7 +86,9 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
     } catch (error) {
       console.error("Error saving blog post:", error);
       console.error("Error details:", JSON.stringify(error, null, 2));
-      toast.error(`Failed to save blog post: ${error.message || 'Unknown error'}`);
+      toast.error(
+        `Failed to save blog post: ${error.message || "Unknown error"}`,
+      );
     } finally {
       setLoading(false);
     }
@@ -93,12 +97,16 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
   return (
     <Card className="border-border bg-card">
       <CardHeader>
-        <CardTitle className="text-foreground">{post ? "Edit Blog Post" : "Create New Blog Post"}</CardTitle>
+        <CardTitle className="text-foreground">
+          {post ? "Edit Blog Post" : "Create New Blog Post"}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <Label htmlFor="title" className="text-foreground">Title</Label>
+            <Label htmlFor="title" className="text-foreground">
+              Title
+            </Label>
             <Input
               id="title"
               value={title}
@@ -109,7 +117,9 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="slug" className="text-foreground">URL Slug</Label>
+            <Label htmlFor="slug" className="text-foreground">
+              URL Slug
+            </Label>
             <Input
               id="slug"
               value={slug}
@@ -124,7 +134,9 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="preview" className="text-foreground">Preview</Label>
+            <Label htmlFor="preview" className="text-foreground">
+              Preview
+            </Label>
             <Textarea
               id="preview"
               value={preview}
@@ -136,7 +148,9 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="category" className="text-foreground">Category</Label>
+            <Label htmlFor="category" className="text-foreground">
+              Category
+            </Label>
             <Input
               id="category"
               value={category}
@@ -147,7 +161,9 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="author" className="text-foreground">Author</Label>
+            <Label htmlFor="author" className="text-foreground">
+              Author
+            </Label>
             <Input
               id="author"
               value={author}
@@ -158,7 +174,9 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="coverImage" className="text-foreground">Cover Image URL</Label>
+            <Label htmlFor="coverImage" className="text-foreground">
+              Cover Image URL
+            </Label>
             <Input
               id="coverImage"
               value={coverImage}
@@ -169,7 +187,9 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
           </div>
 
           <div>
-            <Label htmlFor="tags" className="text-foreground">Tags (comma separated)</Label>
+            <Label htmlFor="tags" className="text-foreground">
+              Tags (comma separated)
+            </Label>
             <Input
               id="tags"
               value={tags}
@@ -185,10 +205,19 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
           </div>
 
           <div className="flex gap-4">
-            <Button type="submit" disabled={loading} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            <Button
+              type="submit"
+              disabled={loading}
+              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+            >
               {loading ? "Saving..." : post ? "Update Post" : "Create Post"}
             </Button>
-            <Button type="button" variant="outline" onClick={onCancel} className="border-border text-foreground hover:bg-muted">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onCancel}
+              className="border-border text-foreground hover:bg-muted"
+            >
               Cancel
             </Button>
           </div>

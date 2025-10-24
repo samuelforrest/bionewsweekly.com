@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Brain, Clock, Lightbulb, KeyRound, X, Cpu } from 'lucide-react';
-import { getCachedBlogSummary, type AISummary } from '@/services/aiSummaryService';
+import { useState, useEffect } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Brain, Clock, Lightbulb, KeyRound, X, Cpu } from "lucide-react";
+import {
+  getCachedBlogSummary,
+  type AISummary,
+} from "@/services/aiSummaryService";
 
 interface AISummaryComponentProps {
   postId: string;
@@ -11,7 +14,11 @@ interface AISummaryComponentProps {
   content: string;
 }
 
-export function AISummaryComponent({ postId, title, content }: AISummaryComponentProps) {
+export function AISummaryComponent({
+  postId,
+  title,
+  content,
+}: AISummaryComponentProps) {
   const [summary, setSummary] = useState<AISummary | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -22,13 +29,15 @@ export function AISummaryComponent({ postId, title, content }: AISummaryComponen
       try {
         setLoading(true);
         setError(null);
-        
+
         const aiSummary = await getCachedBlogSummary(postId, title, content);
 
         setSummary(aiSummary);
       } catch (err) {
-        console.error('Failed to generate AI summary:', err);
-        setError(err instanceof Error ? err.message : 'Unable to generate AI summary');
+        console.error("Failed to generate AI summary:", err);
+        setError(
+          err instanceof Error ? err.message : "Unable to generate AI summary",
+        );
       } finally {
         setLoading(false);
       }
@@ -98,7 +107,8 @@ export function AISummaryComponent({ postId, title, content }: AISummaryComponen
         </CardHeader>
         <CardContent>
           <p className="text-sm text-foreground">
-            {error || 'AI summary could not be generated at this time. Please read the full article below.'}
+            {error ||
+              "AI summary could not be generated at this time. Please read the full article below."}
           </p>
         </CardContent>
       </Card>
@@ -138,7 +148,7 @@ export function AISummaryComponent({ postId, title, content }: AISummaryComponen
             {summary.summary}
           </p>
         </div>
-        
+
         {summary.keyPoints.length > 0 && (
           <div>
             <h4 className="text-sm font-semibold mb-2 flex items-center gap-1 text-foreground">
@@ -147,7 +157,10 @@ export function AISummaryComponent({ postId, title, content }: AISummaryComponen
             </h4>
             <ul className="space-y-1">
               {summary.keyPoints.map((point, index) => (
-                <li key={index} className="text-xs text-muted-foreground flex items-start gap-2">
+                <li
+                  key={index}
+                  className="text-xs text-muted-foreground flex items-start gap-2"
+                >
                   <span className="text-blue-500 mt-1">•</span>
                   <span>{point}</span>
                 </li>

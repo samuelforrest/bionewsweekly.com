@@ -17,23 +17,26 @@ function estimateReadingTime(content: string): string {
 }
 
 function stripHtml(html: string): string {
-  const tempDiv = document.createElement('div');
+  const tempDiv = document.createElement("div");
   tempDiv.innerHTML = html;
-  return tempDiv.textContent || tempDiv.innerText || '';
+  return tempDiv.textContent || tempDiv.innerText || "";
 }
 
-async function generateAISummary(title: string, content: string): Promise<{ summary: string; keyPoints: string[] }> {
+async function generateAISummary(
+  title: string,
+  content: string,
+): Promise<{ summary: string; keyPoints: string[] }> {
   const plainTextContent = stripHtml(content);
-  
+
   try {
-    const response = await fetch('/api/summarize', {
-      method: 'POST',
+    const response = await fetch("/api/summarize", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        content: `Title: ${title}\n\nContent: ${plainTextContent}`
-      })
+        content: `Title: ${title}\n\nContent: ${plainTextContent}`,
+      }),
     });
 
     if (!response.ok) {
@@ -42,25 +45,32 @@ async function generateAISummary(title: string, content: string): Promise<{ summ
     }
 
     const data = await response.json();
-    
+
     if (!data.summary) {
-      throw new Error('No summary received from AI service');
+      throw new Error("No summary received from AI service");
     }
 
-    const sentences = data.summary.split(/[.!?]+/).filter(s => s.trim().length > 0);
-    const keyPoints = sentences.slice(0, 3).map(s => s.trim());
+    const sentences = data.summary
+      .split(/[.!?]+/)
+      .filter((s) => s.trim().length > 0);
+    const keyPoints = sentences.slice(0, 3).map((s) => s.trim());
 
     return {
       summary: data.summary,
-      keyPoints: keyPoints.length > 0 ? keyPoints : ["AI-generated summary available"]
+      keyPoints:
+        keyPoints.length > 0 ? keyPoints : ["AI-generated summary available"],
     };
   } catch (error) {
-    console.error('Error calling AI summary API:', error);
+    console.error("Error calling AI summary API:", error);
     throw error;
   }
 }
 
-export async function getCachedBlogSummary(postId: string, title: string, content: string): Promise<AISummary> {
+export async function getCachedBlogSummary(
+  postId: string,
+  title: string,
+  content: string,
+): Promise<AISummary> {
   if (summaryCache.has(postId)) {
     return summaryCache.get(postId)!;
   }
@@ -68,24 +78,23 @@ export async function getCachedBlogSummary(postId: string, title: string, conten
   try {
     const { summary, keyPoints } = await generateAISummary(title, content);
     const estimatedReadTime = estimateReadingTime(content);
-    
+
     const aiSummary: AISummary = {
       id: `summary_${postId}_${Date.now()}`,
       postId,
       summary,
       keyPoints,
       estimatedReadTime,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
     summaryCache.set(postId, aiSummary);
-    
+
     return aiSummary;
   } catch (error) {
-    console.error('Failed to generate AI summary:', error);
+    console.error("Failed to generate AI summary:", error);
     throw error;
   }
 }
-
 
 export function clearSummaryCache(): void {
   summaryCache.clear();

@@ -18,15 +18,18 @@ A web app built with React and Vite, news, AI-powered summaries, and a newslette
 ## Tech Stack
 
 **Frontend Framework**
+
 - [React](https://react.dev/)
 - [Vite](https://vitejs.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 
 **Styling & UI**
+
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Shadcn UI](https://ui.shadcn.com/)
 - [Quill](https://quilljs.com/) (Rich Text Editor)
 
 **Integrations**
+
 - [Supabase](https://supabase.com/) (Auth & Database)
 - [Google Gemini API](https://ai.google.dev) (AI summaries)

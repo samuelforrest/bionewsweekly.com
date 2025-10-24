@@ -10,7 +10,7 @@ import NotFound from "./pages/NotFound";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Admin from "./pages/Admin";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
 const queryClient = new QueryClient();
 
@@ -35,7 +35,6 @@ const App = () => (
     </ThemeProvider>
     <Analytics />
   </QueryClientProvider>
-  
 );
 
 export default App;

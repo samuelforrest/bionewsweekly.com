@@ -1,7 +1,7 @@
-import { Button } from '@/components/ui/button';
-import { ThemeToggle } from '@/components/theme-toggle';
-import { LogOut, Settings } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { LogOut, Settings } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface AdminNavbarProps {
   onLogout?: () => void;
@@ -23,16 +23,16 @@ export function AdminNavbar({ onLogout }: AdminNavbarProps) {
                 <h1 className="font-bold text-xl bg-gradient-to-r from-primary via-green-500 to-emerald-500 bg-clip-text text-transparent">
                   Admin / CMS
                 </h1>
-                <p className="text-xs text-muted-foreground">BioNewsWeekly CMS</p>
+                <p className="text-xs text-muted-foreground">
+                  BioNewsWeekly CMS
+                </p>
               </div>
             </Link>
           </div>
 
           <div className="flex items-center space-x-3">
-          
-            
             <ThemeToggle />
-            
+
             {onLogout && (
               <Button variant="outline" size="sm" onClick={onLogout}>
                 <LogOut className="h-4 w-4 mr-2" />

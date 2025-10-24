@@ -1,23 +1,23 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Button } from '@/components/ui/button';
-import { Heart } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from '@/contexts/AuthContext';
-import { toast } from 'sonner';
+import { useState, useEffect, useCallback } from "react";
+import { Button } from "@/components/ui/button";
+import { Heart } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 
 interface LikeButtonProps {
   blogId: string;
 }
 
 const getAnonymousLikes = (): string[] => {
-  if (typeof window === 'undefined') return [];
-  const likes = localStorage.getItem('bionews_anonymous_likes');
+  if (typeof window === "undefined") return [];
+  const likes = localStorage.getItem("bionews_anonymous_likes");
   return likes ? JSON.parse(likes) : [];
 };
 
 const saveAnonymousLikes = (likes: string[]) => {
-  if (typeof window === 'undefined') return;
-  localStorage.setItem('bionews_anonymous_likes', JSON.stringify(likes));
+  if (typeof window === "undefined") return;
+  localStorage.setItem("bionews_anonymous_likes", JSON.stringify(likes));
 };
 
 export function LikeButton({ blogId }: LikeButtonProps) {
@@ -29,23 +29,23 @@ export function LikeButton({ blogId }: LikeButtonProps) {
   const fetchLikes = useCallback(async () => {
     try {
       const { data: likes, error: likesError } = await supabase
-        .from('likes')
-        .select('*')
-        .eq('blog_id', blogId);
+        .from("likes")
+        .select("*")
+        .eq("blog_id", blogId);
 
       if (likesError) throw likesError;
 
       setLikeCount(likes?.length || 0);
 
       if (user) {
-        const userLike = likes?.find(like => like.user_id === user.id);
+        const userLike = likes?.find((like) => like.user_id === user.id);
         setIsLiked(!!userLike);
       } else {
         const anonymousLikes = getAnonymousLikes();
         setIsLiked(anonymousLikes.includes(blogId));
       }
     } catch (error) {
-      console.error('Error fetching likes:', error);
+      console.error("Error fetching likes:", error);
     }
   }, [blogId, user]);
 
@@ -57,48 +57,47 @@ export function LikeButton({ blogId }: LikeButtonProps) {
     setLoading(true);
 
     try {
-
       if (isLiked) {
         if (user) {
           const { error } = await supabase
-            .from('likes')
+            .from("likes")
             .delete()
-            .eq('blog_id', blogId)
-            .eq('user_id', user.id);
+            .eq("blog_id", blogId)
+            .eq("user_id", user.id);
 
           if (error) {
-            console.error('Database error:', error);
+            console.error("Database error:", error);
             throw error;
           }
         } else {
           const { error } = await supabase
-            .from('likes')
+            .from("likes")
             .delete()
-            .eq('blog_id', blogId)
-            .is('user_id', null)
+            .eq("blog_id", blogId)
+            .is("user_id", null)
             .limit(1);
 
           if (error) {
-            console.error('Database error:', error);
+            console.error("Database error:", error);
             throw error;
           }
 
           const anonymousLikes = getAnonymousLikes();
-          const updatedLikes = anonymousLikes.filter(id => id !== blogId);
+          const updatedLikes = anonymousLikes.filter((id) => id !== blogId);
           saveAnonymousLikes(updatedLikes);
         }
 
         setIsLiked(false);
-        setLikeCount(prev => prev - 1);
-        toast.success('Like removed');
+        setLikeCount((prev) => prev - 1);
+        toast.success("Like removed");
       } else {
-        const likeData: { 
-          blog_id: string; 
+        const likeData: {
+          blog_id: string;
           created_at: string;
           user_id?: string | null;
-        } = { 
-          blog_id: blogId, 
-          created_at: new Date().toISOString()
+        } = {
+          blog_id: blogId,
+          created_at: new Date().toISOString(),
         };
 
         if (user) {
@@ -108,12 +107,12 @@ export function LikeButton({ blogId }: LikeButtonProps) {
         }
 
         const { data, error } = await supabase
-          .from('likes')
+          .from("likes")
           .insert([likeData])
           .select();
 
         if (error) {
-          console.error('Database error:', error);
+          console.error("Database error:", error);
           throw error;
         }
 
@@ -126,26 +125,32 @@ export function LikeButton({ blogId }: LikeButtonProps) {
         }
 
         setIsLiked(true);
-        setLikeCount(prev => prev + 1);
-        
+        setLikeCount((prev) => prev + 1);
+
         if (user) {
-          toast.success('Post liked!');
+          toast.success("Post liked!");
         } else {
-          toast.success('Post liked! Thanks for your feedback');
+          toast.success("Post liked! Thanks for your feedback");
         }
       }
     } catch (error) {
-      console.error('Error toggling like:', error);
-      console.error('Full error object:', JSON.stringify(error, null, 2));
-      
-      if (error && typeof error === 'object' && 'message' in error) {
-        const errorObj = error as { message?: string; code?: string; details?: string };
-        console.error('Error message:', errorObj.message);
-        console.error('Error code:', errorObj.code);
-        console.error('Error details:', errorObj.details);
-        toast.error(`Failed to update like: ${errorObj.message || 'Unknown error'}`);
+      console.error("Error toggling like:", error);
+      console.error("Full error object:", JSON.stringify(error, null, 2));
+
+      if (error && typeof error === "object" && "message" in error) {
+        const errorObj = error as {
+          message?: string;
+          code?: string;
+          details?: string;
+        };
+        console.error("Error message:", errorObj.message);
+        console.error("Error code:", errorObj.code);
+        console.error("Error details:", errorObj.details);
+        toast.error(
+          `Failed to update like: ${errorObj.message || "Unknown error"}`,
+        );
       } else {
-        toast.error('Failed to update like - please try again');
+        toast.error("Failed to update like - please try again");
       }
     } finally {
       setLoading(false);
@@ -160,7 +165,9 @@ export function LikeButton({ blogId }: LikeButtonProps) {
       disabled={loading}
       className="flex items-center gap-2"
     >
-      <Heart className={`h-4 w-4 ${isLiked ? 'fill-red-500 text-red-500' : ''}`} />
+      <Heart
+        className={`h-4 w-4 ${isLiked ? "fill-red-500 text-red-500" : ""}`}
+      />
       {likeCount}
     </Button>
   );

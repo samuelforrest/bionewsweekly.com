@@ -4,7 +4,14 @@ import { AdminNavbar } from "@/components/admin/AdminNavbar";
 import { BlogPostForm } from "@/components/admin/BlogPostForm";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { getAllBlogPosts, type BlogPost } from "@/services/blogService";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -47,13 +54,10 @@ const Admin = () => {
     }
 
     try {
-      const { error } = await supabase
-        .from('blogs')
-        .delete()
-        .eq('id', postId);
+      const { error } = await supabase.from("blogs").delete().eq("id", postId);
 
       if (error) throw error;
-      
+
       toast.success("Blog post deleted successfully!");
       fetchBlogPosts();
     } catch (error) {
@@ -100,14 +104,21 @@ const Admin = () => {
   return (
     <div className="min-h-screen bg-background">
       <AdminNavbar onLogout={handleLogout} />
-      
+
       <div className="container mx-auto px-6 py-8">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Admin Dashboard</h1>
-            <p className="text-muted-foreground mt-2">Article Management Portal, best on Desktop.</p>
+            <h1 className="text-3xl font-bold text-foreground">
+              Admin Dashboard
+            </h1>
+            <p className="text-muted-foreground mt-2">
+              Article Management Portal, best on Desktop.
+            </p>
           </div>
-          <Button onClick={() => setShowForm(true)} className="bg-primary hover:bg-primary/90">
+          <Button
+            onClick={() => setShowForm(true)}
+            className="bg-primary hover:bg-primary/90"
+          >
             <Plus className="h-4 w-4 mr-2" />
             New Article
           </Button>
@@ -122,30 +133,64 @@ const Admin = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-6 text-sm">
-            
               <div>
-                <h4 className="font-semibold text-foreground mb-2">Article Guidelines:</h4>
+                <h4 className="font-semibold text-foreground mb-2">
+                  Article Guidelines:
+                </h4>
                 <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                  <li><strong className="text-foreground">Do not change the slug</strong> of existing articles - Google wont like it</li>
-                  <li>Always add proper headings (H1, H2, H3) to structure your content</li>
-                  <li>Use bold, italics and add images as and when you wish.</li>
-                  <li>It's best practice to make all text color <b>Black</b> as it auto-adapts to user's colour mode.</li>
+                  <li>
+                    <strong className="text-foreground">
+                      Do not change the slug
+                    </strong>{" "}
+                    of existing articles - Google wont like it
+                  </li>
+                  <li>
+                    Always add proper headings (H1, H2, H3) to structure your
+                    content
+                  </li>
+                  <li>
+                    Use bold, italics and add images as and when you wish.
+                  </li>
+                  <li>
+                    It's best practice to make all text color <b>Black</b> as it
+                    auto-adapts to user's colour mode.
+                  </li>
                 </ul>
               </div>
-              
+
               <div>
-                <h4 className="font-semibold text-foreground mb-2">Images Guidelines</h4>
+                <h4 className="font-semibold text-foreground mb-2">
+                  Images Guidelines
+                </h4>
                 <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                  <li>Find royalty-free images on{' '}
-                    <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 underline underline-offset-2 inline-flex items-center gap-1">
+                  <li>
+                    Find royalty-free images on{" "}
+                    <a
+                      href="https://unsplash.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:text-primary/80 underline underline-offset-2 inline-flex items-center gap-1"
+                    >
                       Unsplash <ExternalLink className="h-3 w-3" />
-                    </a>{' '}or{' '}
-                    <a href="https://pixabay.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 underline underline-offset-2 inline-flex items-center gap-1">
+                    </a>{" "}
+                    or{" "}
+                    <a
+                      href="https://pixabay.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:text-primary/80 underline underline-offset-2 inline-flex items-center gap-1"
+                    >
                       Pixabay <ExternalLink className="h-3 w-3" />
                     </a>
                   </li>
-                  <li>Copy the direct image link and paste it in the "Cover Image URL" field</li>
-                  <li>Ensure images are high quality and relevant to your article content, as well as appropriate.</li>
+                  <li>
+                    Copy the direct image link and paste it in the "Cover Image
+                    URL" field
+                  </li>
+                  <li>
+                    Ensure images are high quality and relevant to your article
+                    content, as well as appropriate.
+                  </li>
                 </ul>
               </div>
             </div>
@@ -154,18 +199,24 @@ const Admin = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-foreground">Blog Posts ({blogPosts.length})</CardTitle>
+            <CardTitle className="text-foreground">
+              Blog Posts ({blogPosts.length})
+            </CardTitle>
           </CardHeader>
           <CardContent>
             {loading ? (
-              <div className="text-center p-8 text-muted-foreground">Loading...</div>
+              <div className="text-center p-8 text-muted-foreground">
+                Loading...
+              </div>
             ) : (
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
                     <TableRow>
                       <TableHead className="text-foreground">Title</TableHead>
-                      <TableHead className="text-foreground">Category</TableHead>
+                      <TableHead className="text-foreground">
+                        Category
+                      </TableHead>
                       <TableHead className="text-foreground">Author</TableHead>
                       <TableHead className="text-foreground">Date</TableHead>
                       <TableHead className="text-foreground">Actions</TableHead>
@@ -174,10 +225,18 @@ const Admin = () => {
                   <TableBody>
                     {blogPosts.map((post) => (
                       <TableRow key={post.id} className="hover:bg-muted/50">
-                        <TableCell className="font-medium text-foreground">{post.title}</TableCell>
-                        <TableCell className="text-muted-foreground">{post.category}</TableCell>
-                        <TableCell className="text-muted-foreground">{post.author}</TableCell>
-                        <TableCell className="text-muted-foreground">{post.date}</TableCell>
+                        <TableCell className="font-medium text-foreground">
+                          {post.title}
+                        </TableCell>
+                        <TableCell className="text-muted-foreground">
+                          {post.category}
+                        </TableCell>
+                        <TableCell className="text-muted-foreground">
+                          {post.author}
+                        </TableCell>
+                        <TableCell className="text-muted-foreground">
+                          {post.date}
+                        </TableCell>
                         <TableCell>
                           <div className="flex gap-2">
                             <Button

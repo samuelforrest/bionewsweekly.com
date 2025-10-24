@@ -1,5 +1,5 @@
-import { Separator } from '@/components/ui/separator'
-import { ExternalLink } from 'lucide-react'
+import { Separator } from "@/components/ui/separator";
+import { ExternalLink } from "lucide-react";
 
 export function Footer() {
   return (
@@ -10,9 +10,9 @@ export function Footer() {
             <div className="flex items-center space-x-4">
               <div className="relative">
                 <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary to-green-500 p-1.5 shadow-lg">
-                  <img 
-                    src="/favicon.png" 
-                    alt="BioNewsWeekly Logo" 
+                  <img
+                    src="/favicon.png"
+                    alt="BioNewsWeekly Logo"
                     className="h-full w-full rounded-lg"
                   />
                 </div>
@@ -21,68 +21,71 @@ export function Footer() {
                 <h3 className="font-bold text-2xl bg-gradient-to-r from-primary via-green-500 to-emerald-500 bg-clip-text text-transparent">
                   BioNewsWeekly
                 </h3>
-                <p className="text-sm text-muted-foreground">Biology by students, for students</p>
+                <p className="text-sm text-muted-foreground">
+                  Biology by students, for students
+                </p>
               </div>
             </div>
             <p className="text-muted-foreground leading-relaxed max-w-md">
-              The latest biology news, through the eyes of three passionate A Level biology students.
+              The latest biology news, through the eyes of three passionate A
+              Level biology students.
             </p>
           </div>
 
           <div className="space-y-4">
             <h4 className="text-lg font-bold text-foreground">Quick Links</h4>
             <ul className="space-y-3">
-                <li>
-                  <a 
-                    href="/" 
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
-                  >
-                    <span>Home</span>
-                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="/blog" 
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
-                  >
-                    <span>Latest Articles</span>
-                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="/admin" 
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
-                  >
-                    <span>Admin / CMS</span>
-                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </li>
+              <li>
+                <a
+                  href="/"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
+                >
+                  <span>Home</span>
+                  <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/blog"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
+                >
+                  <span>Latest Articles</span>
+                  <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/admin"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
+                >
+                  <span>Admin / CMS</span>
+                  <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              </li>
             </ul>
           </div>
-          
+
           <div className="space-y-4">
             <h4 className="text-lg font-bold text-foreground">Resources</h4>
             <ul className="space-y-3">
-                <li>
-                  <a 
-                    href="/#newsletter" 
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
-                  >
-                    <span>Newsletter</span>
-                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="mailto:samuelforrest.me" 
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
-                  >
-                    <span>Contact</span>
-                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </li>
+              <li>
+                <a
+                  href="/#newsletter"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
+                >
+                  <span>Newsletter</span>
+                  <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:samuelforrest.me"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group"
+                >
+                  <span>Contact</span>
+                  <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -92,14 +95,21 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex flex-col items-center md:items-start gap-2">
             <p className="text-sm text-muted-foreground flex items-center gap-2">
-              © 2025 Bio News Weekly. Website developed by<a href="https://www.samuelforrest.me?utm_source=bionewsweekly&utm_medium=footer&utm_campaign=website_credit" className="text-primary hover:text-primary/80 underline underline-offset-2 transition-colors">Samuel Forrest</a>
+              © 2025 Bio News Weekly. Website developed by
+              <a
+                href="https://www.samuelforrest.me?utm_source=bionewsweekly&utm_medium=footer&utm_campaign=website_credit"
+                className="text-primary hover:text-primary/80 underline underline-offset-2 transition-colors"
+              >
+                Samuel Forrest
+              </a>
             </p>
             <p className="text-xs text-muted-foreground/80 text-center md:text-left">
-              Privacy: Email addresses stored if you subscribe. Trackers & Cookies for Analytics. Likes are anonymous.
+              Privacy: Email addresses stored if you subscribe. Trackers &
+              Cookies for Analytics. Likes are anonymous.
             </p>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

@@ -1,9 +1,9 @@
-import { Header } from '@/components/Header'
-import { Hero } from '@/components/Hero'
-import { LatestNews } from '@/components/LatestNews'
-import { Team } from '@/components/Team'
-import { Newsletter } from '@/components/Newsletter'
-import { Footer } from '@/components/Footer'
+import { Header } from "@/components/Header";
+import { Hero } from "@/components/Hero";
+import { LatestNews } from "@/components/LatestNews";
+import { Team } from "@/components/Team";
+import { Newsletter } from "@/components/Newsletter";
+import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (

@@ -33,4 +33,4 @@ A web app built with React and Vite, news, AI-powered summaries, and a newslette
 
 - [Supabase](https://supabase.com/) (Auth & Database)
 - [Google Gemini API](https://ai.google.dev) (Legacy Implementation)
-- [ChatGPT OpenAI API](https://openai.com) (New Implementation)
+- [ChatGPT OpenAI API](https://openai.com/api/) (New Implementation)

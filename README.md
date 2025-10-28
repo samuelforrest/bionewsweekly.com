@@ -25,7 +25,7 @@ A web app built with React and Vite, news, AI-powered summaries, and a newslette
 
 **Styling & UI**
 
-- [Tailwind CSS](https://tailwindcss.com/)
+- [Tailwind CSS (latest v3)](https://tailwindcss.com/)
 - [Shadcn UI](https://ui.shadcn.com/)
 - [Quill](https://quilljs.com/) (Rich Text Editor)
 

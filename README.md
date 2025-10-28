@@ -29,7 +29,8 @@ A web app built with React and Vite, news, AI-powered summaries, and a newslette
 - [Shadcn UI](https://ui.shadcn.com/)
 - [Quill](https://quilljs.com/) (Rich Text Editor)
 
-**Integrations**
+**Backend & AI**
 
 - [Supabase](https://supabase.com/) (Auth & Database)
-- [Google Gemini API](https://ai.google.dev) (AI summaries)
+- [Google Gemini API](https://ai.google.dev) (Legacy Implementation)
+- [ChatGPT OpenAI API](https://openai.com) (New Implementation)

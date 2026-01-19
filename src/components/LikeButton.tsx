@@ -1,53 +1,45 @@
 import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
 
 interface LikeButtonProps {
   blogId: string;
 }
 
-const getAnonymousLikes = (): string[] => {
+const STORAGE_KEY = "bionews_static_likes";
+
+const loadLocalLikes = (): string[] => {
   if (typeof window === "undefined") return [];
-  const likes = localStorage.getItem("bionews_anonymous_likes");
-  return likes ? JSON.parse(likes) : [];
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch (error) {
+    console.error("Error reading likes from storage", error);
+    return [];
+  }
 };
 
-const saveAnonymousLikes = (likes: string[]) => {
+const saveLocalLikes = (likes: string[]) => {
   if (typeof window === "undefined") return;
-  localStorage.setItem("bionews_anonymous_likes", JSON.stringify(likes));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(likes));
+  } catch (error) {
+    console.error("Error saving likes to storage", error);
+  }
 };
 
 export function LikeButton({ blogId }: LikeButtonProps) {
-  const { user } = useAuth();
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [loading, setLoading] = useState(false);
 
   const fetchLikes = useCallback(async () => {
-    try {
-      const { data: likes, error: likesError } = await supabase
-        .from("likes")
-        .select("*")
-        .eq("blog_id", blogId);
-
-      if (likesError) throw likesError;
-
-      setLikeCount(likes?.length || 0);
-
-      if (user) {
-        const userLike = likes?.find((like) => like.user_id === user.id);
-        setIsLiked(!!userLike);
-      } else {
-        const anonymousLikes = getAnonymousLikes();
-        setIsLiked(anonymousLikes.includes(blogId));
-      }
-    } catch (error) {
-      console.error("Error fetching likes:", error);
-    }
-  }, [blogId, user]);
+    const likes = loadLocalLikes();
+    const liked = likes.includes(blogId);
+    setIsLiked(liked);
+    setLikeCount(liked ? 1 : 0);
+  }, [blogId]);
 
   useEffect(() => {
     fetchLikes();
@@ -57,101 +49,24 @@ export function LikeButton({ blogId }: LikeButtonProps) {
     setLoading(true);
 
     try {
+      const currentLikes = loadLocalLikes();
+
       if (isLiked) {
-        if (user) {
-          const { error } = await supabase
-            .from("likes")
-            .delete()
-            .eq("blog_id", blogId)
-            .eq("user_id", user.id);
-
-          if (error) {
-            console.error("Database error:", error);
-            throw error;
-          }
-        } else {
-          const { error } = await supabase
-            .from("likes")
-            .delete()
-            .eq("blog_id", blogId)
-            .is("user_id", null)
-            .limit(1);
-
-          if (error) {
-            console.error("Database error:", error);
-            throw error;
-          }
-
-          const anonymousLikes = getAnonymousLikes();
-          const updatedLikes = anonymousLikes.filter((id) => id !== blogId);
-          saveAnonymousLikes(updatedLikes);
-        }
-
+        const updatedLikes = currentLikes.filter((id) => id !== blogId);
+        saveLocalLikes(updatedLikes);
         setIsLiked(false);
-        setLikeCount((prev) => prev - 1);
-        toast.success("Like removed");
+        setLikeCount((prev) => Math.max(prev - 1, 0));
+        toast.success("Like removed (local only)");
       } else {
-        const likeData: {
-          blog_id: string;
-          created_at: string;
-          user_id?: string | null;
-        } = {
-          blog_id: blogId,
-          created_at: new Date().toISOString(),
-        };
-
-        if (user) {
-          likeData.user_id = user.id;
-        } else {
-          likeData.user_id = null;
-        }
-
-        const { data, error } = await supabase
-          .from("likes")
-          .insert([likeData])
-          .select();
-
-        if (error) {
-          console.error("Database error:", error);
-          throw error;
-        }
-
-        if (!user) {
-          const anonymousLikes = getAnonymousLikes();
-          if (!anonymousLikes.includes(blogId)) {
-            anonymousLikes.push(blogId);
-            saveAnonymousLikes(anonymousLikes);
-          }
-        }
-
+        const updatedLikes = [...new Set([...currentLikes, blogId])];
+        saveLocalLikes(updatedLikes);
         setIsLiked(true);
         setLikeCount((prev) => prev + 1);
-
-        if (user) {
-          toast.success("Post liked!");
-        } else {
-          toast.success("Post liked! Thanks for your feedback");
-        }
+        toast.success("Post liked locally");
       }
     } catch (error) {
       console.error("Error toggling like:", error);
-      console.error("Full error object:", JSON.stringify(error, null, 2));
-
-      if (error && typeof error === "object" && "message" in error) {
-        const errorObj = error as {
-          message?: string;
-          code?: string;
-          details?: string;
-        };
-        console.error("Error message:", errorObj.message);
-        console.error("Error code:", errorObj.code);
-        console.error("Error details:", errorObj.details);
-        toast.error(
-          `Failed to update like: ${errorObj.message || "Unknown error"}`,
-        );
-      } else {
-        toast.error("Failed to update like - please try again");
-      }
+      toast.error("Failed to update like");
     } finally {
       setLoading(false);
     }

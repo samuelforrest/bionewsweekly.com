@@ -13,9 +13,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { getAllBlogPosts, type BlogPost } from "@/services/blogService";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Edit, Trash2, Plus, Info, ExternalLink } from "lucide-react";
+
+const STATIC_MODE = true;
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -44,25 +45,22 @@ const Admin = () => {
   };
 
   const handleEdit = (post: BlogPost) => {
+    if (STATIC_MODE) {
+      toast.info("Static content mode: editing is disabled.");
+      return;
+    }
     setEditingPost(post);
     setShowForm(true);
   };
 
   const handleDelete = async (postId: string) => {
-    if (!confirm("Are you sure you want to delete this blog post?")) {
+    if (STATIC_MODE) {
+      toast.info("Static content mode: deleting is disabled.");
       return;
     }
 
-    try {
-      const { error } = await supabase.from("blogs").delete().eq("id", postId);
-
-      if (error) throw error;
-
-      toast.success("Blog post deleted successfully!");
-      fetchBlogPosts();
-    } catch (error) {
-      console.error("Error deleting blog post:", error);
-      toast.error("Failed to delete blog post");
+    if (!confirm("Are you sure you want to delete this blog post?")) {
+      return;
     }
   };
 
@@ -116,7 +114,16 @@ const Admin = () => {
             </p>
           </div>
           <Button
-            onClick={() => setShowForm(true)}
+            onClick={() => {
+              if (STATIC_MODE) {
+                toast.info(
+                  "Static content mode: adding new posts is disabled.",
+                );
+                return;
+              }
+              setShowForm(true);
+            }}
+            disabled={STATIC_MODE}
             className="bg-primary hover:bg-primary/90"
           >
             <Plus className="h-4 w-4 mr-2" />
@@ -243,6 +250,7 @@ const Admin = () => {
                               variant="outline"
                               size="sm"
                               onClick={() => handleEdit(post)}
+                              disabled={STATIC_MODE}
                               className="hover:bg-primary hover:text-primary-foreground"
                             >
                               <Edit className="h-4 w-4" />
@@ -251,6 +259,7 @@ const Admin = () => {
                               variant="outline"
                               size="sm"
                               onClick={() => handleDelete(post.id)}
+                              disabled={STATIC_MODE}
                               className="hover:bg-destructive hover:text-destructive-foreground"
                             >
                               <Trash2 className="h-4 w-4" />

@@ -5,7 +5,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RichTextEditor } from "./RichTextEditor";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import type { BlogPost } from "@/services/blogService";
 
@@ -24,7 +23,7 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
   const [coverImage, setCoverImage] = useState(post?.cover_image || "");
   const [slug, setSlug] = useState(post?.slug || "");
   const [tags, setTags] = useState(post?.tags?.join(", ") || "");
-  const [loading, setLoading] = useState(false);
+  const STATIC_MODE = true;
 
   // Generate slug from title
   const generateSlug = (title: string) => {
@@ -47,51 +46,8 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-
-    try {
-      const tagsArray = tags
-        .split(",")
-        .map((tag) => tag.trim())
-        .filter((tag) => tag);
-
-      const postData = {
-        title,
-        content,
-        preview: preview || null,
-        category,
-        author,
-        cover_image:
-          coverImage || "https://via.placeholder.com/800x400?text=No+Image",
-        slug: slug || generateSlug(title),
-        tags: tagsArray.length > 0 ? tagsArray : null,
-      };
-
-      if (post?.id) {
-        const { error } = await supabase
-          .from("blogs")
-          .update(postData)
-          .eq("id", post.id);
-
-        if (error) throw error;
-        toast.success("Blog post updated successfully!");
-      } else {
-        const { error } = await supabase.from("blogs").insert([postData]);
-
-        if (error) throw error;
-        toast.success("Blog post created successfully!");
-      }
-
-      onSave();
-    } catch (error) {
-      console.error("Error saving blog post:", error);
-      console.error("Error details:", JSON.stringify(error, null, 2));
-      toast.error(
-        `Failed to save blog post: ${error.message || "Unknown error"}`,
-      );
-    } finally {
-      setLoading(false);
-    }
+    toast.info("Static content mode: posts are read-only.");
+    onCancel();
   };
 
   return (
@@ -207,10 +163,10 @@ export function BlogPostForm({ post, onSave, onCancel }: BlogPostFormProps) {
           <div className="flex gap-4">
             <Button
               type="submit"
-              disabled={loading}
+              disabled={STATIC_MODE}
               className="bg-primary hover:bg-primary/90 text-primary-foreground"
             >
-              {loading ? "Saving..." : post ? "Update Post" : "Create Post"}
+              {post ? "Update Post (disabled)" : "Create Post (disabled)"}
             </Button>
             <Button
               type="button"
